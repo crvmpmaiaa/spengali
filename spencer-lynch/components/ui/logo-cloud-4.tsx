@@ -39,12 +39,12 @@ export function LogoCloud({ logos }: LogoCloudProps) {
 
       <ProgressiveBlur
         blurIntensity={1}
-        className="pointer-events-none absolute top-0 left-0 h-full w-[160px]"
+        className="pointer-events-none absolute top-0 left-0 hidden h-full w-[160px] md:block"
         direction="left"
       />
       <ProgressiveBlur
         blurIntensity={1}
-        className="pointer-events-none absolute top-0 right-0 h-full w-[160px]"
+        className="pointer-events-none absolute top-0 right-0 hidden h-full w-[160px] md:block"
         direction="right"
       />
 
