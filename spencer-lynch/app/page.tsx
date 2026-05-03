@@ -2,6 +2,7 @@
 import { TopNav } from "@/components/nav/top-nav";
 import { CinemaFrame } from "@/components/showreel/cinema-frame";
 import { HeroShowreel } from "@/components/showreel/hero-showreel";
+import { CredentialsBlock } from "@/components/credentials/credentials-block";
 import { SiteFooter } from "@/components/footer/site-footer";
 
 const PHONE_TEL = "+447706319468";       // Spencer's real number
@@ -48,6 +49,8 @@ export default function Home() {
             </CinemaFrame>
           </div>
         </section>
+
+        <CredentialsBlock />
       </main>
 
       <SiteFooter phoneTel={PHONE_TEL} emailMailto={EMAIL} />
