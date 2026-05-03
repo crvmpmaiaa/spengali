@@ -1,0 +1,22 @@
+# Local Netlify folder
+.netlify
+
+# Zip files
+*.zip
+
+# macOS
+.DS_Store
+
+# Brainstorming session artifacts (per-machine, not project)
+.superpowers/
+
+# Local env files
+.env
+.env.local
+.env.*.local
+
+# Node (for spencer-lynch and any future npm projects)
+node_modules/
+.next/
+out/
+.vercel/
