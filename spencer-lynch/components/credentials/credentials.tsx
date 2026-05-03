@@ -18,7 +18,7 @@ const ALL_LOGOS: Logo[] = [
   { src: "/brand/crests/chester-racecourse.jpg", alt: "Chester Racecourse" },
   { src: "/brand/logos/liverpool-echo.webp", alt: "Liverpool Echo" },
   { src: "/brand/logos/morrisons.jpeg", alt: "Morrisons" },
-  { src: "/brand/charities/lfc-disabled-supporters.jpg", alt: "Liverpool Disabled Supporters Association", className: "!h-12 md:!h-16" },
+  { src: "/brand/charities/lfc-disabled-supporters.jpg", alt: "Liverpool Disabled Supporters Association", className: "!h-14 md:!h-20" },
   { src: "/brand/logos/specsavers.jpg", alt: "Specsavers", className: "!h-12 md:!h-16" },
   { src: "/brand/logos/holloway-friendly.svg", alt: "Holloway Friendly", className: "!h-7 md:!h-10" },
   { src: "/brand/logos/five-guys.png", alt: "Five Guys" },
