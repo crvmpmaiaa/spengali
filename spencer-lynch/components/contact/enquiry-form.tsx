@@ -71,34 +71,37 @@ export function EnquiryForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-        <Field label="Name" error={errors.name?.message}>
+        <Field label="Name" fieldId="field-name" error={errors.name?.message}>
           <Input
+            id="field-name"
             {...register("name")}
             className="border-gold/30 bg-ink text-cream placeholder:text-cream/30"
             placeholder="Your name"
           />
         </Field>
-        <Field label="Email" error={errors.email?.message}>
+        <Field label="Email" fieldId="field-email" error={errors.email?.message}>
           <Input
+            id="field-email"
             type="email"
             {...register("email")}
             className="border-gold/30 bg-ink text-cream placeholder:text-cream/30"
             placeholder="you@example.com"
           />
         </Field>
-        <Field label="Event date" error={errors.eventDate?.message}>
+        <Field label="Event date" fieldId="field-event-date" error={errors.eventDate?.message}>
           <Input
+            id="field-event-date"
             type="date"
             {...register("eventDate")}
             className="border-gold/30 bg-ink text-cream"
           />
         </Field>
-        <Field label="Event type" error={errors.eventType?.message}>
+        <Field label="Event type" fieldId="field-event-type" error={errors.eventType?.message}>
           <Select
             onValueChange={(v) => setValue("eventType", v as EnquiryInput["eventType"])}
             defaultValue={watch("eventType")}
           >
-            <SelectTrigger className="border-gold/30 bg-ink text-cream">
+            <SelectTrigger id="field-event-type" className="border-gold/30 bg-ink text-cream">
               <SelectValue placeholder="Select" />
             </SelectTrigger>
             <SelectContent>
@@ -108,15 +111,17 @@ export function EnquiryForm() {
             </SelectContent>
           </Select>
         </Field>
-        <Field label="Location" error={errors.location?.message} className="md:col-span-2">
+        <Field label="Location" fieldId="field-location" error={errors.location?.message} className="md:col-span-2">
           <Input
+            id="field-location"
             {...register("location")}
             className="border-gold/30 bg-ink text-cream placeholder:text-cream/30"
             placeholder="City / venue"
           />
         </Field>
-        <Field label="Message" error={errors.message?.message} className="md:col-span-2">
+        <Field label="Message" fieldId="field-message" error={errors.message?.message} className="md:col-span-2">
           <Textarea
+            id="field-message"
             rows={6}
             {...register("message")}
             className="border-gold/30 bg-ink text-cream placeholder:text-cream/30"
@@ -143,18 +148,20 @@ export function EnquiryForm() {
 
 function Field({
   label,
+  fieldId,
   error,
   children,
   className,
 }: {
   label: string;
+  fieldId: string;
   error?: string;
   children: React.ReactNode;
   className?: string;
 }) {
   return (
     <div className={className}>
-      <Label className="font-mono text-[10px] uppercase tracking-eyebrow text-cream/70">
+      <Label htmlFor={fieldId} className="font-mono text-[10px] uppercase tracking-eyebrow text-cream/70">
         {label}
       </Label>
       <div className="mt-2">{children}</div>
