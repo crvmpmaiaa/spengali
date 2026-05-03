@@ -26,7 +26,7 @@ export default function Home() {
               The only magician to hold simultaneous resident positions at two Premier League clubs. Twenty years of close-up. One card, up close.
             </p>
             <p className="mt-4 font-mono text-[11px] uppercase tracking-eyebrow text-cream/55">
-              Liverpool · Everton · Wrexham · &amp; the room you&apos;re in
+              Liverpool, UK, Beyond…
             </p>
 
             <div className="mt-10 flex justify-center">
