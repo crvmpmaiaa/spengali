@@ -348,9 +348,9 @@ These need answers before or during early implementation; they do not block writ
 
 - **[tarotoo.com](https://tarotoo.com/)** — card-based tarot site with "beautifully animated" card flip / draw / reveal sequences. Captured for **Plan 3 (Trick Framework + 3 Tricks)** as a reference for the card-flip / pick-a-card / reveal vocabulary. The actual mechanics aren't exposed in the static HTML (video-driven), so technical analysis happens at the start of Plan 3 by scraping the live site or running a browser MCP against it.
 
-## Plan 7 backlog (carried forward from Plan 1's final code review)
+## Plan 7 backlog (carried forward from Plan 1 + Plan 2)
 
-The Plan 1 final code review surfaced these items — not blockers for the foundation, all bound for the Plan 7 polish/hardening pass:
+The Plan 1 + Plan 2 final code reviews surfaced these items — not blockers for the foundation/credentials, all bound for the Plan 7 polish/hardening pass:
 
 - **Hoist contact info** — `PHONE_TEL`, `EMAIL`, and `WHATSAPP_E164` are duplicated across `app/page.tsx`, `app/book/page.tsx`, and `app/layout.tsx`. Extract to `lib/contact.ts` (single source of truth) and add a build-time guard against the placeholder `spencer@example.com`.
 - **WhatsApp env-var hardening** — `app/layout.tsx` falls back to a 12-digit-of-zeros if `NEXT_PUBLIC_WHATSAPP_E164` is missing, silently shipping a dead link. Either require it in `lib/env.ts` or render `null` when unset.
@@ -365,6 +365,15 @@ The Plan 1 final code review surfaced these items — not blockers for the found
 - **Lighthouse perf hints captured** — LCP image needs `fetchpriority="high"` (set automatically by `priority` prop, already in place — verify in prod), unused JS chunk ~29 KiB to investigate, cache-policy headers ~32 KiB savings.
 - **e2e test improvement** — `page.waitForTimeout(500)` in the validation-blocks-submit test could be replaced with `Promise.race([waitForRequest, waitForTimeout])` for less flakiness.
 - **`useReducedMotion` SSR hydration flicker** — server returns `false`, so reduced-motion users see a brief iframe flash before the swap. Consider `useSyncExternalStore` rewrite. Low priority.
+
+### From Plan 2 (Credentials Sections + Logo Cloud) review
+
+- **§02 Worldwide Hospitality logo missing** — the spec lists 10 brands in the Boardrooms slider (line 229) but no clean public-web logo for "Worldwide Hospitality" was findable. Production currently ships 9 logos. Either source a real asset (likely needs Spencer to supply) or remove the brand from spec to match.
+- **Liverpool FC crest size** — `public/brand/crests/liverpool.svg` is 206 KB (densest path data of the available clean vectors; Wikimedia version was 844 KB). Below-the-fold so not LCP-critical, but run through `svgo --multipass` for ~30–40 % savings.
+- **§03 / §04 inline-list semantics** — Quiet Money and Work That Matters render names inside a single `<p>` with aria-hidden dot separators. Visually correct, but a screen reader announces the names as one continuous string. Switch to `<ul>` with `display: inline` items so AT treats them as a list while preserving the gold-dot visual.
+- **§02 logo `alt` text inconsistency** — Boardrooms passes bare brand names (`alt="Google"`) while §01 StadiumYears uses `"<Brand> crest"` / `"<Brand> logo"`. Standardise to `"<Brand> logo"` for the corporate row.
+- **§04 panel cream-tint inline style** — `work-that-matters.tsx` uses inline `style={{ background: "rgba(245, 230, 200, 0.04)" }}`. Replace with Tailwind v4 arbitrary-opacity utility `bg-cream/[0.04]` so the panel tint participates in the design-token system if `--color-cream` is ever retuned.
+- **§01 vs §04 headline size split** — StadiumYears uses `lg:text-[64px]`, WorkThatMatters uses `lg:text-[60px]`. Plan ships both intentionally (panel may want tighter measure) but worth confirming with the designer or unifying.
 
 ## Phasing
 
