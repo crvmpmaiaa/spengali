@@ -58,15 +58,6 @@ export function HeroShowreel() {
           >
             🔊
           </a>
-          <a
-            href={VIMEO_PAGE}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Open showreel fullscreen on Vimeo"
-            className="pointer-events-auto flex h-9 w-9 items-center justify-center border border-gold/55 bg-ink-warm/75 text-cream backdrop-blur transition-colors hover:bg-gold/15"
-          >
-            ⤢
-          </a>
         </div>
       )}
     </div>
