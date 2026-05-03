@@ -5,6 +5,7 @@ import { HeroShowreel } from "@/components/showreel/hero-showreel";
 import { CredentialsBlock } from "@/components/credentials/credentials-block";
 import { SiteFooter } from "@/components/footer/site-footer";
 import { TryATrickButton } from "@/components/tricks/try-a-trick-button";
+import { SiteIntro } from "@/components/intro/site-intro";
 
 const PHONE_TEL = "+447706319468";       // Spencer's real number
 const EMAIL = "spencer@example.com";     // TODO: replace with Spencer's real email when supplied
@@ -12,6 +13,7 @@ const EMAIL = "spencer@example.com";     // TODO: replace with Spencer's real em
 export default function Home() {
   return (
     <>
+      <SiteIntro />
       <TopNav />
 
       <main className="pinstripe relative bg-ink">
