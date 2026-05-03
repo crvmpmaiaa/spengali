@@ -60,7 +60,8 @@ His current site (howdidhedothat.co.uk) is dated and undersells him by a wide ma
 | **Logo cloud component** | shadcn-style `InfiniteSlider` + `ProgressiveBlur` (the React component supplied during brainstorming) — grayscale logos, hover-slowdown |
 | **Carragher / Rooney handling** | Editorial mention only ("performed at private events for Premier League legends"); never on a logo wall; subject to Spencer confirming permissions |
 | **Testimonials pattern** | DMC carousel — branded imagery + short punchy quote |
-| **Contact pattern** | Lee Smith three-option footer (CLICK TO CALL / CLICK TO EMAIL / USE ENQUIRY FORM) + WhatsApp widget; LFC residency stamp replaces Magic Circle badge as the credibility anchor |
+| **Contact pattern** | Lee Smith three-option footer (CLICK TO CALL / CLICK TO EMAIL / USE ENQUIRY FORM) + WhatsApp widget. **No specific club-branded stamp** — credibility lives in the headline copy (dual-residency line) and the credentials wall, not in a footer badge. |
+| **Client logo sourcing** | Sourced from public web (brand-asset pages, svgl.app, Wikimedia, etc.) rather than waiting on Spencer-provided vector files. Standard fair-use practice for "as worked with" credentials walls. |
 | **Tech stack** | React / Next.js (App Router) + TypeScript + Tailwind CSS + shadcn/ui + framer-motion |
 | **Project location** | New sibling directory at repo root: `/spencer-lynch/` (separate Node project, not a subdirectory of the existing portfolio site) |
 | **"The site is the trick" feature** | At least one interactive trick on the homepage hero; "⌕ Try a Trick" nav slot opens a random hidden trick; 1-2 hidden routes unlocked by trick interactions |
@@ -126,7 +127,7 @@ Once vector source arrives (or we re-trace), the JPG variants are replaced 1:1; 
 3. **Showreel (`/showreel`)** — full 2:07 reel (and any longer cuts) with sound, with a card-style index of past performances
 4. **Tech Illusions (`/tech-illusions`)** — dedicated showcase of the phone-driven / app-driven work; includes the live in-site trick(s)
 5. **The Work (`/work`)** — case studies index; each case study at `/work/[slug]` (e.g. `/work/anfield-hospitality`, `/work/wrexham-matchday`, `/work/everton-residency`)
-6. **Bookings (`/book`)** — three-option contact + WhatsApp widget + LFC stamp
+6. **Bookings (`/book`)** — three-option contact + WhatsApp widget
 7. **Hidden routes** — at least one Easter-egg page (e.g. `/the-vault`) unlocked by completing a trick. Not in nav. Discoverable only by performance.
 
 ### Homepage section architecture (12 sections)
@@ -142,7 +143,7 @@ Once vector source arrives (or we re-trace), the JPG variants are replaced 1:1; 
 9. **§ 05 As Seen On** — eyebrow + three Playfair-italic broadcaster names (Sky Sports · ITV · Liverpool Echo) — minimal, no logos required
 10. **Testimonials carousel** — DMC pattern; 3-5 testimonials, each pairing branded imagery + short punchy quote + small-italic attribution
 11. **Social viral strip** — embedded recent Instagram / TikTok clips of his street magic; horizontal scroll; "Follow @[handle]" CTA per platform
-12. **Footer** — three-option contact (CLICK TO CALL / CLICK TO EMAIL / USE ENQUIRY FORM) + WhatsApp widget bottom-right + LFC residency stamp + social icons (Instagram · TikTok · LinkedIn · Facebook) + small print
+12. **Footer** — three-option contact (CLICK TO CALL / CLICK TO EMAIL / USE ENQUIRY FORM) + WhatsApp widget bottom-right + social icons (Instagram · TikTok · LinkedIn · Facebook) + small print. No club-branded badge — credibility is carried by the headline copy and credentials wall, not a footer stamp.
 
 ## The Trick System
 
@@ -242,7 +243,7 @@ Single-page `/book` and replicated in homepage footer. Three options + WhatsApp:
 3. **USE ENQUIRY FORM** — modal or `/book#enquiry` with fields: name, email, event date, event type (Wedding / Corporate / Hospitality / Private / Other), location, brief message
 4. **WhatsApp widget** — bottom-right floating button on every page, opens WA chat with Spencer's number
 
-Trust signals adjacent: **LFC residency stamp** (custom badge — "Resident Magician · Liverpool FC · Since 2006") and Spencer's full company / VAT registration in small print.
+No club-branded trust stamp. Credibility is carried by the headline copy (the dual-residency line above the fold) and the credentials wall, not a footer badge. Spencer's full company / VAT registration sits in small print at the bottom of the footer.
 
 ## Tech Stack
 

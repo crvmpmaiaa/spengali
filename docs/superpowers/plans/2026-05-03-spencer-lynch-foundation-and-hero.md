@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Bootstrap a Vercel-deployable Next.js site at `/spencer-lynch/` that ships the full Card Maker's Library design system, a working Vimeo cinema-frame hero showreel (with reduced-motion fallback), top nav, footer (three-option contact + WhatsApp widget + LFC residency stamp), a `/book` page, and a serverless enquiry-form endpoint that emails Spencer.
+**Goal:** Bootstrap a Vercel-deployable Next.js site at `/spencer-lynch/` that ships the full Card Maker's Library design system, a working Vimeo cinema-frame hero showreel (with reduced-motion fallback), top nav, footer (three-option contact + WhatsApp widget), a `/book` page, and a serverless enquiry-form endpoint that emails Spencer. **No club-branded trust stamp** — credibility is carried by the headline copy and the credentials wall (built in Plan 2), not by a footer badge.
 
 **Architecture:** Next.js 15 App Router with TypeScript + Tailwind + shadcn/ui. Design tokens locked in `tailwind.config.ts` and `globals.css`. Components colocated by responsibility — `cinema-frame` and `showreel` are independent units; nav/footer/contact share primitives via shadcn. Form submission uses react-hook-form + zod + a serverless `/api/enquiry` route that delivers email via Resend (chosen for free tier + Vercel-native integration). Reduced-motion handled via a single `useReducedMotion` hook that gates the Vimeo iframe.
 
@@ -27,7 +27,7 @@ This is **Plan 1 of an expected 7**. Each subsequent plan will be written when i
 | # | Plan | Output |
 |---|------|--------|
 | **1** | **Foundation & Hero Shell (this plan)** | **Deployable single-page site: nav + hero showreel + footer + working /book form** |
-| 2 | Credentials Sections (§ 01–§ 05) | InfiniteSlider + ProgressiveBlur components, all five credentials sections rendered on homepage |
+| 2 | Credentials Sections (§ 01–§ 05) | InfiniteSlider + ProgressiveBlur components, all five credentials sections rendered on homepage. **Client logos sourced from public web** (brand-asset pages, svgl.app, Wikimedia, etc.) — does not block on Spencer-supplied vector files. |
 | 3 | Trick Framework + 3 Tricks at Launch | TrickModal shell, three working tricks (hero pick-a-card + two random pool), `/the-vault` Easter-egg with localStorage persistence |
 | 4 | Animated Spencer System (B host + C fallback + A reveals) | Character system using illustration host (or Shadow-Play fallback), photoreal reserved for big trick reveals |
 | 5 | Other Pages (about, showreel, tech-illusions, work + work/[slug], hidden routes) | Remaining routes wired up, case-study schema |
@@ -64,7 +64,7 @@ spencer-lynch/
 │   ├── nav/
 │   │   └── top-nav.tsx                         # Top nav with no-pips logo + nav links + Try-a-Trick pill
 │   ├── footer/
-│   │   ├── site-footer.tsx                     # Footer with 3-option contact + LFC stamp + socials
+│   │   ├── site-footer.tsx                     # Footer with 3-option contact + socials
 │   │   └── whatsapp-widget.tsx                 # Floating WA button (every page)
 │   ├── showreel/
 │   │   ├── cinema-frame.tsx                    # Reusable framed container w/ corner brackets + slate rows
@@ -73,7 +73,6 @@ spencer-lynch/
 │   │   ├── enquiry-form.tsx                    # zod + react-hook-form
 │   │   └── enquiry-schema.ts                   # zod schema (shared client + server)
 │   └── brand/
-│       ├── lfc-stamp.tsx                       # "Resident Magician · Liverpool FC · Since 2006" badge
 │       └── sl-logo.tsx                         # <img> wrapper with three variant props (color/bw/no-pips)
 ├── lib/
 │   ├── hooks/
@@ -600,68 +599,11 @@ git add spencer-lynch && \
 git commit -m "feat(spencer-lynch): SLLogo component with color/bw/no-pips variants and invertOnDark prop"
 ```
 
-## Task 1.4: Build `<LFCStamp>` credibility badge
+## Task 1.4: ~~LFCStamp credibility badge~~ — REMOVED
 
-**Files:**
-- Create: `spencer-lynch/components/brand/lfc-stamp.tsx`
+This task has been **removed**. Per a spec change, the site does not include a club-branded trust stamp. Credibility is carried by the headline copy (the dual-residency line above the fold) and by the credentials wall (built in Plan 2). The footer and `/book` page render with three-option contact and socials only — no badge.
 
-- [ ] **Step 1: Implement (UI-only, no test value)**
-
-Create `spencer-lynch/components/brand/lfc-stamp.tsx`:
-
-```tsx
-// spencer-lynch/components/brand/lfc-stamp.tsx
-import { cn } from "@/lib/utils";
-
-export function LFCStamp({ className }: { className?: string }) {
-  return (
-    <div
-      className={cn(
-        "inline-flex flex-col items-center gap-1 border border-gold/50 px-5 py-3 text-center",
-        className,
-      )}
-      aria-label="Resident Magician at Liverpool Football Club since 2006"
-    >
-      <span className="font-mono text-[9px] uppercase tracking-eyebrowWide text-gold">
-        — Resident Magician —
-      </span>
-      <span className="font-display text-base italic text-cream">
-        Liverpool FC
-      </span>
-      <span className="font-mono text-[9px] uppercase tracking-eyebrow text-gold/70">
-        Since 2006
-      </span>
-    </div>
-  );
-}
-```
-
-- [ ] **Step 2: Visually verify** by rendering it on the homepage temporarily — open `app/page.tsx`, replace its body with:
-
-```tsx
-// spencer-lynch/app/page.tsx (TEMPORARY — will be replaced in Phase 5)
-import { LFCStamp } from "@/components/brand/lfc-stamp";
-
-export default function Home() {
-  return (
-    <main className="flex min-h-screen items-center justify-center bg-ink">
-      <LFCStamp />
-    </main>
-  );
-}
-```
-
-```bash
-npm run dev
-```
-Open `http://localhost:3000`. Expected: the gold-bordered stamp renders centred on a dark page. Stop the server.
-
-- [ ] **Step 3: Commit**
-
-```bash
-git add spencer-lynch && \
-git commit -m "feat(spencer-lynch): LFCStamp badge component"
-```
+Skip directly to Task 1.5.
 
 ## Task 1.5: Build `useReducedMotion` hook
 
@@ -1187,7 +1129,6 @@ git commit -m "feat(spencer-lynch): WhatsApp floating widget mounted in root lay
 ```tsx
 // spencer-lynch/components/footer/site-footer.tsx
 import Link from "next/link";
-import { LFCStamp } from "@/components/brand/lfc-stamp";
 
 const SOCIALS = [
   { label: "Instagram", href: "https://instagram.com/" },
@@ -1205,11 +1146,7 @@ export function SiteFooter({
 }) {
   return (
     <footer className="border-t border-gold/30 bg-ink-warm px-10 pb-12 pt-16 text-cream">
-      <div className="mx-auto grid max-w-[1200px] grid-cols-1 gap-12 md:grid-cols-[auto_1fr_auto] md:items-start">
-        <div className="flex justify-center md:justify-start">
-          <LFCStamp />
-        </div>
-
+      <div className="mx-auto flex max-w-[1200px] flex-col items-center gap-12 md:flex-row md:items-start md:justify-between">
         <div className="flex flex-col items-center text-center md:items-start md:text-left">
           <p className="font-mono text-[10px] uppercase tracking-eyebrowWide text-gold">— Bookings —</p>
           <h2 className="mt-3 font-display text-3xl italic text-cream">It all starts with a chat.</h2>
@@ -1290,13 +1227,13 @@ export default function Home() {
 }
 ```
 
-`npm run dev` → footer renders with LFC stamp on the left, three buttons centred, social links on the right. Mobile: stacks vertically, social links go horizontal. Stop the server.
+`npm run dev` → footer renders with the "It all starts with a chat" headline + three buttons + social links on the right. Mobile: stacks vertically, social links go horizontal. Stop the server.
 
 - [ ] **Step 3: Commit**
 
 ```bash
 git add spencer-lynch && \
-git commit -m "feat(spencer-lynch): SiteFooter with LFC stamp, 3-option contact, and socials"
+git commit -m "feat(spencer-lynch): SiteFooter with 3-option contact and socials"
 ```
 
 ---
@@ -1867,7 +1804,6 @@ git commit -m "feat(spencer-lynch): wire up homepage with hero copy, cinema-fram
 import type { Metadata } from "next";
 import { TopNav } from "@/components/nav/top-nav";
 import { SiteFooter } from "@/components/footer/site-footer";
-import { LFCStamp } from "@/components/brand/lfc-stamp";
 import { EnquiryForm } from "@/components/contact/enquiry-form";
 
 const PHONE_TEL = "+447000000000";
@@ -1876,7 +1812,7 @@ const EMAIL = "spencer@example.com";
 export const metadata: Metadata = {
   title: "Book Spencer Lynch · Memorable Magic",
   description:
-    "Booking enquiries for close-up, tech illusion, and big-event magic by Spencer Lynch — resident magician at Liverpool FC since 2006.",
+    "Booking enquiries for close-up, tech illusion, and big-event magic by Spencer Lynch.",
 };
 
 export default function BookPage() {
@@ -1911,9 +1847,6 @@ export default function BookPage() {
                   Click to Email
                 </a>
               </div>
-              <div className="pt-4">
-                <LFCStamp />
-              </div>
             </aside>
 
             <section>
@@ -1931,7 +1864,7 @@ export default function BookPage() {
 
 - [ ] **Step 2: Visually verify**
 
-`npm run dev` → navigate to `http://localhost:3000/book`. Expected: two-column layout (eyebrow + headline + call/email + stamp on left, full enquiry form on right). Mobile: stacks. Stop the server.
+`npm run dev` → navigate to `http://localhost:3000/book`. Expected: two-column layout (eyebrow + headline + call/email on left, full enquiry form on right). Mobile: stacks. Stop the server.
 
 - [ ] **Step 3: Commit**
 
@@ -1960,8 +1893,8 @@ test("homepage renders hero copy + cinema frame + footer", async ({ page }) => {
   const hasIframe = await page.locator("iframe[src*='player.vimeo.com']").count();
   const hasPoster = await page.getByRole("link", { name: /watch on vimeo/i }).count();
   expect(hasIframe + hasPoster).toBeGreaterThan(0);
-  // Footer LFC stamp present
-  await expect(page.getByLabel(/liverpool football club since 2006/i)).toBeVisible();
+  // Footer is mounted (its "It all starts with a chat" headline is the marker)
+  await expect(page.getByRole("heading", { name: /it all starts with a chat/i })).toBeVisible();
 });
 
 test("/book page renders enquiry form with all fields", async ({ page }) => {
@@ -2040,7 +1973,7 @@ Record the four scores. Targets per spec:
 
 - [ ] **Step 5: If Accessibility < 95**, common items:
 
-1. Confirm every interactive element has an accessible name (already done for affordances, WhatsApp widget, LFC stamp)
+1. Confirm every interactive element has an accessible name (already done for affordances, WhatsApp widget, social links)
 2. Confirm colour contrast: `text-cream/70` on `bg-ink` is at least 4.5:1 — verify via Lighthouse contrast audit
 3. Confirm form labels are associated (we use `<Label>` from shadcn — they wrap the inputs)
 
@@ -2125,7 +2058,7 @@ The plan is complete when **all** of these are true:
 - [ ] Hover reveals 🔊 and ⤢ affordances; both link to the Vimeo page
 - [ ] Reduced-motion replaces the iframe with the poster + "Watch on Vimeo" link
 - [ ] Top nav renders with no-pips logo, 5 links, and the (stub) "⌕ Try a Trick" pill
-- [ ] Footer renders LFC stamp + three-option contact + 4 social links + © line
+- [ ] Footer renders the "It all starts with a chat" headline + three-option contact + 4 social links + © line (no club-branded stamp)
 - [ ] WhatsApp widget visible bottom-right on every page
 - [ ] `/book` renders the two-column page with the full enquiry form
 - [ ] Submitting a valid enquiry on `/book` delivers an email to `ENQUIRY_TO_EMAIL` via Resend
