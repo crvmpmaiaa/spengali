@@ -42,7 +42,7 @@ export default function Home() {
 
           <div className="mx-auto mt-14 flex max-w-[760px] justify-center">
             <CinemaFrame
-              slateTop={{ left: "SL · Reel · 2026", right: "● Live · 1080p" }}
+              slateTop={{ left: "SL · Reel · 2026", right: "" }}
               slateBottom={{ left: "Memorable Magic", right: "" }}
             >
               <HeroShowreel />
