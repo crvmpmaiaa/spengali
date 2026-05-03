@@ -56,7 +56,7 @@ export function Credentials() {
         </h2>
       </div>
 
-      <div className="mt-14">
+      <div className="-mx-6 mt-14 md:-mx-10">
         <LogoCloud logos={logos} />
       </div>
 
