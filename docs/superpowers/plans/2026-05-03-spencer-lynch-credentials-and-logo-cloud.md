@@ -67,7 +67,7 @@ spencer-lynch/
 │       │   ├── uefa.svg
 │       │   ├── chester-racecourse.svg
 │       │   └── wrexham.svg                        # optional — only if findable on public web
-│       └── logos/                                 # NEW — § 02 grayscale corporate logos
+│       └── logos/                                 # NEW — § 02 grayscale corporate logos (9 — Worldwide Hospitality dropped)
 │           ├── google.svg
 │           ├── marks-and-spencer.svg
 │           ├── santander.svg
@@ -76,8 +76,7 @@ spencer-lynch/
 │           ├── five-guys.svg
 │           ├── aon.svg
 │           ├── nec.svg
-│           ├── chester-zoo.svg
-│           └── worldwide-hospitality.svg
+│           └── chester-zoo.svg
 └── tests/
     ├── unit/
     │   ├── infinite-slider.test.tsx               # NEW
@@ -818,7 +817,6 @@ const LOGOS: Logo[] = [
   { name: "Aon", src: "/brand/logos/aon.svg", alt: "Aon" },
   { name: "NEC", src: "/brand/logos/nec.svg", alt: "NEC" },
   { name: "Chester Zoo", src: "/brand/logos/chester-zoo.svg", alt: "Chester Zoo" },
-  { name: "Worldwide Hospitality", src: "/brand/logos/worldwide-hospitality.svg", alt: "Worldwide Hospitality" },
 ];
 
 export function Boardrooms() {
@@ -1164,9 +1162,9 @@ test("homepage renders all five credentials sections in order", async ({ page })
   });
   await expect.poll(async () => crestRow.count()).toBeGreaterThanOrEqual(4);
 
-  // § 02 logo cloud renders at least the ten brand logos (counting both copies = 20)
+  // § 02 logo cloud renders at least the nine brand logos (counting both copies = 18)
   const logoImgs = page.locator("img[src*='/brand/logos/']");
-  await expect.poll(async () => logoImgs.count()).toBeGreaterThanOrEqual(10);
+  await expect.poll(async () => logoImgs.count()).toBeGreaterThanOrEqual(9);
 
   // § 05 broadcasters
   await expect(page.getByText("Sky Sports", { exact: true })).toBeVisible();
