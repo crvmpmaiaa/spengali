@@ -61,19 +61,19 @@ export function Credentials() {
       </div>
 
       <div className="mx-auto mt-12 max-w-[820px] space-y-5 px-2 text-center">
-        <p className="text-lg leading-relaxed text-cream/85 md:text-xl">
+        <p className="text-sm leading-relaxed text-cream/85 md:text-xl">
           Official magician of Liverpool FC since 2006. The only person to ever
           hold simultaneous resident positions at two Premier League clubs
           (Liverpool, Everton). Twenty years of close-up at the highest level.
         </p>
-        <p className="text-lg leading-relaxed text-cream/85 md:text-xl">
+        <p className="text-sm leading-relaxed text-cream/85 md:text-xl">
           Behind the scenes for global tech, high-street retail, financial
           services, hospitality, education, healthcare and broadcasters, plus
           a long list of charities including the LFC Foundation, Liverpool
           Disabled Supporters Association, the Owen McVeigh Foundation, Down
           Syndrome Liverpool, and the Countess of Chester Hospital.
         </p>
-        <p className="text-lg leading-relaxed text-cream/85 md:text-xl">
+        <p className="text-sm leading-relaxed text-cream/85 md:text-xl">
           The trusted choice for players&apos; families, private parties, and
           the rooms you don&apos;t hear about.
         </p>
