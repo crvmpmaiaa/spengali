@@ -7,7 +7,7 @@ type Logo = { src: string; alt: string; className?: string };
 
 const ALL_LOGOS: Logo[] = [
   { src: "/brand/crests/liverpool.png", alt: "Liverpool Football Club", className: "!h-12 md:!h-16" },
-  { src: "/brand/logos/google.webp", alt: "Google" },
+  { src: "/brand/logos/google.webp", alt: "Google", className: "!h-12 md:!h-16" },
   { src: "/brand/charities/lfc-foundation.jpg", alt: "LFC Foundation" },
   { src: "/brand/crests/everton.svg", alt: "Everton Football Club" },
   { src: "/brand/logos/marks-and-spencer.jpg", alt: "Marks & Spencer" },
