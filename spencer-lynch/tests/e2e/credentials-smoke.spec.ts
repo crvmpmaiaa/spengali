@@ -1,32 +1,25 @@
 import { test, expect } from "@playwright/test";
 
-test("homepage renders all five credentials sections in order", async ({ page }) => {
+test("homepage renders unified credentials section with logo marquee + paragraphs", async ({ page }) => {
   await page.goto("/");
 
-  // The five display headlines, top to bottom
-  const headings = await page
-    .getByRole("heading", { level: 2 })
-    .allInnerTexts();
+  // Headline copy
+  await expect(
+    page.getByRole("heading", {
+      name: /Two Premier League clubs.*The world's most discerning rooms/i,
+    }),
+  ).toBeVisible();
 
-  expect(headings).toContain("Twenty seasons. Two clubs. One magician.");
-  expect(headings).toContain("From global tech to the high street.");
-  expect(headings).toContain("Where the suits like a card trick most.");
-  expect(headings).toContain("Twenty years of giving the trick away.");
-
-  // § 01 chips render at least 4 crests
-  const crestRow = page.locator("li", {
-    has: page.locator("img[alt*='crest' i], img[alt*='UEFA' i], img[alt*='Racecourse' i]"),
-  });
-  await expect.poll(async () => crestRow.count()).toBeGreaterThanOrEqual(4);
-
-  // § 02 logo cloud renders at least the nine brand logos (counting both copies = 18)
+  // Marquee renders both crests AND corporate logos in the slider
+  const crestImgs = page.locator("img[src*='/brand/crests/']");
   const logoImgs = page.locator("img[src*='/brand/logos/']");
+  await expect.poll(async () => crestImgs.count()).toBeGreaterThanOrEqual(5);
   await expect.poll(async () => logoImgs.count()).toBeGreaterThanOrEqual(9);
 
-  // § 05 broadcasters
-  await expect(page.getByText("Sky Sports", { exact: true })).toBeVisible();
-  await expect(page.getByText("ITV", { exact: true })).toBeVisible();
-  await expect(page.getByText("Liverpool Echo", { exact: true })).toBeVisible();
+  // Paragraph proof points (a sampling of names that must appear in copy)
+  await expect(page.getByText(/Liverpool FC since 2006/i)).toBeVisible();
+  await expect(page.getByText(/LFC Foundation/i)).toBeVisible();
+  await expect(page.getByText(/Carragher and Rooney families/i)).toBeVisible();
 });
 
 test("credentials block respects prefers-reduced-motion", async ({ page }) => {
