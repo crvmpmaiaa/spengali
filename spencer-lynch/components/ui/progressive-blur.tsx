@@ -1,55 +1,62 @@
-// spencer-lynch/components/ui/progressive-blur.tsx
-"use client";
+'use client';
+import { cn } from '@/lib/utils';
+import { HTMLMotionProps, motion } from 'motion/react';
 
-import { type CSSProperties } from "react";
-import { cn } from "@/lib/utils";
-
-export type ProgressiveBlurProps = {
-  side: "left" | "right";
-  /** Width of the blur band as a CSS length (e.g. "120px", "10%"). Default "10%". */
-  width?: string;
-  /** Background colour the blur fades to. Default matches the page ink. */
-  fadeTo?: string;
-  className?: string;
+export const GRADIENT_ANGLES = {
+  top: 0,
+  right: 90,
+  bottom: 180,
+  left: 270,
 };
 
-/**
- * Edge-fade mask used at InfiniteSlider boundaries. Stacks a backdrop-blur
- * gradient with a colour-fade gradient so logos blur and dim toward the edge.
- */
+export type ProgressiveBlurProps = {
+  direction?: keyof typeof GRADIENT_ANGLES;
+  blurLayers?: number;
+  className?: string;
+  blurIntensity?: number;
+} & HTMLMotionProps<'div'>;
+
 export function ProgressiveBlur({
-  side,
-  width = "10%",
-  fadeTo = "var(--color-ink, #070504)",
+  direction = 'bottom',
+  blurLayers = 8,
   className,
+  blurIntensity = 0.25,
+  ...props
 }: ProgressiveBlurProps) {
-  const horizontal: CSSProperties =
-    side === "left" ? { left: 0 } : { right: 0 };
-
-  const maskGradient =
-    side === "left"
-      ? "linear-gradient(to right, black, transparent)"
-      : "linear-gradient(to left, black, transparent)";
-
-  const colourFade =
-    side === "left"
-      ? `linear-gradient(to right, ${fadeTo}, transparent)`
-      : `linear-gradient(to left, ${fadeTo}, transparent)`;
+  const layers = Math.max(blurLayers, 2);
+  const segmentSize = 1 / (blurLayers + 1);
 
   return (
-    <div
-      data-progressive-blur=""
-      aria-hidden="true"
-      className={cn("pointer-events-none absolute top-0 z-10 h-full", className)}
-      style={{
-        ...horizontal,
-        width,
-        background: colourFade,
-        backdropFilter: "blur(4px)",
-        WebkitBackdropFilter: "blur(4px)",
-        WebkitMaskImage: maskGradient,
-        maskImage: maskGradient,
-      }}
-    />
+    <div className={cn('relative', className)}>
+      {Array.from({ length: layers }).map((_, index) => {
+        const angle = GRADIENT_ANGLES[direction];
+        const gradientStops = [
+          index * segmentSize,
+          (index + 1) * segmentSize,
+          (index + 2) * segmentSize,
+          (index + 3) * segmentSize,
+        ].map(
+          (pos, posIndex) =>
+            `rgba(255, 255, 255, ${posIndex === 1 || posIndex === 2 ? 1 : 0}) ${pos * 100}%`
+        );
+
+        const gradient = `linear-gradient(${angle}deg, ${gradientStops.join(
+          ', '
+        )})`;
+
+        return (
+          <motion.div
+            key={index}
+            className='pointer-events-none absolute inset-0 rounded-[inherit]'
+            style={{
+              maskImage: gradient,
+              WebkitMaskImage: gradient,
+              backdropFilter: `blur(${index * blurIntensity}px)`,
+            }}
+            {...props}
+          />
+        );
+      })}
+    </div>
   );
 }

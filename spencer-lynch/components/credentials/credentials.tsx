@@ -1,44 +1,37 @@
 // spencer-lynch/components/credentials/credentials.tsx
-import Image from "next/image";
 import { existsSync } from "node:fs";
 import path from "node:path";
-import { InfiniteSlider } from "@/components/ui/infinite-slider";
-import { ProgressiveBlur } from "@/components/ui/progressive-blur";
+import { LogoCloud } from "@/components/ui/logo-cloud-4";
 
-type Logo = { name: string; src: string; alt: string };
+type Logo = { src: string; alt: string };
 
-// Single source of truth — every brand whose logo lives in /public/brand/.
-// Order alternates club crests + corporate + charity sources so the marquee
-// reads visually varied. JPG/PNG/WEBP/AVIF rasters get filter:invert+grayscale
-// at render time so white backgrounds drop through on the dark page; SVGs
-// (already transparent) get plain grayscale.
 const ALL_LOGOS: Logo[] = [
-  { name: "Liverpool FC", src: "/brand/crests/liverpool.svg", alt: "Liverpool Football Club" },
-  { name: "Google", src: "/brand/logos/google.svg", alt: "Google" },
-  { name: "LFC Foundation", src: "/brand/charities/lfc-foundation.jpg", alt: "LFC Foundation" },
-  { name: "Everton FC", src: "/brand/crests/everton.svg", alt: "Everton Football Club" },
-  { name: "Marks & Spencer", src: "/brand/logos/marks-and-spencer.svg", alt: "Marks & Spencer" },
-  { name: "UEFA", src: "/brand/crests/uefa.svg", alt: "UEFA" },
-  { name: "Edward Jones", src: "/brand/logos/edward-jones.jpg", alt: "Edward Jones" },
-  { name: "Santander", src: "/brand/logos/santander.svg", alt: "Santander" },
-  { name: "Owen McVeigh Foundation", src: "/brand/charities/owen-mcveigh-foundation.png", alt: "Owen McVeigh Foundation" },
-  { name: "Chester Racecourse", src: "/brand/crests/chester-racecourse.svg", alt: "Chester Racecourse" },
-  { name: "Liverpool Echo", src: "/brand/logos/liverpool-echo.webp", alt: "Liverpool Echo" },
-  { name: "Morrisons", src: "/brand/logos/morrisons.svg", alt: "Morrisons" },
-  { name: "Wrexham AFC", src: "/brand/crests/wrexham.svg", alt: "Wrexham AFC" },
-  { name: "Liverpool Disabled Supporters", src: "/brand/charities/lfc-disabled-supporters.jpg", alt: "Liverpool Disabled Supporters Association" },
-  { name: "Specsavers", src: "/brand/logos/specsavers.svg", alt: "Specsavers" },
-  { name: "Holloway Friendly", src: "/brand/logos/holloway-friendly.svg", alt: "Holloway Friendly" },
-  { name: "Five Guys", src: "/brand/logos/five-guys.svg", alt: "Five Guys" },
-  { name: "Down Syndrome Liverpool", src: "/brand/charities/down-syndrome-liverpool.webp", alt: "Down Syndrome Liverpool" },
-  { name: "Aon", src: "/brand/logos/aon.svg", alt: "Aon" },
-  { name: "Pension Insurance Corporation", src: "/brand/logos/pension-insurance-corporation.png", alt: "Pension Insurance Corporation" },
-  { name: "NEC", src: "/brand/logos/nec.svg", alt: "National Exhibition Centre" },
-  { name: "GBG plc", src: "/brand/logos/gbg.png", alt: "GBG plc" },
-  { name: "NHS Countess of Chester", src: "/brand/charities/nhs-countess-of-chester.png", alt: "NHS — Countess of Chester Hospital" },
-  { name: "Worldwide Hospitality", src: "/brand/logos/worldwide-hospitality.png", alt: "Worldwide Hospitality" },
-  { name: "Chester Zoo", src: "/brand/logos/chester-zoo.svg", alt: "Chester Zoo" },
-  { name: "Wirral Met College", src: "/brand/logos/wirral-met-college.jpg", alt: "Wirral Met College" },
+  { src: "/brand/crests/liverpool.svg", alt: "Liverpool Football Club" },
+  { src: "/brand/logos/google.svg", alt: "Google" },
+  { src: "/brand/charities/lfc-foundation.jpg", alt: "LFC Foundation" },
+  { src: "/brand/crests/everton.svg", alt: "Everton Football Club" },
+  { src: "/brand/logos/marks-and-spencer.svg", alt: "Marks & Spencer" },
+  { src: "/brand/crests/uefa.svg", alt: "UEFA" },
+  { src: "/brand/logos/edward-jones.jpg", alt: "Edward Jones" },
+  { src: "/brand/logos/santander.svg", alt: "Santander" },
+  { src: "/brand/charities/owen-mcveigh-foundation.png", alt: "Owen McVeigh Foundation" },
+  { src: "/brand/crests/chester-racecourse.svg", alt: "Chester Racecourse" },
+  { src: "/brand/logos/liverpool-echo.webp", alt: "Liverpool Echo" },
+  { src: "/brand/logos/morrisons.svg", alt: "Morrisons" },
+  { src: "/brand/crests/wrexham.svg", alt: "Wrexham AFC" },
+  { src: "/brand/charities/lfc-disabled-supporters.jpg", alt: "Liverpool Disabled Supporters Association" },
+  { src: "/brand/logos/specsavers.svg", alt: "Specsavers" },
+  { src: "/brand/logos/holloway-friendly.svg", alt: "Holloway Friendly" },
+  { src: "/brand/logos/five-guys.svg", alt: "Five Guys" },
+  { src: "/brand/charities/down-syndrome-liverpool.webp", alt: "Down Syndrome Liverpool" },
+  { src: "/brand/logos/aon.svg", alt: "Aon" },
+  { src: "/brand/logos/pension-insurance-corporation.png", alt: "Pension Insurance Corporation" },
+  { src: "/brand/logos/nec.svg", alt: "National Exhibition Centre" },
+  { src: "/brand/logos/gbg.png", alt: "GBG plc" },
+  { src: "/brand/charities/nhs-countess-of-chester.png", alt: "NHS — Countess of Chester Hospital" },
+  { src: "/brand/logos/worldwide-hospitality.png", alt: "Worldwide Hospitality" },
+  { src: "/brand/logos/chester-zoo.svg", alt: "Chester Zoo" },
+  { src: "/brand/logos/wirral-met-college.jpg", alt: "Wirral Met College" },
 ];
 
 function resolveAvailableLogos(): Logo[] {
@@ -63,25 +56,8 @@ export function Credentials() {
         </h2>
       </div>
 
-      <div className="relative mx-auto mt-14 max-w-[1280px]">
-        <InfiniteSlider duration={45} durationOnHover={100} gapClassName="gap-12">
-          {logos.map((logo) => (
-            <div
-              key={logo.name}
-              className="flex h-20 w-[180px] items-center justify-center"
-            >
-              <Image
-                src={logo.src}
-                alt={logo.alt}
-                width={180}
-                height={72}
-                className="h-14 w-auto object-contain opacity-80 grayscale transition duration-500 hover:opacity-100 hover:grayscale-0"
-              />
-            </div>
-          ))}
-        </InfiniteSlider>
-        <ProgressiveBlur side="left" width="120px" />
-        <ProgressiveBlur side="right" width="120px" />
+      <div className="mt-14">
+        <LogoCloud logos={logos} />
       </div>
 
       <div className="mx-auto mt-16 max-w-[820px] space-y-5 px-2 text-center">

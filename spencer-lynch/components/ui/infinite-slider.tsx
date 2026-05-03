@@ -1,86 +1,107 @@
-// spencer-lynch/components/ui/infinite-slider.tsx
-"use client";
+'use client';
+import { cn } from '@/lib/utils';
+import { useMotionValue, animate, motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import useMeasure from 'react-use-measure';
 
-import { Children, type CSSProperties, type ReactNode } from "react";
-import { cn } from "@/lib/utils";
-
-export type InfiniteSliderProps = {
-  children: ReactNode;
-  /** Seconds for one full pass at rest. Default 40. */
+type InfiniteSliderProps = {
+  children: React.ReactNode;
+  gap?: number;
   duration?: number;
-  /** Seconds for one full pass while hovered (slower → bigger number). Default 2× duration. */
   durationOnHover?: number;
-  /** Tailwind gap utility applied to the flex track. Default "gap-12" (3rem). */
-  gapClassName?: string;
-  /** Extra classes for the outer overflow-hidden container. */
+  direction?: 'horizontal' | 'vertical';
+  reverse?: boolean;
   className?: string;
-  /** Extra classes for the inner animated track. */
-  trackClassName?: string;
 };
 
-/**
- * InfiniteSlider — CSS-driven horizontal marquee primitive.
- *
- * Animation contract (defined in app/globals.css):
- *   - .animate-marquee runs `@keyframes marquee` from 0 → -50% translateX
- *   - reads --marquee-duration (default 40s) and --marquee-duration-hover (default 80s)
- *   - honours `prefers-reduced-motion: reduce` by stopping the animation
- *
- * Children are duplicated inline so the -50% endpoint produces a seamless loop.
- * The duplicate set is `aria-hidden` so assistive tech only announces the original.
- */
 export function InfiniteSlider({
   children,
-  duration = 40,
+  gap = 16,
+  duration = 25,
   durationOnHover,
-  gapClassName = "gap-12",
+  direction = 'horizontal',
+  reverse = false,
   className,
-  trackClassName,
 }: InfiniteSliderProps) {
-  const slowDuration = durationOnHover ?? duration * 2;
-  const items = Children.toArray(children);
+  const [currentDuration, setCurrentDuration] = useState(duration);
+  const [ref, { width, height }] = useMeasure();
+  const translation = useMotionValue(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [key, setKey] = useState(0);
 
-  const trackStyle = {
-    "--marquee-duration": `${duration}s`,
-    "--marquee-duration-hover": `${slowDuration}s`,
-  } as CSSProperties;
+  useEffect(() => {
+    let controls;
+    const size = direction === 'horizontal' ? width : height;
+    const contentSize = size + gap;
+    const from = reverse ? -contentSize / 2 : 0;
+    const to = reverse ? 0 : -contentSize / 2;
+
+    if (isTransitioning) {
+      controls = animate(translation, [translation.get(), to], {
+        ease: 'linear',
+        duration:
+          currentDuration * Math.abs((translation.get() - to) / contentSize),
+        onComplete: () => {
+          setIsTransitioning(false);
+          setKey((prevKey) => prevKey + 1);
+        },
+      });
+    } else {
+      controls = animate(translation, [from, to], {
+        ease: 'linear',
+        duration: currentDuration,
+        repeat: Infinity,
+        repeatType: 'loop',
+        repeatDelay: 0,
+        onRepeat: () => {
+          translation.set(from);
+        },
+      });
+    }
+
+    return controls?.stop;
+  }, [
+    key,
+    translation,
+    currentDuration,
+    width,
+    height,
+    gap,
+    isTransitioning,
+    direction,
+    reverse,
+  ]);
+
+  const hoverProps = durationOnHover
+    ? {
+        onHoverStart: () => {
+          setIsTransitioning(true);
+          setCurrentDuration(durationOnHover);
+        },
+        onHoverEnd: () => {
+          setIsTransitioning(true);
+          setCurrentDuration(duration);
+        },
+      }
+    : {};
 
   return (
-    <div
-      className={cn(
-        "relative w-full overflow-hidden",
-        // The edge-fade is layered behind <ProgressiveBlur> at the call site;
-        // here we only provide the overflow clip + track.
-        className,
-      )}
-    >
-      <div
-        className={cn(
-          "flex w-max shrink-0 flex-nowrap items-center animate-marquee",
-          gapClassName,
-          trackClassName,
-        )}
-        style={trackStyle}
+    <div className={cn('overflow-hidden', className)}>
+      <motion.div
+        className='flex w-max'
+        style={{
+          ...(direction === 'horizontal'
+            ? { x: translation }
+            : { y: translation }),
+          gap: `${gap}px`,
+          flexDirection: direction === 'horizontal' ? 'row' : 'column',
+        }}
+        ref={ref}
+        {...hoverProps}
       >
-        <div className={cn("flex shrink-0 flex-nowrap items-center", gapClassName)}>
-          {items.map((child, i) => (
-            <div key={`a-${i}`} className="shrink-0">
-              {child}
-            </div>
-          ))}
-        </div>
-        {/* Duplicate set — invisible to AT, present in flow for seamless loop */}
-        <div
-          className={cn("flex shrink-0 flex-nowrap items-center", gapClassName)}
-          aria-hidden="true"
-        >
-          {items.map((child, i) => (
-            <div key={`b-${i}`} className="shrink-0">
-              {child}
-            </div>
-          ))}
-        </div>
-      </div>
+        {children}
+        {children}
+      </motion.div>
     </div>
   );
 }
