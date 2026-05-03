@@ -29,15 +29,15 @@ export function Boardrooms() {
       </div>
 
       <div className="relative mx-auto mt-14 max-w-[1280px]">
-        <InfiniteSlider duration={50} durationOnHover={120} gapClassName="gap-16">
+        <InfiniteSlider duration={22} durationOnHover={55} gapClassName="gap-12">
           {LOGOS.map((logo) => (
-            <div key={logo.name} className="flex h-12 w-[140px] items-center justify-center">
+            <div key={logo.name} className="flex h-20 w-[180px] items-center justify-center">
               <Image
                 src={logo.src}
                 alt={logo.alt}
-                width={140}
-                height={48}
-                className="h-10 w-auto object-contain opacity-65 grayscale transition duration-500 hover:opacity-100 hover:grayscale-0"
+                width={180}
+                height={72}
+                className="h-14 w-auto object-contain opacity-75 grayscale transition duration-500 hover:opacity-100 hover:grayscale-0"
               />
             </div>
           ))}
