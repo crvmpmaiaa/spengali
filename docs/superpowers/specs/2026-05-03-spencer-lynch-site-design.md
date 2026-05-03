@@ -345,6 +345,10 @@ These need answers before or during early implementation; they do not block writ
 8. **2026 showreel refresh.** Existing 2017 reel ships v1; commission a new reel covering recent work (Anfield post-2017, Wrexham, big-brand activations) for a v1.1 swap-in. Timing decision: pre-launch or post-launch?
 9. **Vimeo account upgrade.** Spencer's Vimeo is "basic" — no direct MP4 download from Vimeo, limited analytics. If we want self-hosted MP4 control going forward, or richer playback data, recommend a Plus/Pro upgrade. Not strictly required for v1: `background=1` works on basic accounts, and the existing local 1024×576 MP4 is the canonical fallback regardless of Vimeo plan.
 
+## Late-arriving inspiration references (added during execution)
+
+- **[tarotoo.com](https://tarotoo.com/)** — card-based tarot site with "beautifully animated" card flip / draw / reveal sequences. Captured for **Plan 3 (Trick Framework + 3 Tricks)** as a reference for the card-flip / pick-a-card / reveal vocabulary. The actual mechanics aren't exposed in the static HTML (video-driven), so technical analysis happens at the start of Plan 3 by scraping the live site or running a browser MCP against it.
+
 ## Phasing
 
 The v1 launch covers the entire homepage + supporting pages + N≥3 tricks. Out-of-scope items above are explicit v1.1 candidates.
