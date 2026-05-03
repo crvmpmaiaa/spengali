@@ -349,6 +349,24 @@ These need answers before or during early implementation; they do not block writ
 
 - **[tarotoo.com](https://tarotoo.com/)** — card-based tarot site with "beautifully animated" card flip / draw / reveal sequences. Captured for **Plan 3 (Trick Framework + 3 Tricks)** as a reference for the card-flip / pick-a-card / reveal vocabulary. The actual mechanics aren't exposed in the static HTML (video-driven), so technical analysis happens at the start of Plan 3 by scraping the live site or running a browser MCP against it.
 
+## Plan 7 backlog (carried forward from Plan 1's final code review)
+
+The Plan 1 final code review surfaced these items — not blockers for the foundation, all bound for the Plan 7 polish/hardening pass:
+
+- **Hoist contact info** — `PHONE_TEL`, `EMAIL`, and `WHATSAPP_E164` are duplicated across `app/page.tsx`, `app/book/page.tsx`, and `app/layout.tsx`. Extract to `lib/contact.ts` (single source of truth) and add a build-time guard against the placeholder `spencer@example.com`.
+- **WhatsApp env-var hardening** — `app/layout.tsx` falls back to a 12-digit-of-zeros if `NEXT_PUBLIC_WHATSAPP_E164` is missing, silently shipping a dead link. Either require it in `lib/env.ts` or render `null` when unset.
+- **Resend domain verification** — swap the `from:` from `onboarding@resend.dev` to a verified `bookings@spencerlynch.co.uk` once the domain is verified in Resend.
+- **Real Spencer email** — replace `spencer@example.com` placeholder (currently in 2 page files + as `ENQUIRY_TO_EMAIL` placeholder).
+- **Footer copyright contrast** — `text-cream/40` ≈ 3.26:1 on `bg-ink-warm`. Lighthouse a11y still passes (96), but bump to ≥ 4.5:1 (e.g. `/55` or `/60`).
+- **Vector / PNG-alpha logo** — replace JPG-with-CSS-filter once Spencer (or a re-trace) supplies a vector source. Removes the current dim-cream cast on the inverted logo.
+- **Logo dimensions / CLS** — `h-auto w-auto` on `<SLLogo>` overrides the explicit `width`/`height`, triggering CLS warnings. Use `style={{ height: "auto" }}` or drop the auto utility.
+- **Hero copy line break** — the hardcoded `<br />` in "How did <br />he do that." locks the line break across viewports. Consider letting flow handle it via `max-width`.
+- **Rate-limiting on `/api/enquiry`** — currently nothing prevents enquiry spam. Add an IP token-bucket (`@upstash/ratelimit` or similar) before launch.
+- **Security headers in `next.config.ts`** — set `Content-Security-Policy`, `X-Frame-Options`, `Referrer-Policy`.
+- **Lighthouse perf hints captured** — LCP image needs `fetchpriority="high"` (set automatically by `priority` prop, already in place — verify in prod), unused JS chunk ~29 KiB to investigate, cache-policy headers ~32 KiB savings.
+- **e2e test improvement** — `page.waitForTimeout(500)` in the validation-blocks-submit test could be replaced with `Promise.race([waitForRequest, waitForTimeout])` for less flakiness.
+- **`useReducedMotion` SSR hydration flicker** — server returns `false`, so reduced-motion users see a brief iframe flash before the swap. Consider `useSyncExternalStore` rewrite. Low priority.
+
 ## Phasing
 
 The v1 launch covers the entire homepage + supporting pages + N≥3 tricks. Out-of-scope items above are explicit v1.1 candidates.

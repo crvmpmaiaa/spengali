@@ -28,7 +28,6 @@ export function EnquiryForm() {
     register,
     handleSubmit,
     setValue,
-    watch,
     formState: { errors },
     reset,
   } = useForm<EnquiryInput>({
@@ -74,6 +73,8 @@ export function EnquiryForm() {
         <Field label="Name" fieldId="field-name" error={errors.name?.message}>
           <Input
             id="field-name"
+            aria-invalid={!!errors.name}
+            aria-describedby={errors.name ? "field-name-error" : undefined}
             {...register("name")}
             className="border-gold/30 bg-ink text-cream placeholder:text-cream/30"
             placeholder="Your name"
@@ -83,6 +84,8 @@ export function EnquiryForm() {
           <Input
             id="field-email"
             type="email"
+            aria-invalid={!!errors.email}
+            aria-describedby={errors.email ? "field-email-error" : undefined}
             {...register("email")}
             className="border-gold/30 bg-ink text-cream placeholder:text-cream/30"
             placeholder="you@example.com"
@@ -92,6 +95,8 @@ export function EnquiryForm() {
           <Input
             id="field-event-date"
             type="date"
+            aria-invalid={!!errors.eventDate}
+            aria-describedby={errors.eventDate ? "field-event-date-error" : undefined}
             {...register("eventDate")}
             className="border-gold/30 bg-ink text-cream"
           />
@@ -99,9 +104,14 @@ export function EnquiryForm() {
         <Field label="Event type" fieldId="field-event-type" error={errors.eventType?.message}>
           <Select
             onValueChange={(v) => setValue("eventType", v as EnquiryInput["eventType"])}
-            defaultValue={watch("eventType")}
+            defaultValue="Wedding"
           >
-            <SelectTrigger id="field-event-type" className="border-gold/30 bg-ink text-cream">
+            <SelectTrigger
+              id="field-event-type"
+              aria-invalid={!!errors.eventType}
+              aria-describedby={errors.eventType ? "field-event-type-error" : undefined}
+              className="border-gold/30 bg-ink text-cream"
+            >
               <SelectValue placeholder="Select" />
             </SelectTrigger>
             <SelectContent>
@@ -114,6 +124,8 @@ export function EnquiryForm() {
         <Field label="Location" fieldId="field-location" error={errors.location?.message} className="md:col-span-2">
           <Input
             id="field-location"
+            aria-invalid={!!errors.location}
+            aria-describedby={errors.location ? "field-location-error" : undefined}
             {...register("location")}
             className="border-gold/30 bg-ink text-cream placeholder:text-cream/30"
             placeholder="City / venue"
@@ -123,6 +135,8 @@ export function EnquiryForm() {
           <Textarea
             id="field-message"
             rows={6}
+            aria-invalid={!!errors.message}
+            aria-describedby={errors.message ? "field-message-error" : undefined}
             {...register("message")}
             className="border-gold/30 bg-ink text-cream placeholder:text-cream/30"
             placeholder="Tell Spencer about the event…"
@@ -165,7 +179,11 @@ function Field({
         {label}
       </Label>
       <div className="mt-2">{children}</div>
-      {error ? <p className="mt-1 text-xs text-red-logo">{error}</p> : null}
+      {error ? (
+        <p id={`${fieldId}-error`} className="mt-1 text-xs text-red-logo">
+          {error}
+        </p>
+      ) : null}
     </div>
   );
 }
