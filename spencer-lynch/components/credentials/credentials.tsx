@@ -6,7 +6,7 @@ import { LogoCloud } from "@/components/ui/logo-cloud-4";
 type Logo = { src: string; alt: string; className?: string };
 
 const ALL_LOGOS: Logo[] = [
-  { src: "/brand/crests/liverpool.png", alt: "Liverpool Football Club" },
+  { src: "/brand/crests/liverpool.png", alt: "Liverpool Football Club", className: "!h-12 md:!h-16" },
   { src: "/brand/logos/google.webp", alt: "Google" },
   { src: "/brand/charities/lfc-foundation.jpg", alt: "LFC Foundation" },
   { src: "/brand/crests/everton.svg", alt: "Everton Football Club" },
@@ -19,7 +19,7 @@ const ALL_LOGOS: Logo[] = [
   { src: "/brand/logos/liverpool-echo.webp", alt: "Liverpool Echo" },
   { src: "/brand/logos/morrisons.jpeg", alt: "Morrisons" },
   { src: "/brand/charities/lfc-disabled-supporters.jpg", alt: "Liverpool Disabled Supporters Association" },
-  { src: "/brand/logos/specsavers.jpg", alt: "Specsavers" },
+  { src: "/brand/logos/specsavers.jpg", alt: "Specsavers", className: "!h-12 md:!h-16" },
   { src: "/brand/logos/holloway-friendly.svg", alt: "Holloway Friendly" },
   { src: "/brand/logos/five-guys.png", alt: "Five Guys" },
   { src: "/brand/charities/down-syndrome-liverpool.webp", alt: "Down Syndrome Liverpool" },
