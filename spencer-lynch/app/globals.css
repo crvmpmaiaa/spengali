@@ -116,23 +116,24 @@
   }
 }
 
+/* MARQUEE — top-level plain CSS so Tailwind v4's JIT can't tree-shake it.
+   The InfiniteSlider primitive applies `.animate-marquee` to its track and
+   the keyframes/animation properties are pure CSS, not Tailwind utilities. */
 @keyframes marquee {
   from { transform: translate3d(0, 0, 0); }
   to   { transform: translate3d(-50%, 0, 0); }
 }
 
-@layer utilities {
+.animate-marquee {
+  animation: marquee var(--marquee-duration, 40s) linear infinite;
+  will-change: transform;
+}
+.animate-marquee:hover {
+  animation-duration: var(--marquee-duration-hover, 80s);
+}
+@media (prefers-reduced-motion: reduce) {
   .animate-marquee {
-    animation: marquee var(--marquee-duration, 40s) linear infinite;
-    will-change: transform;
-  }
-  .animate-marquee:hover {
-    animation-duration: var(--marquee-duration-hover, 80s);
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .animate-marquee {
-      animation: none;
-      transform: translate3d(0, 0, 0);
-    }
+    animation: none;
+    transform: translate3d(0, 0, 0);
   }
 }

@@ -2,7 +2,6 @@
 import Image from "next/image";
 import { existsSync } from "node:fs";
 import path from "node:path";
-import { cn } from "@/lib/utils";
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
 import { ProgressiveBlur } from "@/components/ui/progressive-blur";
 
@@ -42,8 +41,6 @@ const ALL_LOGOS: Logo[] = [
   { name: "Wirral Met College", src: "/brand/logos/wirral-met-college.jpg", alt: "Wirral Met College" },
 ];
 
-const isRaster = (src: string) => /\.(jpe?g|png|webp|avif)$/i.test(src);
-
 function resolveAvailableLogos(): Logo[] {
   return ALL_LOGOS.filter((logo) =>
     existsSync(path.join(process.cwd(), "public", logo.src.replace(/^\//, ""))),
@@ -78,16 +75,7 @@ export function Credentials() {
                 alt={logo.alt}
                 width={180}
                 height={72}
-                className={cn(
-                  "h-14 w-auto object-contain transition duration-500",
-                  isRaster(logo.src)
-                    // Raster sources arrive with white/cream backgrounds and brand
-                    // colours. Invert flips white -> page-dark; grayscale removes
-                    // brand colour for visual cohesion. Hover removes both.
-                    ? "opacity-90 [filter:invert(1)_grayscale(1)] hover:opacity-100 hover:[filter:none]"
-                    // SVGs are transparent-bg already; just desaturate.
-                    : "opacity-75 grayscale hover:opacity-100 hover:grayscale-0",
-                )}
+                className="h-14 w-auto object-contain opacity-80 grayscale transition duration-500 hover:opacity-100 hover:grayscale-0"
               />
             </div>
           ))}
