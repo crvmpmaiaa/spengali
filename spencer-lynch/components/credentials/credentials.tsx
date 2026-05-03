@@ -12,7 +12,7 @@ const ALL_LOGOS: Logo[] = [
   { src: "/brand/crests/everton.svg", alt: "Everton Football Club" },
   { src: "/brand/logos/marks-and-spencer.jpg", alt: "Marks & Spencer" },
   { src: "/brand/crests/uefa.svg", alt: "UEFA" },
-  { src: "/brand/logos/edward-jones.jpg", alt: "Edward Jones" },
+  { src: "/brand/logos/edward-jones.jpg", alt: "Edward Jones", className: "!h-14 md:!h-20" },
   { src: "/brand/logos/santander.png", alt: "Santander" },
   { src: "/brand/charities/owen-mcveigh-foundation.png", alt: "Owen McVeigh Foundation" },
   { src: "/brand/crests/chester-racecourse.jpg", alt: "Chester Racecourse" },
@@ -55,11 +55,7 @@ export function Credentials() {
         </h2>
       </div>
 
-      <div className="-mx-6 mt-14 md:-mx-10">
-        <LogoCloud logos={logos} />
-      </div>
-
-      <div className="mx-auto mt-16 max-w-[820px] space-y-5 px-2 text-center">
+      <div className="mx-auto mt-12 max-w-[820px] space-y-5 px-2 text-center">
         <p className="text-lg leading-relaxed text-cream/85 md:text-xl">
           Official magician of Liverpool FC since 2006 — the only person to ever
           hold simultaneous resident positions at two Premier League clubs
@@ -76,6 +72,10 @@ export function Credentials() {
           The trusted choice for players&apos; families, private parties, and
           the rooms you don&apos;t hear about.
         </p>
+      </div>
+
+      <div className="-mx-6 mt-14 md:-mx-10">
+        <LogoCloud logos={logos} />
       </div>
     </section>
   );

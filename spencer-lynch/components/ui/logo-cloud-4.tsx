@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
 import { ProgressiveBlur } from "@/components/ui/progressive-blur";
 
@@ -6,6 +7,8 @@ type Logo = {
   alt: string;
   width?: number;
   height?: number;
+  /** Optional Tailwind classes appended per-logo (e.g. to bump a single logo's size). */
+  className?: string;
 };
 
 type LogoCloudProps = React.ComponentProps<"div"> & {
@@ -21,7 +24,10 @@ export function LogoCloud({ logos }: LogoCloudProps) {
         {logos.map((logo) => (
           <img
             alt={logo.alt}
-            className="pointer-events-none h-10 select-none md:h-14"
+            className={cn(
+              "pointer-events-none h-10 select-none md:h-14",
+              logo.className,
+            )}
             height="auto"
             key={`logo-${logo.alt}`}
             loading="lazy"
