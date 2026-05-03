@@ -311,50 +311,109 @@ git commit -m "feat(spencer-lynch): configure vitest + Playwright with example s
 
 # Phase 1 — Design System
 
-## Task 1.1: Lock palette + fonts in Tailwind
+## Task 1.1: Lock palette + fonts (Tailwind v4 / shadcn v4)
+
+> **Note (revised after Task 0.3):** Next.js 16 + shadcn 4.6 install **Tailwind v4**, which is CSS-first. There is no `tailwind.config.ts` — design tokens live in an `@theme` block inside `app/globals.css`. shadcn already wrote a baseline `@theme inline` block + a `:root` palette in oklch. We **extend** it with our brand tokens; we do **not** replace it (the shadcn primitives in `components/ui/*` reference `--color-foreground`, `--color-background`, etc. and would break if removed).
+>
+> Always-dark site: we set `:root` to dark values directly so the `.dark` class isn't required. The `.dark` block can stay as-is (unused) or be removed for cleanliness.
 
 **Files:**
-- Modify: `spencer-lynch/tailwind.config.ts`
+- Modify: `spencer-lynch/app/globals.css` (extend `@theme`, override `:root`, add brand utilities)
 - Modify: `spencer-lynch/app/layout.tsx` (font loading)
 
-- [ ] **Step 1: Replace the entire content of `tailwind.config.ts`**
+- [ ] **Step 1: Extend `app/globals.css` with our brand tokens**
 
-```typescript
-// spencer-lynch/tailwind.config.ts
-import type { Config } from "tailwindcss";
+After the existing `@theme inline { ... }` block (the one shadcn wrote, beginning with `--color-background: var(--background);` etc.), append a **second** `@theme` block with our brand tokens. This makes them available as Tailwind v4 utilities (`bg-ink`, `text-cream`, `text-gold`, `font-display`, `tracking-eyebrow`, etc.).
 
-export default {
-  content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
-  theme: {
-    extend: {
-      colors: {
-        ink: "#070504",
-        "ink-warm": "#0A0807",
-        "ink-tinted": "#1A1308",
-        cream: "#F5E6C8",
-        gold: "#D4AF37",
-        "gold-deep": "#7A5A18",
-        "red-logo": "#C8102E",
-      },
-      fontFamily: {
-        display: ["var(--font-playfair)", "Georgia", "serif"],
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        mono: ["var(--font-jetbrains)", "ui-monospace", "monospace"],
-      },
-      transitionTimingFunction: {
-        luxe: "cubic-bezier(0.16, 1, 0.3, 1)",
-      },
-      letterSpacing: {
-        eyebrow: "0.4em",
-        eyebrowWide: "0.55em",
-      },
-    },
-  },
-  plugins: [],
-} satisfies Config;
+Append immediately after the existing `@theme inline` block (before `:root`):
+
+```css
+/* === Spencer Lynch — Brand tokens (Tailwind v4 @theme) === */
+@theme {
+  --color-ink: #070504;
+  --color-ink-warm: #0A0807;
+  --color-ink-tinted: #1A1308;
+  --color-cream: #F5E6C8;
+  --color-gold: #D4AF37;
+  --color-gold-deep: #7A5A18;
+  --color-red-logo: #C8102E;
+
+  --font-display: var(--font-playfair), Georgia, serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  --tracking-eyebrow: 0.4em;
+  --tracking-eyebrow-wide: 0.55em;
+
+  --ease-luxe: cubic-bezier(0.16, 1, 0.3, 1);
+}
 ```
 
-- [ ] **Step 2: Configure `next/font` in root layout**
+- [ ] **Step 2: Override `:root` to our dark-by-default palette**
+
+Replace the existing `:root { ... }` block in `globals.css` (the one beginning `--background: oklch(1 0 0);`) with our values, so shadcn primitives render against our palette by default:
+
+```css
+:root {
+  --background: #070504;
+  --foreground: #F5E6C8;
+  --card: #0A0807;
+  --card-foreground: #F5E6C8;
+  --popover: #0A0807;
+  --popover-foreground: #F5E6C8;
+  --primary: #D4AF37;
+  --primary-foreground: #070504;
+  --secondary: #1A1308;
+  --secondary-foreground: #F5E6C8;
+  --muted: #1A1308;
+  --muted-foreground: rgba(245, 230, 200, 0.7);
+  --accent: #1A1308;
+  --accent-foreground: #D4AF37;
+  --destructive: #C8102E;
+  --border: rgba(212, 175, 55, 0.3);
+  --input: rgba(212, 175, 55, 0.3);
+  --ring: #D4AF37;
+  --radius: 0px;
+
+  /* Custom non-shadcn utilities */
+  --gold-hairline: linear-gradient(
+    90deg,
+    transparent,
+    rgba(212, 175, 55, 0.3) 50%,
+    transparent
+  );
+}
+```
+
+You can leave the `.dark { ... }` block in place — it's unused but harmless. (Remove it if you want a cleaner file; safe either way.)
+
+- [ ] **Step 3: Add brand utilities to `globals.css`**
+
+Append after the `:root` block:
+
+```css
+@layer base {
+  body {
+    background-color: var(--color-ink);
+    color: var(--color-cream);
+  }
+}
+
+@layer utilities {
+  /* subtle 45° pinstripe overlay used on hero sections */
+  .pinstripe {
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent 0 28px,
+      rgba(212, 175, 55, 0.025) 28px 29px
+    );
+  }
+}
+```
+
+(Note: do **not** keep shadcn's existing `@layer base { * { @apply border-border outline-ring/50; } body { @apply bg-background text-foreground; } html { @apply font-sans; } }` — the `bg-background text-foreground` line conflicts with our explicit body styling and adds nothing once we've redefined `--background`. You can remove that whole block, or leave it; either renders correctly because our overrides cascade.)
+
+- [ ] **Step 4: Configure `next/font` in root layout**
 
 Replace `spencer-lynch/app/layout.tsx` with:
 
@@ -400,51 +459,36 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 }
 ```
 
-- [ ] **Step 3: Replace `app/globals.css` with our base layer**
-
-```css
-/* spencer-lynch/app/globals.css */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer base {
-  :root {
-    --gold-hairline: linear-gradient(
-      90deg,
-      transparent,
-      rgba(212, 175, 55, 0.3) 50%,
-      transparent
-    );
-  }
-  body {
-    background-color: #070504;
-    color: #F5E6C8;
-  }
-  /* subtle 45° pinstripe overlay used on hero sections */
-  .pinstripe {
-    background-image: repeating-linear-gradient(
-      45deg,
-      transparent 0 28px,
-      rgba(212, 175, 55, 0.025) 28px 29px
-    );
-  }
-}
-```
-
-- [ ] **Step 4: Verify it renders**
+- [ ] **Step 5: Verify it renders**
 
 ```bash
 cd "/Users/admin/Desktop/spengali/spencer-lynch" && npm run dev
 ```
-Open `http://localhost:3000`. Expected: dark page (#070504), Inter font on the welcome text, no errors. Stop the server.
 
-- [ ] **Step 5: Commit**
+In a new terminal:
+```bash
+curl -s http://localhost:3000 | head -50
+```
+Expected: HTML with `class="...bg-ink text-cream..."` on body, no compilation errors. Stop the dev server.
+
+- [ ] **Step 6: Commit**
 
 ```bash
 git add spencer-lynch && \
-git commit -m "feat(spencer-lynch): lock design tokens — palette, fonts, motion easing, hairline utility"
+git commit -m "feat(spencer-lynch): lock design tokens — Tailwind v4 @theme palette, fonts, brand utilities"
 ```
+
+### Tailwind v4 reference (for later tasks)
+
+Subsequent tasks reference Tailwind classes that compile from these tokens:
+- `bg-ink`, `bg-ink-warm`, `bg-ink-tinted`, `text-cream`, `text-gold`, `text-gold-deep`, `text-red-logo`, `border-gold`, `border-gold-deep`
+- `font-display`, `font-sans`, `font-mono`
+- `tracking-eyebrow`, `tracking-eyebrow-wide`
+- `ease-luxe`
+- Opacity modifiers (`bg-gold/15`, `text-cream/70`) work as expected.
+- Use `border-gold/N` instead of the old `border-gold-N`.
+
+The shadcn `--background`/`--foreground`/etc. variables still render via shadcn primitives (button, input, etc.) but resolve to OUR palette because we redefined `:root`.
 
 ## Task 1.2: Copy logo assets and extract showreel poster
 
