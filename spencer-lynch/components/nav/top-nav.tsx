@@ -15,7 +15,7 @@ export function TopNav() {
     <header className="relative z-30 px-10 pt-7">
       <div className="flex items-center justify-between gap-6">
         <Link href="/" aria-label="Spencer Lynch — home" className="flex items-center">
-          <SLLogo variant="no-pips" invertOnDark width={140} height={32} />
+          <SLLogo variant="no-pips" width={140} height={32} />
         </Link>
 
         <nav className="hidden items-center gap-8 font-sans text-[11px] uppercase tracking-eyebrow text-cream/70 md:flex">

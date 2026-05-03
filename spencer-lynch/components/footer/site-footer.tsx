@@ -62,6 +62,17 @@ export function SiteFooter({
       <div className="mt-16 flex flex-col items-center gap-2 border-t border-gold/15 pt-6 text-center font-mono text-[9px] uppercase tracking-eyebrow text-cream/40">
         <span>Spencer Lynch · Memorable Magic · Liverpool</span>
         <span>© {new Date().getFullYear()} · All rights reserved</span>
+        <span>
+          —{" "}
+          <Link
+            href="https://maiaa.ai"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-colors hover:text-gold"
+          >
+            Dev by maiaa.ai
+          </Link>
+        </span>
       </div>
     </footer>
   );
