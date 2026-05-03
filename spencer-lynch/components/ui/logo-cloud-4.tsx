@@ -14,7 +14,7 @@ type LogoCloudProps = React.ComponentProps<"div"> & {
 
 export function LogoCloud({ logos }: LogoCloudProps) {
   return (
-    <div className="relative w-full bg-gradient-to-r from-secondary via-transparent to-secondary py-10">
+    <div className="relative w-full bg-white py-10">
       <div className="pointer-events-none absolute top-0 left-0 w-full border-t" />
 
       <InfiniteSlider gap={56} reverse duration={60} durationOnHover={20}>
