@@ -1,38 +1,32 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
-import { cn } from "@/lib/utils";
 
 const STORAGE_KEY = "sl-intro-seen";
+// Total time the still is on screen (ms). 0.6s fade-in + 2.8s hold + 0.6s fade-out.
+const HOLD_MS = 4000;
 
 /**
- * Full-screen site-intro overlay. Plays a short cinematic clip of Spencer
- * emerging from smoke, doing a flourish, and vanishing again. Auto-dismisses
- * when the video ends; reveal cross-fades into the homepage which is already
- * mounted underneath.
+ * Site-intro overlay. While we wait for the Kling animated video, this
+ * displays a still 3D render of Spencer composited over the hero via
+ * mix-blend-mode: screen. Pure-black areas of the source drop to transparent
+ * so the homepage stays visible behind him.
  *
  * Skipped silently when:
- *   - The viewer has seen it this session (localStorage flag)
+ *   - The viewer has seen it this session (sessionStorage flag)
  *   - The viewer prefers reduced motion
- *   - The video asset 404s (errors out before play)
  *
- * Drop the video at /public/intro/spencer-emerges.mp4 (and optionally .webm)
- * to enable; the component otherwise renders nothing.
+ * Drop a transparent-on-black PNG at /public/intro/spencer-still.png to
+ * enable. When the Kling video lands, swap to <video> in this component.
  */
 export function SiteIntro({
-  videoBase = "/intro/spencer-emerges",
-  posterSrc = "/intro/spencer-poster.jpg",
+  stillSrc = "/intro/spencer-still.png",
 }: {
-  videoBase?: string;
-  posterSrc?: string;
+  stillSrc?: string;
 }) {
   const reducedMotion = useReducedMotion();
-  // Start hidden so SSR doesn't flash an overlay for return visitors. The
-  // mount effect decides whether to show it after checking storage + motion.
   const [open, setOpen] = useState(false);
-  const [hasError, setHasError] = useState(false);
-  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -42,6 +36,14 @@ export function SiteIntro({
     setOpen(true);
   }, [reducedMotion]);
 
+  useEffect(() => {
+    if (!open) return;
+    const t = window.setTimeout(() => {
+      dismiss();
+    }, HOLD_MS);
+    return () => window.clearTimeout(t);
+  }, [open]);
+
   function dismiss() {
     if (typeof window !== "undefined") {
       window.sessionStorage.setItem(STORAGE_KEY, "1");
@@ -49,51 +51,35 @@ export function SiteIntro({
     setOpen(false);
   }
 
-  if (hasError) return null;
-
   return (
     <AnimatePresence>
       {open && (
         <motion.div
           key="site-intro"
-          initial={{ opacity: 1 }}
+          initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          // Transparent container so the hero stays visible. The video below
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          // Transparent container so the hero stays visible. The image
           // uses `mix-blend-mode: screen` so its pure-black background drops
-          // to transparent, leaving only smoke + Spencer composited on top.
+          // to transparent, leaving only Spencer composited on top.
           className="pointer-events-none fixed inset-0 z-[100] flex items-center justify-center"
           aria-hidden={!open}
         >
-          <video
-            ref={videoRef}
-            autoPlay
-            muted
-            playsInline
-            preload="auto"
-            poster={posterSrc}
-            onEnded={dismiss}
-            onError={() => {
-              setHasError(true);
-              setOpen(false);
-            }}
-            onCanPlay={() => {
-              videoRef.current?.play().catch(() => {});
-            }}
-            className="h-full w-full object-cover"
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <motion.img
+            src={stillSrc}
+            alt=""
+            initial={{ scale: 0.96 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: HOLD_MS / 1000, ease: "linear" }}
+            onError={() => setOpen(false)}
+            className="h-full max-h-[92vh] w-auto select-none object-contain"
             style={{ mixBlendMode: "screen" }}
-          >
-            <source src={`${videoBase}.webm`} type="video/webm" />
-            <source src={`${videoBase}.mp4`} type="video/mp4" />
-          </video>
+            draggable={false}
+          />
 
-          {/* UI chrome rides above the video and ignores the screen blend. */}
-          <div
-            className={cn(
-              "pointer-events-auto absolute inset-x-0 top-0 flex items-start justify-end p-5 md:p-7",
-            )}
-          >
+          <div className="pointer-events-auto absolute inset-x-0 top-0 flex items-start justify-end p-5 md:p-7">
             <button
               type="button"
               onClick={dismiss}
@@ -102,10 +88,6 @@ export function SiteIntro({
               Skip intro
             </button>
           </div>
-
-          <p className="pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 font-mono text-[9px] uppercase tracking-eyebrow-wide text-gold/70">
-            Spencer Lynch · Memorable Magic
-          </p>
         </motion.div>
       )}
     </AnimatePresence>
