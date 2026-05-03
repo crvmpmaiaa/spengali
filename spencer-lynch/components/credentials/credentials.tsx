@@ -46,7 +46,7 @@ export function Credentials() {
     <section className="px-6 py-24 md:px-10 md:py-32">
       <div className="mx-auto max-w-[1100px] text-center">
         <p className="font-mono text-[10px] uppercase tracking-eyebrow-wide text-gold/85">
-          — Twenty years on stage —
+          — Twenty years in show business —
         </p>
         <h2 className="mt-6 font-display text-4xl italic leading-[1.05] text-cream md:text-6xl lg:text-[64px]">
           Two Premier League clubs.
