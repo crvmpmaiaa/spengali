@@ -34,9 +34,15 @@ const ALL_LOGOS: Logo[] = [
 ];
 
 function resolveAvailableLogos(): Logo[] {
-  return ALL_LOGOS.filter((logo) =>
+  const available = ALL_LOGOS.filter((logo) =>
     existsSync(path.join(process.cwd(), "public", logo.src.replace(/^\//, ""))),
   );
+  // Shuffle once at module load so the marquee order varies between builds
+  // without breaking SSR/hydration parity within a single render.
+  return available
+    .map((logo) => ({ logo, sortKey: Math.random() }))
+    .sort((a, b) => a.sortKey - b.sortKey)
+    .map(({ logo }) => logo);
 }
 
 export function Credentials() {
