@@ -27,6 +27,16 @@ export default function Home() {
             <p className="mt-4 font-mono text-[11px] uppercase tracking-eyebrow text-cream/55">
               Liverpool · Everton · Wrexham · &amp; the room you&apos;re in
             </p>
+
+            <div className="mt-10 flex justify-center">
+              <button
+                type="button"
+                aria-label="Open a random magic trick"
+                className="border border-gold/60 bg-ink-warm px-7 py-3 font-mono text-[11px] uppercase tracking-eyebrow text-gold transition-colors hover:bg-gold/10"
+              >
+                ⌕ Try a Trick
+              </button>
+            </div>
           </div>
 
           <div className="mx-auto mt-14 flex max-w-[760px] justify-center">

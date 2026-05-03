@@ -64,7 +64,7 @@ His current site (howdidhedothat.co.uk) is dated and undersells him by a wide ma
 | **Client logo sourcing** | Sourced from public web (brand-asset pages, svgl.app, Wikimedia, etc.) rather than waiting on Spencer-provided vector files. Standard fair-use practice for "as worked with" credentials walls. |
 | **Tech stack** | React / Next.js (App Router) + TypeScript + Tailwind CSS + shadcn/ui + framer-motion |
 | **Project location** | New sibling directory at repo root: `/spencer-lynch/` (separate Node project, not a subdirectory of the existing portfolio site) |
-| **"The site is the trick" feature** | At least one interactive trick on the homepage hero; "⌕ Try a Trick" nav slot opens a random hidden trick; 1-2 hidden routes unlocked by trick interactions |
+| **"The site is the trick" feature** | At least one interactive trick on the homepage hero; **"⌕ Try a Trick" hero button** (centred between supporting copy and showreel) opens a random hidden trick; 1-2 hidden routes unlocked by trick interactions |
 | **Domain** | Decision deferred (current howdidhedothat.co.uk vs new — see Open Questions) |
 
 ## Design System
@@ -124,16 +124,15 @@ Once vector source arrives (or we re-trace), the JPG variants are replaced 1:1; 
 
 1. **Home (`/`)** — the showcase (full architecture below)
 2. **About (`/about`)** — Spencer's story, how he got here, the dual-residency narrative in long-form
-3. **Showreel (`/showreel`)** — full 2:07 reel (and any longer cuts) with sound, with a card-style index of past performances
-4. **Tech Illusions (`/tech-illusions`)** — dedicated showcase of the phone-driven / app-driven work; includes the live in-site trick(s)
-5. **The Work (`/work`)** — case studies index; each case study at `/work/[slug]` (e.g. `/work/anfield-hospitality`, `/work/wrexham-matchday`, `/work/everton-residency`)
-6. **Bookings (`/book`)** — three-option contact + WhatsApp widget
-7. **Hidden routes** — at least one Easter-egg page (e.g. `/the-vault`) unlocked by completing a trick. Not in nav. Discoverable only by performance.
+3. **Gallery (`/gallery`)** — rolls up showreel content + tech-illusion showcase + photo gallery into one destination. The full 2:07 reel (and any longer cuts) with sound lives here, alongside the dedicated phone-driven / app-driven trick showcases and performance photography. Internally sectioned (e.g. `#showreel`, `#tech-illusions`, `#photos`) but presented as a single browsable surface.
+4. **The Work (`/work`)** — case studies index; each case study at `/work/[slug]` (e.g. `/work/anfield-hospitality`, `/work/wrexham-matchday`, `/work/everton-residency`)
+5. **Bookings (`/book`)** — three-option contact + WhatsApp widget
+6. **Hidden routes** — at least one Easter-egg page (e.g. `/the-vault`) unlocked by completing a trick. Not in nav. Discoverable only by performance.
 
 ### Homepage section architecture (12 sections)
 
-1. **Top nav** — paper-on-dark; left: SL wordmark (no-pips); centre: The Work / Tech Illusions / Showreel / About / Book; right: **⌕ Try a Trick** pill (gold), animated SL favicon
-2. **Hero** — autoplay-muted-loop showreel (~720px wide) in film-slate frame; eyebrow "— Established 2006 · Liverpool —"; headline "How did he do that." (Playfair italic, gold "that"); supporting line "The only magician to hold simultaneous resident positions at two Premier League clubs."; secondary "Liverpool · Everton · Wrexham · & the room you're in"
+1. **Top nav** — 3-column grid; left (right-aligned): About · Book; centre: SL wordmark (no-pips, gold-on-dark PNG, ~182px wide); right (left-aligned): Work · Gallery. No pill in the nav.
+2. **Hero** — eyebrow "— Established 2006 · Liverpool —"; headline "How did he do that?" (Playfair italic, gold "that"); supporting line "The only magician to hold simultaneous resident positions at two Premier League clubs."; secondary "Liverpool · Everton · Wrexham · & the room you're in"; **⌕ Try a Trick button** (gold-bordered, font-mono uppercase) centred below the supporting copy; then the autoplay-muted-loop showreel (~720px wide) in film-slate frame
 3. **Three category clip tiles** — Close-Up · Tech Illusions · Big Events. 9:16 aspect, dark cards with eyebrow numerals + Playfair italic title. Hover plays muted preview clip.
 4. **Interactive trick zone** — pick-a-card → reveal in modal; first trick on the site, 5 seconds in. Animated Spencer (illustration style B) appears bottom-left during this section.
 5. **§ 01 The Stadium Years** — typographic, eyebrow "— § 01 · The Stadium Years —", display "Twenty seasons. Two clubs. One magician.", four colour football crests (Liverpool / Everton / UEFA / Chester Racecourse, with Wrexham added if available) as outlined chips, not a marquee
@@ -155,9 +154,9 @@ A **pick-a-card** style trick visible above the fold. Three cards rendered. Visi
 
 Acceptance: a first-time visitor sees a working magic trick within 5 seconds of page load.
 
-### "⌕ Try a Trick" nav
+### "⌕ Try a Trick" hero button
 
-A persistent nav pill that, when clicked, opens a random hidden trick in a modal. Pool of 3-5 distinct tricks at launch. Each trick is implemented as a self-contained module (`<TrickX />` component) with a shared `<TrickModal />` shell.
+A button centred in the homepage hero (between the supporting copy and the cinema-framed showreel) that, when clicked, opens a random hidden trick in a modal. Pool of 3-5 distinct tricks at launch. Each trick is implemented as a self-contained module (`<TrickX />` component) with a shared `<TrickModal />` shell.
 
 ### Hidden routes
 
