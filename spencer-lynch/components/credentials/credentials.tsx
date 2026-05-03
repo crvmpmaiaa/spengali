@@ -28,7 +28,7 @@ const ALL_LOGOS: Logo[] = [
   { src: "/brand/logos/nec.avif", alt: "National Exhibition Centre" },
   { src: "/brand/logos/gbg.png", alt: "GBG plc" },
   { src: "/brand/charities/nhs-countess-of-chester.png", alt: "NHS — Countess of Chester Hospital" },
-  { src: "/brand/logos/worldwide-hospitality.png", alt: "Worldwide Hospitality" },
+  { src: "/brand/logos/worldwide-hospitality.jpg", alt: "Worldwide Hospitality" },
   { src: "/brand/logos/chester-zoo.jpg", alt: "Chester Zoo" },
   { src: "/brand/logos/wirral-met-college.jpg", alt: "Wirral Met College" },
 ];
