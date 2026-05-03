@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { WhatsAppWidget } from "@/components/footer/whatsapp-widget";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -33,7 +34,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       className={`${playfair.variable} ${inter.variable} ${jetbrains.variable}`}
     >
-      <body className="bg-ink text-cream font-sans antialiased">{children}</body>
+      <body className="bg-ink text-cream font-sans antialiased">
+        {children}
+        <WhatsAppWidget phoneE164={process.env.NEXT_PUBLIC_WHATSAPP_E164 ?? "447000000000"} />
+      </body>
     </html>
   );
 }
