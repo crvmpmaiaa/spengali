@@ -47,4 +47,14 @@ describe("InfiniteSlider", () => {
     const track = container.querySelector(".animate-marquee") as HTMLElement;
     expect(track.style.getPropertyValue("--marquee-duration")).toBe("20s");
   });
+
+  it("defaults durationOnHover to 2x duration", () => {
+    const { container } = render(
+      <InfiniteSlider duration={30}>
+        <span>X</span>
+      </InfiniteSlider>,
+    );
+    const track = container.querySelector(".animate-marquee") as HTMLElement;
+    expect(track.style.getPropertyValue("--marquee-duration-hover")).toBe("60s");
+  });
 });

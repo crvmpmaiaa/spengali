@@ -18,6 +18,17 @@ export type InfiniteSliderProps = {
   trackClassName?: string;
 };
 
+/**
+ * InfiniteSlider — CSS-driven horizontal marquee primitive.
+ *
+ * Animation contract (defined in app/globals.css):
+ *   - .animate-marquee runs `@keyframes marquee` from 0 → -50% translateX
+ *   - reads --marquee-duration (default 40s) and --marquee-duration-hover (default 80s)
+ *   - honours `prefers-reduced-motion: reduce` by stopping the animation
+ *
+ * Children are duplicated inline so the -50% endpoint produces a seamless loop.
+ * The duplicate set is `aria-hidden` so assistive tech only announces the original.
+ */
 export function InfiniteSlider({
   children,
   duration = 40,
@@ -51,13 +62,18 @@ export function InfiniteSlider({
         )}
         style={trackStyle}
       >
-        {items.map((child, i) => (
-          <div key={`a-${i}`} className="shrink-0">
-            {child}
-          </div>
-        ))}
+        <div className={cn("flex shrink-0 flex-nowrap items-center", gapClassName)}>
+          {items.map((child, i) => (
+            <div key={`a-${i}`} className="shrink-0">
+              {child}
+            </div>
+          ))}
+        </div>
         {/* Duplicate set — invisible to AT, present in flow for seamless loop */}
-        <div className={cn("flex shrink-0 flex-nowrap items-center", gapClassName)} aria-hidden="true">
+        <div
+          className={cn("flex shrink-0 flex-nowrap items-center", gapClassName)}
+          aria-hidden="true"
+        >
           {items.map((child, i) => (
             <div key={`b-${i}`} className="shrink-0">
               {child}
