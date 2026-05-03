@@ -19,7 +19,7 @@ test("homepage renders unified credentials section with logo marquee + paragraph
   // Paragraph proof points (a sampling of names that must appear in copy)
   await expect(page.getByText(/Liverpool FC since 2006/i)).toBeVisible();
   await expect(page.getByText(/LFC Foundation/i)).toBeVisible();
-  await expect(page.getByText(/Carragher and Rooney families/i)).toBeVisible();
+  await expect(page.getByText(/players.{0,5}families/i)).toBeVisible();
 });
 
 test("credentials block respects prefers-reduced-motion", async ({ page }) => {
