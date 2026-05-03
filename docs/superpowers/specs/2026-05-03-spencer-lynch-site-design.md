@@ -374,6 +374,7 @@ The Plan 1 + Plan 2 final code reviews surfaced these items — not blockers for
 - **§02 logo `alt` text inconsistency** — Boardrooms passes bare brand names (`alt="Google"`) while §01 StadiumYears uses `"<Brand> crest"` / `"<Brand> logo"`. Standardise to `"<Brand> logo"` for the corporate row.
 - **§04 panel cream-tint inline style** — `work-that-matters.tsx` uses inline `style={{ background: "rgba(245, 230, 200, 0.04)" }}`. Replace with Tailwind v4 arbitrary-opacity utility `bg-cream/[0.04]` so the panel tint participates in the design-token system if `--color-cream` is ever retuned.
 - **§01 vs §04 headline size split** — StadiumYears uses `lg:text-[64px]`, WorkThatMatters uses `lg:text-[60px]`. Plan ships both intentionally (panel may want tighter measure) but worth confirming with the designer or unifying.
+- **Update `magic.pm/5star/mmm/` `pic0.jpg`** — Spencer's live in-person force trick at https://magic.pm/5star/mmm/ uses a screenshot of his current site as the misdirection landing. When this new site is fully built, regenerate `pic0.jpg` from the new homepage so the trick's misdirection stays believable. The trick is Firebase-driven and Spencer-operated, lives off-site, and is NOT linked from the website itself.
 
 ## Phasing
 
