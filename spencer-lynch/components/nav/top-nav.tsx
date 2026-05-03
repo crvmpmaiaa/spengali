@@ -3,11 +3,11 @@ import Link from "next/link";
 import { SLLogo } from "@/components/brand/sl-logo";
 
 const links = [
-  { href: "/work", label: "The Work" },
-  { href: "/tech-illusions", label: "Tech Illusions" },
-  { href: "/showreel", label: "Showreel" },
-  { href: "/about", label: "About" },
-  { href: "/book", label: "Book" },
+  { href: "/work", label: "The Work", prefetch: false },
+  { href: "/tech-illusions", label: "Tech Illusions", prefetch: false },
+  { href: "/showreel", label: "Showreel", prefetch: false },
+  { href: "/about", label: "About", prefetch: false },
+  { href: "/book", label: "Book", prefetch: true },
 ];
 
 export function TopNav() {
@@ -23,6 +23,7 @@ export function TopNav() {
             <Link
               key={l.href}
               href={l.href}
+              prefetch={l.prefetch}
               className="transition-colors hover:text-cream"
             >
               {l.label}
