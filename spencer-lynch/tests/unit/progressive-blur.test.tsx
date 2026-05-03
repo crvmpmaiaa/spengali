@@ -22,4 +22,14 @@ describe("ProgressiveBlur", () => {
     expect(el.style.right).toBe("0px");
     expect(el.style.left).toBe("");
   });
+
+  it("inverts the mask gradient direction between sides", () => {
+    const { container, rerender } = render(<ProgressiveBlur side="left" />);
+    let el = container.querySelector('[data-progressive-blur]') as HTMLElement;
+    expect(el.style.maskImage).toContain("to right");
+
+    rerender(<ProgressiveBlur side="right" />);
+    el = container.querySelector('[data-progressive-blur]') as HTMLElement;
+    expect(el.style.maskImage).toContain("to left");
+  });
 });

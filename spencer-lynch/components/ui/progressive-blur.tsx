@@ -39,6 +39,7 @@ export function ProgressiveBlur({
   return (
     <div
       data-progressive-blur=""
+      aria-hidden="true"
       className={cn("pointer-events-none absolute top-0 z-10 h-full", className)}
       style={{
         ...horizontal,
