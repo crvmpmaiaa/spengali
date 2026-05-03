@@ -2,10 +2,14 @@
 import Link from "next/link";
 import { SLLogo } from "@/components/brand/sl-logo";
 
-const links = [
+// Three links each side of the centred logo for a symmetric layout.
+const leftLinks = [
   { href: "/work", label: "The Work", prefetch: false },
   { href: "/tech-illusions", label: "Tech Illusions", prefetch: false },
   { href: "/showreel", label: "Showreel", prefetch: false },
+];
+
+const rightLinks = [
   { href: "/about", label: "About", prefetch: false },
   { href: "/book", label: "Book", prefetch: true },
 ];
@@ -13,13 +17,33 @@ const links = [
 export function TopNav() {
   return (
     <header className="relative z-30 px-10 pt-7">
-      <div className="flex items-center justify-between gap-6">
-        <Link href="/" aria-label="Spencer Lynch — home" className="flex items-center">
-          <SLLogo variant="no-pips" width={140} height={32} />
+      <div className="grid grid-cols-3 items-center gap-6">
+        {/* Left nav — right-aligned, hugs the logo */}
+        <nav className="hidden items-center justify-end gap-8 font-sans text-[11px] uppercase tracking-eyebrow text-cream/70 md:flex">
+          {leftLinks.map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              prefetch={l.prefetch}
+              className="transition-colors hover:text-cream"
+            >
+              {l.label}
+            </Link>
+          ))}
+        </nav>
+
+        {/* Centre — logo */}
+        <Link
+          href="/"
+          aria-label="Spencer Lynch — home"
+          className="flex items-center justify-center"
+        >
+          <SLLogo variant="no-pips" width={182} height={42} />
         </Link>
 
-        <nav className="hidden items-center gap-8 font-sans text-[11px] uppercase tracking-eyebrow text-cream/70 md:flex">
-          {links.map((l) => (
+        {/* Right nav — left-aligned, hugs the logo. Try-a-Trick pill last. */}
+        <nav className="hidden items-center justify-start gap-8 font-sans text-[11px] uppercase tracking-eyebrow text-cream/70 md:flex">
+          {rightLinks.map((l) => (
             <Link
               key={l.href}
               href={l.href}
