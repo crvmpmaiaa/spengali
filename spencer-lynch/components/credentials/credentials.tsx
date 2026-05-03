@@ -2,6 +2,34 @@
 import { existsSync } from "node:fs";
 import path from "node:path";
 import { LogoCloud } from "@/components/ui/logo-cloud-4";
+import { CredentialCard, type CredentialCardProps } from "./credential-card";
+
+const CARDS: CredentialCardProps[] = [
+  {
+    suit: "spades",
+    rank: "A",
+    title: "Stadium Years",
+    body: "Official magician of Liverpool FC since 2006. The only person to ever hold simultaneous resident positions at two Premier League clubs.",
+  },
+  {
+    suit: "hearts",
+    rank: "Q",
+    title: "The Work That Matters",
+    body: "Twenty years of giving the trick away. LFC Foundation, Owen McVeigh Foundation, Down Syndrome Liverpool, the Countess of Chester Hospital.",
+  },
+  {
+    suit: "diamonds",
+    rank: "K",
+    title: "The Boardroom",
+    body: "Global tech, high-street retail, financial services, hospitality, broadcasters. The brands you know, the rooms you don't.",
+  },
+  {
+    suit: "clubs",
+    rank: "J",
+    title: "The Inner Circle",
+    body: "The trusted choice for players' families, private parties, and the rooms you don't hear about.",
+  },
+];
 
 type Logo = { src: string; alt: string; className?: string };
 
@@ -60,23 +88,10 @@ export function Credentials() {
         </h2>
       </div>
 
-      <div className="mx-auto mt-12 max-w-[820px] space-y-5 px-2 text-center">
-        <p className="text-sm leading-relaxed text-cream/85 md:text-xl">
-          Official magician of Liverpool FC since 2006. The only person to ever
-          hold simultaneous resident positions at two Premier League clubs
-          (Liverpool, Everton). Twenty years of close-up at the highest level.
-        </p>
-        <p className="text-sm leading-relaxed text-cream/85 md:text-xl">
-          Behind the scenes for global tech, high-street retail, financial
-          services, hospitality, education, healthcare and broadcasters, plus
-          a long list of charities including the LFC Foundation, Liverpool
-          Disabled Supporters Association, the Owen McVeigh Foundation, Down
-          Syndrome Liverpool, and the Countess of Chester Hospital.
-        </p>
-        <p className="text-sm leading-relaxed text-cream/85 md:text-xl">
-          The trusted choice for players&apos; families, private parties, and
-          the rooms you don&apos;t hear about.
-        </p>
+      <div className="mx-auto mt-14 grid max-w-[1100px] grid-cols-2 gap-4 px-2 md:mt-16 md:grid-cols-4 md:gap-6">
+        {CARDS.map((card) => (
+          <CredentialCard key={card.suit} {...card} />
+        ))}
       </div>
 
       <div className="-mx-5 mt-12 md:-mx-10 md:mt-14">
