@@ -23,9 +23,9 @@ export function TopNav() {
         <Link href="/" aria-label="Spencer Lynch home">
           <SLLogo
             variant="no-pips"
-            width={182}
-            height={42}
-            className="w-[140px]"
+            width={220}
+            height={51}
+            className="w-[180px]"
           />
         </Link>
       </div>
@@ -52,7 +52,7 @@ export function TopNav() {
           aria-label="Spencer Lynch home"
           className="flex items-center justify-center"
         >
-          <SLLogo variant="no-pips" width={182} height={42} />
+          <SLLogo variant="no-pips" width={232} height={54} />
         </Link>
 
         {/* Right nav, left-aligned, hugs the logo */}
