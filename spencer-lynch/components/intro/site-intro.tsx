@@ -60,7 +60,10 @@ export function SiteIntro({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-ink"
+          // Transparent container so the hero stays visible. The video below
+          // uses `mix-blend-mode: screen` so its pure-black background drops
+          // to transparent, leaving only smoke + Spencer composited on top.
+          className="pointer-events-none fixed inset-0 z-[100] flex items-center justify-center"
           aria-hidden={!open}
         >
           <video
@@ -72,33 +75,33 @@ export function SiteIntro({
             poster={posterSrc}
             onEnded={dismiss}
             onError={() => {
-              // Asset missing — bail without showing a broken state.
               setHasError(true);
               setOpen(false);
             }}
             onCanPlay={() => {
-              videoRef.current?.play().catch(() => {
-                // Autoplay blocked — surface a manual play, not a hang.
-                // No-op: the video element still shows the poster, and the
-                // skip button is rendered.
-              });
+              videoRef.current?.play().catch(() => {});
             }}
-            className={cn(
-              "h-full w-full object-cover",
-              "motion-safe:[mask-image:radial-gradient(circle_at_center,black_70%,transparent_100%)]",
-            )}
+            className="h-full w-full object-cover"
+            style={{ mixBlendMode: "screen" }}
           >
             <source src={`${videoBase}.webm`} type="video/webm" />
             <source src={`${videoBase}.mp4`} type="video/mp4" />
           </video>
 
-          <button
-            type="button"
-            onClick={dismiss}
-            className="absolute right-5 top-5 z-10 border border-gold/40 bg-ink/60 px-4 py-2 font-mono text-[10px] uppercase tracking-eyebrow text-cream/80 backdrop-blur transition-colors hover:bg-gold/15 hover:text-cream md:right-7 md:top-7"
+          {/* UI chrome rides above the video and ignores the screen blend. */}
+          <div
+            className={cn(
+              "pointer-events-auto absolute inset-x-0 top-0 flex items-start justify-end p-5 md:p-7",
+            )}
           >
-            Skip intro
-          </button>
+            <button
+              type="button"
+              onClick={dismiss}
+              className="border border-gold/40 bg-ink/70 px-4 py-2 font-mono text-[10px] uppercase tracking-eyebrow text-cream/80 backdrop-blur transition-colors hover:bg-gold/15 hover:text-cream"
+            >
+              Skip intro
+            </button>
+          </div>
 
           <p className="pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 font-mono text-[9px] uppercase tracking-eyebrow-wide text-gold/70">
             Spencer Lynch · Memorable Magic
