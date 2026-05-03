@@ -28,18 +28,28 @@ export function CinemaFrame({
       <span className="pointer-events-none absolute bottom-2 right-2 h-[18px] w-[18px] border-b border-r border-gold" />
 
       {slateTop && (
-        <div className="mb-[10px] flex items-center justify-between px-1 font-mono text-[9px] uppercase tracking-eyebrow text-gold/85">
+        <div
+          className={cn(
+            "mb-[10px] flex items-center px-1 font-mono text-[9px] uppercase tracking-[0.6em] text-gold/85",
+            slateTop.right ? "justify-between" : "justify-center",
+          )}
+        >
           <span>{slateTop.left}</span>
-          <span>{slateTop.right}</span>
+          {slateTop.right && <span>{slateTop.right}</span>}
         </div>
       )}
 
       <div className="relative aspect-video overflow-hidden bg-black">{children}</div>
 
       {slateBottom && (
-        <div className="mt-[10px] flex items-center justify-between px-1 font-mono text-[9px] uppercase tracking-eyebrow text-gold/60">
+        <div
+          className={cn(
+            "mt-[10px] flex items-center px-1 font-mono text-[9px] uppercase tracking-[0.6em] text-gold/60",
+            slateBottom.right ? "justify-between" : "justify-center",
+          )}
+        >
           <span>{slateBottom.left}</span>
-          <span>{slateBottom.right}</span>
+          {slateBottom.right && <span>{slateBottom.right}</span>}
         </div>
       )}
     </div>
