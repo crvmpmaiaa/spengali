@@ -4,6 +4,7 @@ import { CinemaFrame } from "@/components/showreel/cinema-frame";
 import { HeroShowreel } from "@/components/showreel/hero-showreel";
 import { CredentialsBlock } from "@/components/credentials/credentials-block";
 import { SiteFooter } from "@/components/footer/site-footer";
+import { TryATrickButton } from "@/components/tricks/try-a-trick-button";
 
 const PHONE_TEL = "+447706319468";       // Spencer's real number
 const EMAIL = "spencer@example.com";     // TODO: replace with Spencer's real email when supplied
@@ -30,13 +31,7 @@ export default function Home() {
             </p>
 
             <div className="mt-10 flex justify-center">
-              <button
-                type="button"
-                aria-label="Open a random magic trick"
-                className="border border-gold/60 bg-ink-warm px-7 py-3 font-mono text-[11px] uppercase tracking-eyebrow text-gold transition-colors hover:bg-gold/10"
-              >
-                ⌕ Try a Trick
-              </button>
+              <TryATrickButton />
             </div>
           </div>
 
