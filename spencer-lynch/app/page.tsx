@@ -14,7 +14,7 @@ export default function Home() {
       <TopNav />
 
       <main className="pinstripe relative bg-ink">
-        <section className="px-6 pb-24 pt-12 md:px-10">
+        <section className="px-5 pb-16 pt-8 md:px-10 md:pb-24 md:pt-12">
           <div className="mx-auto max-w-[1100px] text-center">
             <p className="font-mono text-[10px] uppercase tracking-eyebrow-wide text-gold/85">
               Established 2006 · Liverpool

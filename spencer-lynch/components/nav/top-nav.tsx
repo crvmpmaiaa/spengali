@@ -17,10 +17,23 @@ const rightLinks = [
 
 export function TopNav() {
   return (
-    <header className="relative z-30 px-10 pt-7">
-      <div className="grid grid-cols-3 items-center gap-6">
-        {/* Left nav — right-aligned, hugs the logo */}
-        <nav className="hidden items-center justify-end gap-8 font-sans text-[11px] uppercase tracking-eyebrow text-cream/70 md:flex">
+    <header className="relative z-30 px-4 pt-4 md:px-10 md:pt-7">
+      {/* Mobile: just the logo, centered, no empty grid columns */}
+      <div className="flex items-center justify-center md:hidden">
+        <Link href="/" aria-label="Spencer Lynch home">
+          <SLLogo
+            variant="no-pips"
+            width={182}
+            height={42}
+            className="w-[140px]"
+          />
+        </Link>
+      </div>
+
+      {/* Desktop: 3-col grid with side links */}
+      <div className="hidden grid-cols-3 items-center gap-6 md:grid">
+        {/* Left nav, right-aligned, hugs the logo */}
+        <nav className="flex items-center justify-end gap-8 font-sans text-[11px] uppercase tracking-eyebrow text-cream/70">
           {leftLinks.map((l) => (
             <Link
               key={l.href}
@@ -33,7 +46,7 @@ export function TopNav() {
           ))}
         </nav>
 
-        {/* Centre — logo */}
+        {/* Centre logo */}
         <Link
           href="/"
           aria-label="Spencer Lynch home"
@@ -42,8 +55,8 @@ export function TopNav() {
           <SLLogo variant="no-pips" width={182} height={42} />
         </Link>
 
-        {/* Right nav — left-aligned, hugs the logo */}
-        <nav className="hidden items-center justify-start gap-8 font-sans text-[11px] uppercase tracking-eyebrow text-cream/70 md:flex">
+        {/* Right nav, left-aligned, hugs the logo */}
+        <nav className="flex items-center justify-start gap-8 font-sans text-[11px] uppercase tracking-eyebrow text-cream/70">
           {rightLinks.map((l) => (
             <Link
               key={l.href}
@@ -57,7 +70,7 @@ export function TopNav() {
         </nav>
       </div>
 
-      <div className="mt-5 h-px w-full" style={{ background: "var(--gold-hairline)" }} />
+      <div className="mt-4 h-px w-full md:mt-5" style={{ background: "var(--gold-hairline)" }} />
     </header>
   );
 }

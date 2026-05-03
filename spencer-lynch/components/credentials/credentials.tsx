@@ -43,7 +43,7 @@ export function Credentials() {
   const logos = resolveAvailableLogos();
 
   return (
-    <section className="px-6 py-24 md:px-10 md:py-32">
+    <section className="px-5 py-16 md:px-10 md:py-32">
       <div className="mx-auto max-w-[1100px] text-center">
         <p className="font-mono text-[10px] uppercase tracking-eyebrow-wide text-gold/85">
           Twenty years in show business
@@ -74,7 +74,7 @@ export function Credentials() {
         </p>
       </div>
 
-      <div className="-mx-6 mt-14 md:-mx-10">
+      <div className="-mx-5 mt-12 md:-mx-10 md:mt-14">
         <LogoCloud logos={logos} />
       </div>
     </section>

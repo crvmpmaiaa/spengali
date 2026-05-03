@@ -16,7 +16,7 @@ export function SiteFooter({
   emailMailto: string; // e.g. "spencer@example.com"
 }) {
   return (
-    <footer className="border-t border-gold/30 bg-ink-warm px-10 pb-12 pt-16 text-cream">
+    <footer className="border-t border-gold/30 bg-ink-warm px-5 pb-10 pt-12 text-cream md:px-10 md:pb-12 md:pt-16">
       <div className="mx-auto flex max-w-[1200px] flex-col items-center gap-12 md:flex-row md:items-start md:justify-between">
         <div className="flex flex-col items-center text-center md:items-start md:text-left">
           <p className="font-mono text-[10px] uppercase tracking-eyebrow-wide text-gold">Bookings</p>
