@@ -23,7 +23,7 @@ export default function BookPage() {
           <div className="mx-auto grid max-w-[1100px] grid-cols-1 gap-16 lg:grid-cols-[1fr_1.4fr]">
             <aside className="flex flex-col gap-8">
               <p className="font-mono text-[10px] uppercase tracking-eyebrow-wide text-gold/85">
-                — Bookings —
+                Bookings
               </p>
               <h1 className="font-display text-4xl italic leading-tight text-cream md:text-5xl">
                 It all starts<br />with a chat.

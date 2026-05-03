@@ -31,7 +31,7 @@ export function HeroShowreel() {
       {!reducedMotion && (
         <iframe
           src={VIMEO_EMBED}
-          title="Spencer Lynch Showreel — Memorable Magic"
+          title="Spencer Lynch Showreel · Memorable Magic"
           allow="autoplay; fullscreen; picture-in-picture"
           referrerPolicy="strict-origin-when-cross-origin"
           className="absolute inset-0 h-full w-full border-0"

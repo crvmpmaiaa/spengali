@@ -3,7 +3,7 @@ import { existsSync } from "node:fs";
 import path from "node:path";
 import { LogoCloud } from "@/components/ui/logo-cloud-4";
 
-type Logo = { src: string; alt: string };
+type Logo = { src: string; alt: string; className?: string };
 
 const ALL_LOGOS: Logo[] = [
   { src: "/brand/crests/liverpool.png", alt: "Liverpool Football Club" },
@@ -27,7 +27,7 @@ const ALL_LOGOS: Logo[] = [
   { src: "/brand/logos/pension-insurance-corporation.png", alt: "Pension Insurance Corporation" },
   { src: "/brand/logos/nec.avif", alt: "National Exhibition Centre" },
   { src: "/brand/logos/gbg.png", alt: "GBG plc", className: "!h-7 md:!h-10" },
-  { src: "/brand/charities/nhs-countess-of-chester.png", alt: "NHS — Countess of Chester Hospital", className: "!h-7 md:!h-10" },
+  { src: "/brand/charities/nhs-countess-of-chester.png", alt: "NHS · Countess of Chester Hospital", className: "!h-7 md:!h-10" },
   { src: "/brand/logos/worldwide-hospitality.jpg", alt: "Worldwide Hospitality" },
   { src: "/brand/logos/chester-zoo.jpg", alt: "Chester Zoo" },
   { src: "/brand/logos/wirral-met-college.jpg", alt: "Wirral Met College" },
@@ -46,7 +46,7 @@ export function Credentials() {
     <section className="px-6 py-24 md:px-10 md:py-32">
       <div className="mx-auto max-w-[1100px] text-center">
         <p className="font-mono text-[10px] uppercase tracking-eyebrow-wide text-gold/85">
-          — Twenty years in show business —
+          Twenty years in show business
         </p>
         <h2 className="mt-6 font-display text-4xl italic leading-[1.05] text-cream md:text-6xl lg:text-[64px]">
           Two Premier League clubs.
@@ -57,14 +57,14 @@ export function Credentials() {
 
       <div className="mx-auto mt-12 max-w-[820px] space-y-5 px-2 text-center">
         <p className="text-lg leading-relaxed text-cream/85 md:text-xl">
-          Official magician of Liverpool FC since 2006 — the only person to ever
+          Official magician of Liverpool FC since 2006. The only person to ever
           hold simultaneous resident positions at two Premier League clubs
           (Liverpool, Everton). Twenty years of close-up at the highest level.
         </p>
         <p className="text-lg leading-relaxed text-cream/85 md:text-xl">
           Behind the scenes for global tech, high-street retail, financial
-          services, hospitality, education, healthcare, broadcasters — and a
-          long list of charities including the LFC Foundation, Liverpool
+          services, hospitality, education, healthcare and broadcasters, plus
+          a long list of charities including the LFC Foundation, Liverpool
           Disabled Supporters Association, the Owen McVeigh Foundation, Down
           Syndrome Liverpool, and the Countess of Chester Hospital.
         </p>

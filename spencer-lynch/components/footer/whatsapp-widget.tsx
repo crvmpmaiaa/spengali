@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export function WhatsAppWidget({
   phoneE164,
-  defaultMessage = "Hi Spencer — I'd like to chat about a possible booking.",
+  defaultMessage = "Hi Spencer, I'd like to chat about a possible booking.",
 }: {
   phoneE164: string; // e.g. "447xxxxxxxxx" — no plus, no spaces
   defaultMessage?: string;

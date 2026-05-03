@@ -23,7 +23,7 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Spencer Lynch — Memorable Magic",
+  title: "Spencer Lynch · Memorable Magic",
   description:
     "The only magician to hold simultaneous resident positions at two Premier League clubs. Twenty years of close-up. One card, up close.",
 };

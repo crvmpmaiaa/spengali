@@ -59,7 +59,7 @@ export function EnquiryForm() {
   if (status === "success") {
     return (
       <div className="border border-gold/40 bg-ink-warm p-10 text-center">
-        <p className="font-mono text-[10px] uppercase tracking-eyebrow-wide text-gold">— Thank you —</p>
+        <p className="font-mono text-[10px] uppercase tracking-eyebrow-wide text-gold">Thank you</p>
         <p className="mt-4 font-display text-2xl italic text-cream">
           Spencer will get back to you shortly.
         </p>

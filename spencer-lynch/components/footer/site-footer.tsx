@@ -19,7 +19,7 @@ export function SiteFooter({
     <footer className="border-t border-gold/30 bg-ink-warm px-10 pb-12 pt-16 text-cream">
       <div className="mx-auto flex max-w-[1200px] flex-col items-center gap-12 md:flex-row md:items-start md:justify-between">
         <div className="flex flex-col items-center text-center md:items-start md:text-left">
-          <p className="font-mono text-[10px] uppercase tracking-eyebrow-wide text-gold">— Bookings —</p>
+          <p className="font-mono text-[10px] uppercase tracking-eyebrow-wide text-gold">Bookings</p>
           <h2 className="mt-3 font-display text-3xl italic text-cream">It all starts with a chat.</h2>
           <div className="mt-8 grid w-full max-w-md grid-cols-1 gap-3 sm:grid-cols-3">
             <a
@@ -63,7 +63,6 @@ export function SiteFooter({
         <span>Spencer Lynch · Memorable Magic · Liverpool</span>
         <span>© {new Date().getFullYear()} · All rights reserved</span>
         <span>
-          —{" "}
           <Link
             href="https://maiaa.ai"
             target="_blank"

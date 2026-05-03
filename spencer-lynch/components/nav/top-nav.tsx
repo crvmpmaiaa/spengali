@@ -36,7 +36,7 @@ export function TopNav() {
         {/* Centre — logo */}
         <Link
           href="/"
-          aria-label="Spencer Lynch — home"
+          aria-label="Spencer Lynch home"
           className="flex items-center justify-center"
         >
           <SLLogo variant="no-pips" width={182} height={42} />

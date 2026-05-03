@@ -17,7 +17,7 @@ export default function Home() {
         <section className="px-6 pb-24 pt-12 md:px-10">
           <div className="mx-auto max-w-[1100px] text-center">
             <p className="font-mono text-[10px] uppercase tracking-eyebrow-wide text-gold/85">
-              — Established 2006 · Liverpool —
+              Established 2006 · Liverpool
             </p>
             <h1 className="mt-5 font-display text-5xl italic leading-[0.96] text-cream md:text-7xl lg:text-[88px]">
               How did <br />he do <span className="text-gold">that</span>?

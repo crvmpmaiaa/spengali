@@ -24,7 +24,7 @@ export async function POST(req: Request) {
   }
   const data = parsed.data;
 
-  const subject = `[Spencer Lynch] New enquiry — ${data.eventType} · ${data.eventDate}`;
+  const subject = `[Spencer Lynch] New enquiry · ${data.eventType} · ${data.eventDate}`;
   const html = `
     <h2>New enquiry from spencerlynch.co.uk</h2>
     <p><strong>${escapeHtml(data.name)}</strong> &lt;${escapeHtml(data.email)}&gt;</p>

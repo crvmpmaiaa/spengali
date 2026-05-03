@@ -31,7 +31,7 @@ export function SLLogo({
   return (
     <Image
       src={SOURCES[variant]}
-      alt="Spencer Lynch — Memorable Magic"
+      alt="Spencer Lynch · Memorable Magic"
       width={width}
       height={height}
       priority={priority}
