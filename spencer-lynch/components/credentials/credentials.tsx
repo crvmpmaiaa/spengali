@@ -20,7 +20,7 @@ const ALL_LOGOS: Logo[] = [
   { src: "/brand/logos/morrisons.jpeg", alt: "Morrisons" },
   { src: "/brand/charities/lfc-disabled-supporters.jpg", alt: "Liverpool Disabled Supporters Association", className: "!h-12 md:!h-16" },
   { src: "/brand/logos/specsavers.jpg", alt: "Specsavers", className: "!h-12 md:!h-16" },
-  { src: "/brand/logos/holloway-friendly.svg", alt: "Holloway Friendly" },
+  { src: "/brand/logos/holloway-friendly.svg", alt: "Holloway Friendly", className: "!h-7 md:!h-10" },
   { src: "/brand/logos/five-guys.png", alt: "Five Guys" },
   { src: "/brand/charities/down-syndrome-liverpool.webp", alt: "Down Syndrome Liverpool" },
   { src: "/brand/logos/aon.png", alt: "Aon" },
