@@ -2058,7 +2058,7 @@ npx vercel env add RESEND_API_KEY production
 npx vercel env add ENQUIRY_TO_EMAIL production
 # paste Spencer's real enquiry email when prompted
 npx vercel env add NEXT_PUBLIC_WHATSAPP_E164 production
-# paste Spencer's WhatsApp number in E.164 (no plus, no spaces) when prompted
+# paste 447706319468 when prompted (Spencer's WhatsApp, E.164 format, no plus, no spaces)
 ```
 
 - [ ] **Step 4: First deploy**

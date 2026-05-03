@@ -4,7 +4,7 @@ import Link from "next/link";
 const SOCIALS = [
   { label: "Instagram", href: "https://instagram.com/" },
   { label: "TikTok", href: "https://tiktok.com/" },
-  { label: "LinkedIn", href: "https://linkedin.com/" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/spencelynch/" },
   { label: "Facebook", href: "https://facebook.com/" },
 ];
 
