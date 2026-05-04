@@ -6,15 +6,12 @@ import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
 const STORAGE_KEY = "sl-intro-seen";
 
 /**
- * Site-intro overlay. Plays a Kling-rendered clip of Spencer materialising
- * from smoke, performing a flourish, and dissolving back into smoke.
- *
- * Approach: the WebM source has a real VP9 alpha channel (encoded via ffmpeg
- * colorkey filter on the original MP4 — black -> transparent). The browser
- * composites the alpha natively over whatever is rendered behind the
- * overlay, which is the live hero. No mix-blend-mode hacks. No backdrop
- * snapshot. The MP4 stays as a fallback for browsers that don't support
- * VP9 alpha (mainly Safari).
+ * Site-intro overlay. Full-screen black backdrop with a Kling-rendered clip
+ * of Spencer materialising from smoke, performing a flourish, and dissolving
+ * back into smoke. The video's last frame is pure black, so when the video
+ * ends the overlay fades out smoothly to reveal the live homepage already
+ * mounted underneath. No compositing tricks: the black overlay matches the
+ * video's black bg so the transition is seamless.
  *
  * Skipped silently when:
  *   - The viewer has seen it this session (sessionStorage flag)
@@ -22,11 +19,9 @@ const STORAGE_KEY = "sl-intro-seen";
  *   - The video asset 404s
  */
 export function SiteIntro({
-  webmSrc = "/intro/spencer-emerges.webm",
-  mp4Src = "/intro/spencer-emerges.mp4",
+  videoSrc = "/intro/spencer-emerges.mp4",
 }: {
-  webmSrc?: string;
-  mp4Src?: string;
+  videoSrc?: string;
 }) {
   const reducedMotion = useReducedMotion();
   const [open, setOpen] = useState(false);
@@ -52,15 +47,16 @@ export function SiteIntro({
       {open && (
         <motion.div
           key="site-intro"
-          initial={{ opacity: 0 }}
+          initial={{ opacity: 1 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="pointer-events-none fixed inset-0 z-[100] flex items-center justify-center"
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black"
           aria-hidden={!open}
         >
           <video
             ref={videoRef}
+            src={videoSrc}
             autoPlay
             muted
             playsInline
@@ -71,12 +67,9 @@ export function SiteIntro({
               videoRef.current?.play().catch(() => {});
             }}
             className="h-full max-h-[100vh] w-auto select-none object-contain"
-          >
-            <source src={webmSrc} type="video/webm" />
-            <source src={mp4Src} type="video/mp4" />
-          </video>
+          />
 
-          <div className="pointer-events-auto absolute inset-x-0 top-0 flex items-start justify-end p-5 md:p-7">
+          <div className="absolute inset-x-0 top-0 flex items-start justify-end p-5 md:p-7">
             <button
               type="button"
               onClick={dismiss}
