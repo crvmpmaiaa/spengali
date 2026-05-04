@@ -1,7 +1,7 @@
 # Spencer Lynch — Plan 5: About, Gallery & The Vault
 
 **Date:** 2026-05-05
-**Branch:** plan-2-credentials (continuing; will rename or branch from here)
+**Branch:** `plan-5-pages` — branch off `plan-2-credentials` at the start of implementation (`git checkout -b plan-5-pages`)
 **Status:** Approved — ready for implementation planning
 
 ---
@@ -39,7 +39,7 @@ Lean into the old-world theatrical side of the existing "Card Maker's Library" p
 
 #### 2. The Story
 
-- `bg-ink-warm` with pinstripe texture (existing `.pinstripe` class).
+- `bg-ink-warm` (defined as `--color-ink-warm: #0A0807` in `app/globals.css`) with pinstripe texture (existing `.pinstripe` utility class, also defined in `globals.css`).
 - Two-column layout on desktop (`lg:grid-cols-[1fr_320px]`); stacked on mobile.
 - **Left:** Body copy in three paragraphs covering: (a) the origin story — how Spencer got into magic and built his early reputation; (b) the Liverpool FC / Everton dual residency — the thing no other magician on earth has; (c) the philosophy — why close-up magic at this level is about human connection, not spectacle.
 - **Right:** `spencer.jpg` (already B&W) in a slightly-angled frame (`rotate-1` or `-rotate-1`), thin gold border (`ring-1 ring-gold/50`), and a small italic caption beneath: `— Spencer Lynch, Liverpool`.
@@ -52,12 +52,12 @@ Lean into the old-world theatrical side of the existing "Card Maker's Library" p
 - Dark overlay (`bg-ink/60`) with centred text overlay:
   - Small gold eyebrow: `— Anfield, 2017 —`
   - Playfair italic quote: `"Some rooms you never forget."`
-- No names. Handled editorially per the spec's locked decision on Carragher/Rooney/Gerrard — subject to Spencer's confirmation of permissions. If permissions aren't confirmed, this section is replaced by a generic "At Anfield" atmospheric shot without the named figure visible.
+- No names in any text. The photo itself shows two people; the named figure is a public figure photographed in a public-facing hospitality context. **Default: ship with the photo.** If Spencer explicitly revokes permission before launch, replace with `spence fire 2.jpeg` (atmospheric, no third parties) and change the eyebrow to `— At Anfield —`. The component accepts a `showGerrard?: boolean` prop (default `true`) to make this a one-line swap.
 
 #### 4. At Work
 
 - Three-photo horizontal mosaic on desktop, vertical stack on mobile.
-- Photos: `reaction.jpeg`, `group magic.jpeg`, `group magic girls.jpeg` (or whichever three have the strongest composition).
+- Photos (fixed selection): `reaction.jpeg`, `group magic girls.jpeg`, `group magic fire girls 2.jpeg`. These three were chosen for composition — jaw-drop reaction + group energy + fire/drama.
 - No captions. Reactions tell the story.
 - Each photo: `object-cover`, fixed height (`h-64 md:h-80`), slight hover brightness lift (`hover:brightness-110 transition-all`).
 - Thin gold hairline separating each photo slot.
@@ -91,7 +91,7 @@ Clean, minimal, dark. Two clearly sectioned surfaces on one scrollable page. No 
 
 #### 1. Page header
 
-- Simple: eyebrow `— Gallery —`, heading `The Work` in Playfair italic.
+- Simple: eyebrow `— Gallery —`, heading `The Work` in Playfair italic. (The h1 is "The Work" — the route `/gallery` is for nav clarity; the editorial heading can differ.)
 - No hero image. Black, centred, generous padding.
 
 #### 2. `#showreel` — Full Vimeo player
@@ -128,20 +128,20 @@ Clean, minimal, dark. Two clearly sectioned surfaces on one scrollable page. No 
 ### Access
 
 - Not in nav. Not linked from any public page.
-- URL surfaced only via the trick-unlock reveal modal (Plan 3 territory — the unlock mechanism already exists conceptually; this page just needs to exist at the route).
+- URL surfaced only via the trick-unlock reveal modal (Plan 3 territory — the unlock mechanism will point here in a later plan). For Plan 5, the vault page is built and tested in isolation: the implementer sets the `localStorage` key manually in devtools to verify the authenticated state, and verifies the decoy state in a private window.
 - Once unlocked, the URL is persisted to `localStorage` under key `sl-vault-unlocked`. On subsequent visits to `/the-vault`, if the key exists, the page renders normally. If the key is absent, the page renders a "nothing to see here" decoy state (blank dark page with a small gold `?` in the centre, no explanation).
 
 ### Design
 
 - Full-page dark (`bg-ink`). No nav, no footer — completely standalone.
 - Centred content, max-width `480px`.
-- **SVG ornament:** all-seeing eye in a triangle, fine-line gold on black. Inspired by the moodboard top-left panel. ~120px wide. Developer-drawn SVG (no external asset needed).
+- **SVG ornament:** a simple equilateral triangle (stroke, no fill) with a single eye shape (ellipse + pupil circle) centred inside it. Fine-line, gold stroke (`#D4AF37`), no fill, on black. ~120px wide × ~104px tall. Developer-drawn inline SVG — no illustrator required. Stroke weight: 1.5px. The eye should be roughly 30% of the triangle's height. This is geometric minimalism, not ornate engraving.
 - Gold eyebrow in mono: `— You found it —`
 - Playfair italic heading: `The Vault`
 - Body copy (Playfair italic, cream/70, ~16px):
   > *"Not many people find this place. The ones who do understand something most people never will: the secret isn't in the hands. It's in where you're looking."*
 - Gold hairline divider.
-- A "shareable secret" URL display: shows `spencerlynch.co.uk/the-vault` in mono text with a copy-to-clipboard button (icon + `Copied!` flash). The real domain is a placeholder until launch — use `window.location.href` at runtime.
+- A "shareable secret" URL display: uses `window.location.href` at runtime to get the current full URL (will be `localhost:3000/the-vault` in dev, production domain after deploy — no hardcoding needed). Copy-to-clipboard button: clicking copies the URL string, button label flashes to `Copied!` for 2 seconds then resets. Uses the browser Clipboard API (`navigator.clipboard.writeText`).
 - Small italic line at the bottom: `— Keep it to yourself. Or don't.`
 - A discreet `← Back` link (mono, cream/40) to return to the homepage.
 
@@ -160,7 +160,7 @@ All photos need copying to `spencer-lynch/public/photos/` from `assets/spencer-l
 | `assets/spencer-lynch/photos/*.jpeg` | `spencer-lynch/public/photos/` |
 | `assets/spencer-lynch/photos/spencer.jpg` | `spencer-lynch/public/photos/` |
 
-The `spence fire 2 ` filename (no extension, has trailing space) should be checked — if it's a valid image file, rename to `spence-fire-2.jpeg` during the copy.
+The file `spence fire 2 ` (no extension, trailing space) is of unknown validity — **exclude it from the gallery grid**. Only copy files with confirmed `.jpeg`/`.jpg` extensions. The fallback for the Gerrard section uses `spence fire 3 .jpeg` instead (confirmed extension present).
 
 ---
 
@@ -177,6 +177,18 @@ The `spence fire 2 ` filename (no extension, has trailing space) should be check
 | `VaultPage` (page-level) | `app/the-vault/page.tsx` | Standalone, no layout shell |
 
 Existing components reused: `TopNav`, `SiteFooter`, `CinemaFrame`, `SectionEyebrow`.
+
+### Copy storage
+
+All placeholder body copy lives as string constants at the top of each page file (`app/about/page.tsx`, etc.) — not in a CMS or separate constants file. This is the simplest approach for v1 and gives Spencer one file per page to edit. The Plan 7 copy-handover task will extract to a proper content layer if needed.
+
+### Next.js Image `sizes` prop
+
+All `<Image>` components must include a `sizes` prop to avoid the Next.js console warning and enable correct srcset selection:
+- Hero background images: `sizes="100vw"`
+- Story headshot (right column, 320px wide): `sizes="(max-width: 1024px) 100vw, 320px"`
+- At Work mosaic (1/3 width on desktop): `sizes="(max-width: 640px) 100vw, 33vw"`
+- Gallery photo grid (1/3 width on desktop): `sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"`
 
 ---
 
@@ -198,8 +210,10 @@ app/
 
 ## Tests
 
-- Unit: `VaultPage` renders decoy state when `localStorage` key absent; renders full content when key present.
-- e2e smoke: `/about` loads and `h1` contains "Spencer Lynch"; `/gallery` loads and Vimeo iframe is present; `/the-vault` without key shows decoy `?`.
+- Unit: `VaultPage` renders decoy `?` when `localStorage` key `sl-vault-unlocked` is absent; renders heading "The Vault" when key is present. Test using `jest-localstorage-mock` or equivalent.
+- Unit: copy-to-clipboard button in VaultPage calls `navigator.clipboard.writeText` with the current URL and shows `Copied!` label.
+- e2e smoke: `/about` loads and `h1` contains "Spencer Lynch"; `/gallery` loads and the page contains an `iframe` with a `src` containing `vimeo.com`; `/the-vault` with no localStorage key set shows a single `?` character and no heading.
+- Reduced-motion: hover brightness transitions use `transition-all` — wrap in `@media (prefers-reduced-motion: reduce)` override that removes the transition. Verified manually; no automated test required for v1.
 
 ---
 
@@ -218,8 +232,10 @@ app/
 
 1. `/about` renders all five sections with no layout breaks on mobile or desktop
 2. The fire hero photo is visible with text legible over the overlay
-3. `/gallery` Vimeo player loads with gold-tinted controls; photos render in masonry columns
-4. `/the-vault` decoy state shows `?` only; authenticated state shows full vault content
-5. All three pages pass Lighthouse accessibility ≥ 95
-6. All motion (hover transitions) respects `prefers-reduced-motion`
-7. Photos are served via Next.js `<Image>` with correct `alt` text
+3. `/gallery` Vimeo iframe is present with `src` containing `vimeo.com/214361408`; photos render in CSS columns layout
+4. `/the-vault` without `sl-vault-unlocked` in localStorage shows only `?` (decoy); with the key set shows heading "The Vault" and vault content — HTTP 200 in both states
+5. Vault copy-to-clipboard: clicking the copy button writes the current URL to clipboard and shows `Copied!`
+6. All three pages pass Lighthouse accessibility ≥ 95 (run locally via `npx lighthouse http://localhost:3000/about --only-categories=accessibility`)
+7. All hover transitions are wrapped in a `prefers-reduced-motion` media query override removing the transition
+8. All `<Image>` components have descriptive `alt` text: performance photos use `"Spencer Lynch performing close-up magic"` or scene-specific descriptions; headshot uses `"Spencer Lynch, close-up magician"`; no empty alts on non-decorative images
+9. `/about` and `/gallery` have `<title>` and `<meta name="description">` set via `export const metadata` in their page files; `/the-vault` uses `robots: { index: false, follow: false }`
