@@ -110,7 +110,7 @@ Clean, minimal, dark. Two clearly sectioned surfaces on one scrollable page. No 
 - All available performance photos from `public/photos/`:
   - `reaction.jpeg`, `reaction2.jpeg`
   - `group magic.jpeg`, `group magic girls.jpeg`, `group magic fire girls 2.jpeg`
-  - `spence fire.jpeg`, `spence fire 2.jpeg`, `spence fire 3.jpeg`
+  - `spence-fire.jpeg`, `spence-fire-3.jpeg` (`spence fire 2 ` excluded — no extension)
   - `celeb.jpeg`
   - `gerrard.jpeg` (include — the room is recognisable even without names)
 - Each photo: `w-full mb-3 object-cover` with `hover:brightness-110 hover:ring-1 hover:ring-gold/40 transition-all duration-300`.
@@ -160,7 +160,11 @@ All photos need copying to `spencer-lynch/public/photos/` from `assets/spencer-l
 | `assets/spencer-lynch/photos/*.jpeg` | `spencer-lynch/public/photos/` |
 | `assets/spencer-lynch/photos/spencer.jpg` | `spencer-lynch/public/photos/` |
 
-The file `spence fire 2 ` (no extension, trailing space) is of unknown validity — **exclude it from the gallery grid**. Only copy files with confirmed `.jpeg`/`.jpg` extensions. The fallback for the Gerrard section uses `spence fire 3 .jpeg` instead (confirmed extension present).
+Two filenames need attention before copying:
+- `spence fire 2 ` — no extension, trailing space — **exclude entirely**.
+- `spence fire 3 .jpeg` — has a space before `.jpeg` — rename to `spence-fire-3.jpeg` during the copy step (`cp "spence fire 3 .jpeg" spence-fire-3.jpeg`).
+
+The fallback photo for the Gerrard section is `spence-fire-3.jpeg` (after rename). All other files copy with spaces replaced by hyphens for URL safety (e.g. `spence fire.jpeg` → `spence-fire.jpeg`, `group magic fire girls 2.jpeg` → `group-magic-fire-girls-2.jpeg`).
 
 ---
 
@@ -189,6 +193,7 @@ All `<Image>` components must include a `sizes` prop to avoid the Next.js consol
 - Story headshot (right column, 320px wide): `sizes="(max-width: 1024px) 100vw, 320px"`
 - At Work mosaic (1/3 width on desktop): `sizes="(max-width: 640px) 100vw, 33vw"`
 - Gallery photo grid (1/3 width on desktop): `sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"`
+- Gerrard cinematic strip (full-bleed): `sizes="100vw"`
 
 ---
 
@@ -204,7 +209,7 @@ app/
     page.tsx          ← new (standalone, no shared layout)
 ```
 
-`/the-vault` should use its own layout (or `export const metadata` with `robots: noindex`) to stay out of search engines.
+`/the-vault` uses a standalone layout file (`app/the-vault/layout.tsx`) that renders `{children}` only, with no `TopNav` or `SiteFooter`. This is required because the vault has no nav or footer — inheriting the root layout would break the isolated design. The `robots: noindex` metadata is set in `app/the-vault/page.tsx` via `export const metadata`.
 
 ---
 
@@ -237,5 +242,5 @@ app/
 5. Vault copy-to-clipboard: clicking the copy button writes the current URL to clipboard and shows `Copied!`
 6. All three pages pass Lighthouse accessibility ≥ 95 (run locally via `npx lighthouse http://localhost:3000/about --only-categories=accessibility`)
 7. All hover transitions are wrapped in a `prefers-reduced-motion` media query override removing the transition
-8. All `<Image>` components have descriptive `alt` text: performance photos use `"Spencer Lynch performing close-up magic"` or scene-specific descriptions; headshot uses `"Spencer Lynch, close-up magician"`; no empty alts on non-decorative images
+8. All `<Image>` components have descriptive `alt` text: performance photos use `"Spencer Lynch performing close-up magic"` or scene-specific descriptions (e.g. `"Audience reaction to Spencer Lynch's card trick"`); headshot uses `"Spencer Lynch, close-up magician"`; `gerrard.jpeg` uses `"Spencer Lynch performing close-up magic at Anfield hospitality suite"` (no third-party name); no empty alts on non-decorative images
 9. `/about` and `/gallery` have `<title>` and `<meta name="description">` set via `export const metadata` in their page files; `/the-vault` uses `robots: { index: false, follow: false }`
