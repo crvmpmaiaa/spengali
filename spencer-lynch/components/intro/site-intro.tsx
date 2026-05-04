@@ -7,22 +7,26 @@ const STORAGE_KEY = "sl-intro-seen";
 
 /**
  * Site-intro overlay. Plays a short cinematic clip of Spencer materialising
- * from smoke, performing a flourish, and dissolving back into smoke. The
- * video sits on top of the hero with `mix-blend-mode: screen` so its
- * pure-black background drops to transparent, leaving only the smoke +
- * character composited over the live homepage.
+ * from smoke, performing a flourish, and dissolving back into smoke.
+ *
+ * Approach: instead of using mix-blend-mode (unreliable on <video> in some
+ * browsers), the overlay shows a Playwright-captured screenshot of the live
+ * hero as a full-screen backdrop. The Kling video sits centred on top of
+ * that backdrop with screen blend, so the smoke + Spencer composite over
+ * what looks like the live hero. When the video ends, the entire overlay
+ * fades out, revealing the actual homepage already mounted underneath.
  *
  * Skipped silently when:
  *   - The viewer has seen it this session (sessionStorage flag)
  *   - The viewer prefers reduced motion
- *   - The video asset 404s (errors out before play)
+ *   - The video asset 404s
  */
 export function SiteIntro({
   videoSrc = "/intro/spencer-emerges.mp4",
-  posterSrc = "/intro/spencer-still.png",
+  backdropSrc = "/intro/hero-snapshot.jpg",
 }: {
   videoSrc?: string;
-  posterSrc?: string;
+  backdropSrc?: string;
 }) {
   const reducedMotion = useReducedMotion();
   const [open, setOpen] = useState(false);
@@ -48,31 +52,41 @@ export function SiteIntro({
       {open && (
         <motion.div
           key="site-intro"
-          initial={{ opacity: 0 }}
+          initial={{ opacity: 1 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="pointer-events-none fixed inset-0 z-[100] flex items-center justify-center"
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="fixed inset-0 z-[100] overflow-hidden bg-ink"
           aria-hidden={!open}
         >
-          <video
-            ref={videoRef}
-            src={videoSrc}
-            poster={posterSrc}
-            autoPlay
-            muted
-            playsInline
-            preload="auto"
-            onEnded={dismiss}
-            onError={() => setOpen(false)}
-            onCanPlay={() => {
-              videoRef.current?.play().catch(() => {});
-            }}
-            className="h-full max-h-[100vh] w-auto select-none object-contain"
-            style={{ mixBlendMode: "screen" }}
+          {/* Static hero snapshot as the backdrop */}
+          <div
+            className="absolute inset-0 bg-cover bg-top bg-no-repeat"
+            style={{ backgroundImage: `url(${backdropSrc})` }}
+            aria-hidden="true"
           />
 
-          <div className="pointer-events-auto absolute inset-x-0 top-0 flex items-start justify-end p-5 md:p-7">
+          {/* Kling video centred on top, screen-blends with the snapshot */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <video
+              ref={videoRef}
+              src={videoSrc}
+              autoPlay
+              muted
+              playsInline
+              preload="auto"
+              onEnded={dismiss}
+              onError={() => setOpen(false)}
+              onCanPlay={() => {
+                videoRef.current?.play().catch(() => {});
+              }}
+              className="h-full max-h-[100vh] w-auto select-none object-contain"
+              style={{ mixBlendMode: "screen" }}
+            />
+          </div>
+
+          {/* Skip button on top of everything */}
+          <div className="absolute inset-x-0 top-0 flex items-start justify-end p-5 md:p-7">
             <button
               type="button"
               onClick={dismiss}
