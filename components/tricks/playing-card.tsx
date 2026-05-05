@@ -21,7 +21,7 @@ export type Rank =
 export type Card = { suit: Suit; rank: Rank; id: string };
 
 const RANKS: Rank[] = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
-const SUITS: Suit[] = ["♠", "♥", "♦", "♣"];
+const SUITS: Suit[] = ["♣", "♥", "♠", "♦"];
 
 /** Builds a freshly-shuffled 21-card subset from a standard 52-card deck. */
 export function buildShuffledTrickDeck(): Card[] {

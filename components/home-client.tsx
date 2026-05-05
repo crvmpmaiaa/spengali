@@ -3,6 +3,7 @@ import { useState } from "react";
 import { SiteIntro } from "@/components/intro/site-intro";
 import { HeroShowreel } from "@/components/showreel/hero-showreel";
 import { CinemaFrame } from "@/components/showreel/cinema-frame";
+import { TryATrickButton } from "@/components/tricks/try-a-trick-button";
 
 export function HomeClient() {
   const [introEnded, setIntroEnded] = useState(false);
@@ -19,6 +20,10 @@ export function HomeClient() {
         >
           <HeroShowreel autoplay={introEnded} />
         </CinemaFrame>
+      </div>
+
+      <div className="mt-8 flex justify-center">
+        <TryATrickButton />
       </div>
     </>
   );

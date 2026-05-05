@@ -6,28 +6,28 @@ import { CredentialCard, type CredentialCardProps } from "./credential-card";
 
 const CARDS: CredentialCardProps[] = [
   {
-    suit: "spades",
+    suit: "clubs",
     rank: "A",
-    title: "Stadium Years",
-    body: "Official magician of Liverpool FC since 2006. The only person to ever hold simultaneous resident positions at two Premier League clubs.",
+    title: "Premier Magician",
+    body: "Official magician of LFC for over 20 years.",
   },
   {
     suit: "hearts",
     rank: "Q",
-    title: "The Work That Matters",
-    body: "Twenty years of giving the trick away. LFC Foundation, Owen McVeigh Foundation, Down Syndrome Liverpool, the Countess of Chester Hospital.",
+    title: "Over 30 Years Experience",
+    body: "Working for some of the biggest most recognised brands.",
+  },
+  {
+    suit: "spades",
+    rank: "K",
+    title: "All Kinds of Events",
+    body: "Weddings, parties, dinner parties, trade shows, corporate events.",
   },
   {
     suit: "diamonds",
-    rank: "K",
-    title: "The Boardroom",
-    body: "Global tech, high-street retail, financial services, hospitality, broadcasters. The brands you know, the rooms you don't.",
-  },
-  {
-    suit: "clubs",
     rank: "J",
-    title: "The Inner Circle",
-    body: "The trusted choice for players' families, private parties, and the rooms you don't hear about.",
+    title: "Why Choose Me",
+    body: "I will meet you before you book me, you can experience my magic and how it all comes together in a performance before you decide.",
   },
 ];
 
@@ -76,19 +76,8 @@ export function Credentials() {
   const logos = resolveAvailableLogos();
 
   return (
-    <section className="px-5 py-16 md:px-10 md:py-32">
-      <div className="mx-auto max-w-[1100px] text-center">
-        <p className="font-mono text-[10px] uppercase tracking-eyebrow-wide text-gold/85">
-          Twenty years in show business
-        </p>
-        <h2 className="mt-6 font-display text-4xl italic leading-[1.05] text-cream md:text-6xl lg:text-[64px]">
-          Two Premier League clubs.
-          <br />
-          The world&apos;s most discerning rooms.
-        </h2>
-      </div>
-
-      <div className="mx-auto mt-14 grid max-w-[1100px] grid-cols-2 gap-4 px-2 md:mt-16 md:grid-cols-4 md:gap-6">
+    <section className="px-5 py-16 md:px-10 md:py-24">
+      <div className="mx-auto grid max-w-[1100px] grid-cols-2 gap-4 px-2 md:grid-cols-4 md:gap-6">
         {CARDS.map((card) => (
           <CredentialCard key={card.suit} {...card} />
         ))}
