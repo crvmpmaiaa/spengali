@@ -1,11 +1,9 @@
 // spencer-lynch/app/page.tsx
 import { TopNav } from "@/components/nav/top-nav";
-import { CinemaFrame } from "@/components/showreel/cinema-frame";
-import { HeroShowreel } from "@/components/showreel/hero-showreel";
 import { CredentialsBlock } from "@/components/credentials/credentials-block";
 import { SiteFooter } from "@/components/footer/site-footer";
 import { TryATrickButton } from "@/components/tricks/try-a-trick-button";
-import { SiteIntro } from "@/components/intro/site-intro";
+import { HomeClient } from "@/components/home-client";
 
 const PHONE_TEL = "+447706319468";       // Spencer's real number
 const EMAIL = "spencer@example.com";     // TODO: replace with Spencer's real email when supplied
@@ -13,7 +11,6 @@ const EMAIL = "spencer@example.com";     // TODO: replace with Spencer's real em
 export default function Home() {
   return (
     <>
-      <SiteIntro />
       <TopNav />
 
       <main className="pinstripe relative bg-ink">
@@ -37,14 +34,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="mx-auto mt-14 flex max-w-[760px] justify-center">
-            <CinemaFrame
-              slateTop={{ left: "SL · Reel · 2026", right: "" }}
-              slateBottom={{ left: "Memorable Magic", right: "" }}
-            >
-              <HeroShowreel />
-            </CinemaFrame>
-          </div>
+          <HomeClient />
         </section>
 
         <CredentialsBlock />

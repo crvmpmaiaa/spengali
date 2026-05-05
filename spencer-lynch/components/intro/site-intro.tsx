@@ -17,29 +17,44 @@ const STORAGE_KEY = "sl-intro-seen";
  *   - The viewer has seen it this session (sessionStorage flag)
  *   - The viewer prefers reduced motion
  *   - The video asset 404s
+ *
+ * onDismiss fires in all cases (play-through, skip, error) so callers can
+ * gate downstream autoplay on the intro completing.
  */
 export function SiteIntro({
   videoSrc = "/intro/spencer-emerges.mp4",
+  mobileSrc,
+  onDismiss,
 }: {
   videoSrc?: string;
+  mobileSrc?: string;
+  onDismiss?: () => void;
 }) {
   const reducedMotion = useReducedMotion();
   const [open, setOpen] = useState(false);
+  const [src, setSrc] = useState(videoSrc);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (reducedMotion) return;
+
+    // Swap to mobile src on narrow viewports when one is provided
+    if (mobileSrc && window.matchMedia("(max-width: 767px)").matches) {
+      setSrc(mobileSrc);
+    }
+
+    if (reducedMotion) { onDismiss?.(); return; }
     const seen = window.sessionStorage.getItem(STORAGE_KEY);
-    if (seen) return;
+    if (seen) { onDismiss?.(); return; }
     setOpen(true);
-  }, [reducedMotion]);
+  }, [reducedMotion, mobileSrc, onDismiss]);
 
   function dismiss() {
     if (typeof window !== "undefined") {
       window.sessionStorage.setItem(STORAGE_KEY, "1");
     }
     setOpen(false);
+    onDismiss?.();
   }
 
   return (
@@ -56,28 +71,18 @@ export function SiteIntro({
         >
           <video
             ref={videoRef}
-            src={videoSrc}
+            src={src}
             autoPlay
             muted
             playsInline
             preload="auto"
             onEnded={dismiss}
-            onError={() => setOpen(false)}
+            onError={() => { setOpen(false); onDismiss?.(); }}
             onCanPlay={() => {
               videoRef.current?.play().catch(() => {});
             }}
-            className="h-full max-h-[100vh] w-auto select-none object-contain"
+            className="h-full max-h-[100vh] w-auto select-none object-cover"
           />
-
-          <div className="absolute inset-x-0 top-0 flex items-start justify-end p-5 md:p-7">
-            <button
-              type="button"
-              onClick={dismiss}
-              className="border border-gold/40 bg-ink/70 px-4 py-2 font-mono text-[10px] uppercase tracking-eyebrow text-cream/80 backdrop-blur transition-colors hover:bg-gold/15 hover:text-cream"
-            >
-              Skip intro
-            </button>
-          </div>
         </motion.div>
       )}
     </AnimatePresence>

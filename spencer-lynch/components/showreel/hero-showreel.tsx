@@ -12,8 +12,10 @@ const VIMEO_EMBED = `https://player.vimeo.com/video/${VIMEO_ID}?background=1&aut
  * visitors don't see a blank black box during the brief Vimeo bootstrap.
  * Reduced-motion branch suppresses the iframe entirely and surfaces a
  * "Watch on Vimeo" link in its place.
+ *
+ * Pass autoplay=false to hold the iframe until the site intro finishes.
  */
-export function HeroShowreel() {
+export function HeroShowreel({ autoplay = true }: { autoplay?: boolean }) {
   const reducedMotion = useReducedMotion();
 
   return (
@@ -28,7 +30,7 @@ export function HeroShowreel() {
         className="object-cover"
       />
 
-      {!reducedMotion && (
+      {!reducedMotion && autoplay && (
         <iframe
           src={VIMEO_EMBED}
           title="Spencer Lynch Showreel · Memorable Magic"
