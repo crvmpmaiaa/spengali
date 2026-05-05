@@ -24,24 +24,20 @@ jobs:
         with:
           node-version: 20
           cache: npm
-          cache-dependency-path: spencer-lynch/package-lock.json
 
       - name: Install dependencies
-        working-directory: spencer-lynch
         run: npm ci
 
       - name: Build
-        working-directory: spencer-lynch
         env:
-          # Placeholders so Zod env validation passes at build time.
-          # The /api/enquiry route is inert on a static Pages host anyway.
+          NEXT_PUBLIC_BASE_PATH: /spengali
           RESEND_API_KEY: placeholder
           ENQUIRY_TO_EMAIL: placeholder@example.com
         run: npm run build
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: spencer-lynch/out
+          path: out
 
   deploy:
     needs: build

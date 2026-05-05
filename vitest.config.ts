@@ -7,6 +7,10 @@ export default defineConfig({
   plugins: [react()],
   test: {
     environment: "jsdom",
+    environmentOptions: {
+      jsdom: { url: "http://localhost:3000" },
+      additionalKeys: ["localStorage", "sessionStorage"],
+    },
     globals: true,
     setupFiles: ["./tests/setup.ts"],
     include: ["tests/unit/**/*.test.{ts,tsx}"],

@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
+import { BASE_PATH } from "@/lib/base-path";
 
 const STORAGE_KEY = "sl-intro-seen";
 
@@ -22,7 +23,7 @@ const STORAGE_KEY = "sl-intro-seen";
  * gate downstream autoplay on the intro completing.
  */
 export function SiteIntro({
-  videoSrc = "/intro/spencer-emerges.mp4",
+  videoSrc = `${BASE_PATH}/intro/spencer-emerges.mp4`,
   mobileSrc,
   onDismiss,
 }: {
@@ -40,7 +41,7 @@ export function SiteIntro({
 
     // Swap to mobile src on narrow viewports when one is provided
     if (mobileSrc && window.matchMedia("(max-width: 767px)").matches) {
-      setSrc(mobileSrc);
+      setSrc(`${BASE_PATH}${mobileSrc}`);
     }
 
     if (reducedMotion) { onDismiss?.(); return; }
