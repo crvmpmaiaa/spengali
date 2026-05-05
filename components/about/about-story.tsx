@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 interface AboutStoryProps {
-  copy: { p1: string; p2: string; p3: string };
+  copy: string[];
 }
 
 export function AboutStory({ copy }: AboutStoryProps) {
@@ -12,9 +12,7 @@ export function AboutStory({ copy }: AboutStoryProps) {
       <div className="mx-auto max-w-[1100px] px-5 py-16 md:px-10 md:py-24">
         <div className="grid gap-12 lg:grid-cols-[1fr_320px] lg:gap-16">
           <div className="space-y-6 text-[17px] leading-relaxed text-cream/80">
-            <p>{copy.p1}</p>
-            <p>{copy.p2}</p>
-            <p>{copy.p3}</p>
+            {copy.map((p, i) => <p key={i}>{p}</p>)}
           </div>
 
           <div className="flex flex-col items-center lg:items-start">
