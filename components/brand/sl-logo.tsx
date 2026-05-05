@@ -1,6 +1,7 @@
 // spencer-lynch/components/brand/sl-logo.tsx
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { BASE_PATH } from "@/lib/base-path";
 
 /**
  * Logo variants are pre-recoloured PNGs with transparent backgrounds,
@@ -30,7 +31,7 @@ export function SLLogo({
 }) {
   return (
     <Image
-      src={SOURCES[variant]}
+      src={`${BASE_PATH}${SOURCES[variant]}`}
       alt="Spencer Lynch · Memorable Magic"
       width={width}
       height={height}

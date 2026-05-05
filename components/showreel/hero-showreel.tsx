@@ -2,6 +2,7 @@
 "use client";
 import Image from "next/image";
 import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
+import { BASE_PATH } from "@/lib/base-path";
 
 const VIMEO_ID = "214361408";
 const VIMEO_PAGE = `https://vimeo.com/${VIMEO_ID}`;
@@ -22,7 +23,7 @@ export function HeroShowreel({ autoplay = true }: { autoplay?: boolean }) {
     <div className="group relative h-full w-full">
       {/* poster — always behind */}
       <Image
-        src="/img/showreel-poster.jpg"
+        src={`${BASE_PATH}/img/showreel-poster.jpg`}
         alt="Spencer Lynch performing close-up magic"
         fill
         priority
