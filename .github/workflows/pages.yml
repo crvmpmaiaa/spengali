@@ -33,7 +33,6 @@ jobs:
       - name: Build
         working-directory: spencer-lynch
         env:
-          NEXT_PUBLIC_BASE_PATH: /spengali
           # Placeholders so Zod env validation passes at build time.
           # The /api/enquiry route is inert on a static Pages host anyway.
           RESEND_API_KEY: placeholder
