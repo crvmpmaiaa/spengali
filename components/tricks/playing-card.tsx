@@ -65,11 +65,11 @@ export function PlayingCard({
         className={cn(
           "absolute left-1 top-0.5 flex flex-col items-center font-display leading-none",
           red ? "text-red-600" : "text-black",
-          big ? "text-base md:text-lg" : "text-[10px] md:text-xs",
+          big ? "text-sm md:text-base" : "text-[8px] md:text-[10px]",
         )}
       >
         <span className="font-semibold">{card.rank}</span>
-        <span className={big ? "text-sm md:text-base" : "text-[10px] md:text-xs"}>
+        <span className={big ? "text-xs md:text-sm" : "text-[8px] md:text-[10px]"}>
           {card.suit}
         </span>
       </div>
@@ -77,11 +77,11 @@ export function PlayingCard({
         className={cn(
           "absolute right-1 bottom-0.5 flex rotate-180 flex-col items-center font-display leading-none",
           red ? "text-red-600" : "text-black",
-          big ? "text-base md:text-lg" : "text-[10px] md:text-xs",
+          big ? "text-sm md:text-base" : "text-[8px] md:text-[10px]",
         )}
       >
         <span className="font-semibold">{card.rank}</span>
-        <span className={big ? "text-sm md:text-base" : "text-[10px] md:text-xs"}>
+        <span className={big ? "text-xs md:text-sm" : "text-[8px] md:text-[10px]"}>
           {card.suit}
         </span>
       </div>
@@ -89,7 +89,7 @@ export function PlayingCard({
         className={cn(
           "absolute inset-0 flex items-center justify-center font-display",
           red ? "text-red-600" : "text-black",
-          big ? "text-5xl md:text-6xl" : "text-2xl md:text-3xl",
+          big ? "text-4xl md:text-5xl" : "text-base md:text-xl",
         )}
       >
         {card.suit}
