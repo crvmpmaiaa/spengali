@@ -1,10 +1,11 @@
 import Image from "next/image";
+import { BASE_PATH } from "@/lib/base-path";
 
 export function AboutHero() {
   return (
     <section className="relative flex min-h-[70vh] items-center justify-center overflow-hidden">
       <Image
-        src="/photos/spence-fire.jpeg"
+        src={`${BASE_PATH}/photos/spence-fire.jpeg`}
         alt="Spencer Lynch performing fire magic"
         fill
         className="object-cover object-center"

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { BASE_PATH } from "@/lib/base-path";
 
 const PHOTOS = [
   { src: "/photos/reaction.jpeg", alt: "Audience reaction to Spencer Lynch's card trick" },
@@ -24,7 +25,7 @@ export function GalleryPhotos() {
           {PHOTOS.map((photo) => (
             <div key={photo.src} className="group mb-3 overflow-hidden">
               <Image
-                src={photo.src}
+                src={`${BASE_PATH}${photo.src}`}
                 alt={photo.alt}
                 width={600}
                 height={400}

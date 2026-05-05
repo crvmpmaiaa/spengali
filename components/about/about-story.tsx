@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { BASE_PATH } from "@/lib/base-path";
 
 interface AboutStoryProps {
   copy: string[];
@@ -11,14 +12,14 @@ export function AboutStory({ copy }: AboutStoryProps) {
 
       <div className="mx-auto max-w-[1100px] px-5 py-16 md:px-10 md:py-24">
         <div className="grid gap-12 lg:grid-cols-[1fr_320px] lg:gap-16">
-          <div className="space-y-6 text-[17px] leading-relaxed text-cream/80">
+          <div className="space-y-5 text-[14px] leading-relaxed text-cream/80">
             {copy.map((p, i) => <p key={i}>{p}</p>)}
           </div>
 
-          <div className="flex flex-col items-center lg:items-start">
-            <div className="-rotate-1 ring-1 ring-gold/50">
+          <div className="flex flex-col items-center lg:justify-center">
+            <div className="ring-1 ring-gold/50">
               <Image
-                src="/photos/spencer.jpg"
+                src={`${BASE_PATH}/photos/spencer.jpg`}
                 alt="Spencer Lynch, close-up magician"
                 width={320}
                 height={320}
