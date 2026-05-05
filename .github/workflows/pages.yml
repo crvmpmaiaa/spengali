@@ -34,6 +34,10 @@ jobs:
         working-directory: spencer-lynch
         env:
           NEXT_PUBLIC_BASE_PATH: ""
+          # Placeholders so Zod env validation passes at build time.
+          # The /api/enquiry route is inert on a static Pages host anyway.
+          RESEND_API_KEY: placeholder
+          ENQUIRY_TO_EMAIL: placeholder@example.com
         run: npm run build
 
       - uses: actions/upload-pages-artifact@v3
