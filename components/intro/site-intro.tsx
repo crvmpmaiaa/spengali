@@ -82,7 +82,7 @@ export function SiteIntro({
             onCanPlay={() => {
               videoRef.current?.play().catch(() => {});
             }}
-            className="h-full max-h-[100vh] w-auto select-none object-cover"
+            className="h-full w-full select-none object-cover"
           />
         </motion.div>
       )}
