@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
 import { ProgressiveBlur } from "@/components/ui/progressive-blur";
+import { BASE_PATH } from "@/lib/base-path";
 
 type Logo = {
   src: string;
@@ -31,7 +32,7 @@ export function LogoCloud({ logos }: LogoCloudProps) {
             height="auto"
             key={`logo-${logo.alt}`}
             loading="lazy"
-            src={logo.src}
+            src={`${BASE_PATH}${logo.src}`}
             width="auto"
           />
         ))}
