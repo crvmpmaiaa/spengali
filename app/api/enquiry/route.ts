@@ -1,13 +1,13 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { enquirySchema } from "@/components/contact/enquiry-schema";
-import { env } from "@/lib/env";
+import { getEnv } from "@/lib/env";
 
 export const runtime = "nodejs"; // Resend SDK uses Node APIs
 
-const resend = new Resend(env.RESEND_API_KEY);
-
 export async function POST(req: Request) {
+  const env = getEnv();
+  const resend = new Resend(env.RESEND_API_KEY);
   let body: unknown;
   try {
     body = await req.json();

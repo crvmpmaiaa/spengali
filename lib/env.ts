@@ -5,7 +5,9 @@ const schema = z.object({
   ENQUIRY_TO_EMAIL: z.string().email("ENQUIRY_TO_EMAIL must be a valid email"),
 });
 
-export const env = schema.parse({
-  RESEND_API_KEY: process.env.RESEND_API_KEY,
-  ENQUIRY_TO_EMAIL: process.env.ENQUIRY_TO_EMAIL,
-});
+export function getEnv() {
+  return schema.parse({
+    RESEND_API_KEY: process.env.RESEND_API_KEY,
+    ENQUIRY_TO_EMAIL: process.env.ENQUIRY_TO_EMAIL,
+  });
+}
