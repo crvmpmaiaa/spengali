@@ -45,22 +45,16 @@ export function CredentialCard({ suit, rank, title, body }: CredentialCardProps)
     shineRef.current.style.background = `radial-gradient(circle at ${x * 100}% ${y * 100}%, rgba(212,175,55,0.18) 0%, rgba(255,255,255,0.06) 40%, transparent 70%)`;
   }, []);
 
-  const handleMouseEnter = useCallback(() => {
-    setFlipped(true);
-  }, []);
-
   const handleMouseLeave = useCallback(() => {
     if (!wrapRef.current || !shineRef.current) return;
     wrapRef.current.style.transform = "";
     shineRef.current.style.opacity = "0";
-    setFlipped(false);
   }, []);
 
   return (
     <div
       ref={wrapRef}
       onMouseMove={handleMouseMove}
-      onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       className="relative aspect-[5/7] w-full"
       style={{ transition: "transform 0.12s ease", willChange: "transform" }}
