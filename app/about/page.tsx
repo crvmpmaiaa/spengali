@@ -5,7 +5,7 @@ import { AboutHero } from "@/components/about/about-hero";
 import { AboutStory } from "@/components/about/about-story";
 import { AboutGerrard } from "@/components/about/about-gerrard";
 import { AboutAtWork } from "@/components/about/about-at-work";
-import { BookingCta } from "@/components/booking-cta";
+
 
 export const metadata: Metadata = {
   title: "About Spencer Lynch · Liverpool FC's Official Magician Since 2006",
@@ -62,7 +62,7 @@ export default function AboutPage() {
           <div className="h-px w-full bg-gradient-to-r from-transparent via-gold/30 to-transparent mt-16" />
         </section>
 
-        <BookingCta label="Book Spencer" />
+
       </main>
       <SiteFooter phoneTel={PHONE_TEL} emailMailto={EMAIL} />
     </>

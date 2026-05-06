@@ -4,7 +4,7 @@ import Link from "next/link";
 import { TopNav } from "@/components/nav/top-nav";
 import { SiteFooter } from "@/components/footer/site-footer";
 import { WORK, CATEGORIES, getWorkBySlug } from "@/lib/work-data";
-import { BookingCta } from "@/components/booking-cta";
+
 
 const PHONE_TEL = "+447706319468";
 const EMAIL = "spencer@example.com";
@@ -95,7 +95,7 @@ export default async function WorkDetailPage({
 
         <div className="h-px w-full" style={{ background: "var(--gold-hairline)" }} />
 
-        <BookingCta label="Send an Enquiry" />
+
 
         {/* Related */}
         {related.length > 0 && (

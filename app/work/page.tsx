@@ -3,7 +3,7 @@ import Link from "next/link";
 import { TopNav } from "@/components/nav/top-nav";
 import { SiteFooter } from "@/components/footer/site-footer";
 import { WORK, CATEGORIES, type EventCategory } from "@/lib/work-data";
-import { BookingCta } from "@/components/booking-cta";
+
 
 export const metadata: Metadata = {
   title: "Close-Up Magic for Every Event · The Work · Spencer Lynch",
@@ -127,7 +127,7 @@ export default function WorkPage() {
           );
         })}
 
-        <BookingCta label="Book Spencer" />
+
 
       </main>
       <SiteFooter phoneTel={PHONE_TEL} emailMailto={EMAIL} />
