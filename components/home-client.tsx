@@ -13,7 +13,7 @@ export function HomeClient() {
       <SiteIntro
         onDismiss={() => setIntroEnded(true)}
       />
-      <div className="mx-auto mt-14 flex max-w-[760px] justify-center">
+      <div className="mx-auto mt-14 flex max-w-[988px] justify-center">
         <CinemaFrame
           slateTop={{ left: "SL · Reel · 2026", right: "" }}
           slateBottom={{ left: "Memorable Magic", right: "" }}
@@ -22,7 +22,7 @@ export function HomeClient() {
         </CinemaFrame>
       </div>
 
-      <div className="mt-8 flex justify-center">
+      <div className="mt-4 flex justify-center">
         <TryATrickButton />
       </div>
     </>

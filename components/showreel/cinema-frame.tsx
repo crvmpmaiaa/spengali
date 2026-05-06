@@ -15,7 +15,7 @@ export function CinemaFrame({
   return (
     <div
       className={cn(
-        "relative inline-block w-full max-w-[760px] border border-gold/40 p-[22px]",
+        "relative inline-block w-full max-w-[988px] border border-gold/40 p-[22px]",
         "bg-gradient-to-b from-ink-tinted to-ink-warm",
         "shadow-[0_32px_80px_rgba(0,0,0,0.7),inset_0_0_0_1px_rgba(212,175,55,0.12)]",
         className,

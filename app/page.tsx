@@ -3,11 +3,14 @@ import { TopNav } from "@/components/nav/top-nav";
 import { CredentialsBlock } from "@/components/credentials/credentials-block";
 import { SiteFooter } from "@/components/footer/site-footer";
 import { HomeClient } from "@/components/home-client";
+import { LogoCloud } from "@/components/ui/logo-cloud-4";
+import { resolveAvailableLogos } from "@/lib/logos";
 
 const PHONE_TEL = "+447706319468";       // Spencer's real number
 const EMAIL = "spencer@example.com";     // TODO: replace with Spencer's real email when supplied
 
 export default function Home() {
+  const logos = resolveAvailableLogos();
   return (
     <>
       <TopNav />
@@ -28,6 +31,10 @@ export default function Home() {
 
           <HomeClient />
         </section>
+
+        <div className="-mx-0 mt-0">
+          <LogoCloud logos={logos} />
+        </div>
 
         <CredentialsBlock />
       </main>

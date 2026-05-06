@@ -7,12 +7,12 @@ import { SLLogo } from "@/components/brand/sl-logo";
 // The "Try a Trick" affordance lives in the hero now, not the nav.
 const leftLinks = [
   { href: "/about", label: "About", prefetch: false },
-  { href: "/book", label: "Book", prefetch: true },
+  { href: "/work", label: "Work", prefetch: false },
 ];
 
 const rightLinks = [
-  { href: "/work", label: "Work", prefetch: false },
   { href: "/gallery", label: "Gallery", prefetch: false },
+  { href: "/book", label: "Book", prefetch: true },
 ];
 
 export function TopNav() {
@@ -22,7 +22,7 @@ export function TopNav() {
       <div className="flex items-center justify-center md:hidden">
         <Link href="/" aria-label="Spencer Lynch home">
           <SLLogo
-            variant="no-pips"
+            variant="color"
             width={220}
             height={51}
             className="w-[180px]"
@@ -52,7 +52,7 @@ export function TopNav() {
           aria-label="Spencer Lynch home"
           className="flex items-center justify-center"
         >
-          <SLLogo variant="no-pips" width={232} height={54} />
+          <SLLogo variant="color" width={232} height={54} />
         </Link>
 
         {/* Right nav, left-aligned, hugs the logo */}

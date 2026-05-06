@@ -1,6 +1,6 @@
 // spencer-lynch/app/layout.tsx
 import type { Metadata } from "next";
-import { Playfair_Display, Inter, JetBrains_Mono } from "next/font/google";
+import { Playfair_Display, Inter, JetBrains_Mono, Rye } from "next/font/google";
 import "./globals.css";
 import { WhatsAppWidget } from "@/components/footer/whatsapp-widget";
 import { StructuredData } from "@/components/structured-data";
@@ -22,11 +22,24 @@ const jetbrains = JetBrains_Mono({
   variable: "--font-jetbrains",
   display: "swap",
 });
+const rye = Rye({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-rye",
+  display: "swap",
+});
 
 const BASE = "https://spencerlynch.co.uk";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE),
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-512.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: "/favicon-512.png",
+  },
   title: {
     default: "Spencer Lynch · Close-Up Magician Liverpool · Memorable Magic",
     template: "%s · Spencer Lynch",
@@ -74,7 +87,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${inter.variable} ${jetbrains.variable}`}
+      className={`${playfair.variable} ${inter.variable} ${jetbrains.variable} ${rye.variable}`}
     >
       <body className="bg-ink text-cream font-sans antialiased">
         <StructuredData />

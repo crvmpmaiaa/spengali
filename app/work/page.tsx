@@ -77,24 +77,27 @@ export default function WorkPage() {
                     <Link
                       key={entry.slug}
                       href={`/work/${entry.slug}`}
-                      className="group relative w-full max-w-[320px] rounded-2xl border border-gold/25 bg-[#100e08] px-7 py-8 text-center shadow-[0_2px_18px_rgba(0,0,0,0.55),inset_0_0_0_1px_rgba(180,140,60,0.07)] transition-all hover:border-gold/50 hover:shadow-[0_4px_28px_rgba(0,0,0,0.7),inset_0_0_0_1px_rgba(180,140,60,0.13)]"
+                      className="group relative w-full max-w-[320px] border-2 border-gold/40 bg-[#100e08] px-2 py-2 text-center shadow-[0_4px_24px_rgba(0,0,0,0.6)] transition-all hover:border-gold/70 hover:shadow-[0_6px_32px_rgba(0,0,0,0.8)]"
                     >
+                      {/* Inner border */}
+                      <div className="border border-gold/20 px-5 py-6 group-hover:border-gold/35 transition-colors">
+
                       {/* Top ornament */}
-                      <p className="font-mono text-[11px] uppercase tracking-eyebrow text-gold/50 mb-1">
+                      <p className="font-mono text-[11px] uppercase tracking-eyebrow text-gold/60 mb-1">
                         ✦ {meta.label} ✦
                       </p>
 
                       {/* Decorative rule */}
                       <div className="mx-auto my-3 flex items-center gap-2">
-                        <span className="flex-1 border-t border-gold/20" />
-                        <span className="text-gold/30 text-[8px]">◆</span>
-                        <span className="flex-1 border-t border-gold/20" />
+                        <span className="flex-1 border-t border-gold/25" />
+                        <span className="text-gold/40 text-[10px]">◆</span>
+                        <span className="flex-1 border-t border-gold/25" />
                       </div>
 
-                      <h3 className="font-display text-2xl italic leading-snug text-cream group-hover:text-gold transition-colors">
+                      <h3 className="font-display text-2xl leading-snug text-cream group-hover:text-gold transition-colors">
                         {entry.title}
                       </h3>
-                      <p className="mt-3 text-[15px] leading-relaxed text-cream/55">
+                      <p className="mt-3 text-[14px] leading-relaxed text-cream/55">
                         {entry.subtitle}
                       </p>
 
@@ -117,6 +120,7 @@ export default function WorkPage() {
                       <p className="mt-5 font-mono text-[11px] uppercase tracking-eyebrow text-gold/45 transition-colors group-hover:text-gold/80">
                         — Read more —
                       </p>
+                      </div>
                     </Link>
                   ))}
                 </div>
