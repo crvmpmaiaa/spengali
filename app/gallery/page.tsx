@@ -5,9 +5,16 @@ import { GalleryShowreel } from "@/components/gallery/gallery-showreel";
 import { GalleryPhotos } from "@/components/gallery/gallery-photos";
 
 export const metadata: Metadata = {
-  title: "Gallery · Spencer Lynch",
+  title: "Showreel & Photos · Spencer Lynch Close-Up Magician",
   description:
-    "Watch the showreel and browse performance photography from twenty years of close-up magic — stadium hospitality, boardrooms, private events.",
+    "Watch Spencer Lynch's magic showreel and browse performance photography from twenty years of close-up magic at Liverpool FC, corporate events, weddings and private parties.",
+  alternates: { canonical: "https://spencerlynch.co.uk/gallery" },
+  openGraph: {
+    title: "Showreel & Photos · Spencer Lynch Close-Up Magician",
+    description:
+      "Watch the showreel and browse photos from twenty years of close-up magic — Premier League stadiums, boardrooms, weddings and private events.",
+    url: "https://spencerlynch.co.uk/gallery",
+  },
 };
 
 const PHONE_TEL = "+447706319468";

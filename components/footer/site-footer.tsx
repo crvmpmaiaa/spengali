@@ -17,8 +17,8 @@ export function SiteFooter({
 }) {
   return (
     <footer className="border-t border-gold/30 bg-ink-warm px-5 pb-10 pt-12 text-cream md:px-10 md:pb-12 md:pt-16">
-      <div className="mx-auto flex max-w-[1200px] flex-col items-center gap-12 md:flex-row md:items-start md:justify-between">
-        <div className="flex flex-col items-center text-center md:items-start md:text-left">
+      <div className="mx-auto flex max-w-[1200px] flex-col items-center gap-12 md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-col items-center text-center">
           <p className="font-mono text-[10px] uppercase tracking-eyebrow-wide text-gold">Bookings</p>
           <h2 className="mt-3 font-display text-3xl italic text-cream">It all starts with a chat.</h2>
           <div className="mt-8 grid w-full max-w-md grid-cols-1 gap-3 sm:grid-cols-3">

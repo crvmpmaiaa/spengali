@@ -5,11 +5,19 @@ import { AboutHero } from "@/components/about/about-hero";
 import { AboutStory } from "@/components/about/about-story";
 import { AboutGerrard } from "@/components/about/about-gerrard";
 import { AboutAtWork } from "@/components/about/about-at-work";
+import { BookingCta } from "@/components/booking-cta";
 
 export const metadata: Metadata = {
-  title: "About Spencer Lynch · Close-Up Magician Liverpool",
+  title: "About Spencer Lynch · Liverpool FC's Official Magician Since 2006",
   description:
-    "Spencer Lynch is Liverpool FC's official magician since 2006, a Founding Member of The Liverpool Magic Circle, and one of the UK's most experienced close-up and parlour magicians.",
+    "Spencer Lynch is Liverpool FC's official close-up magician since 2006, a Founding Member of The Liverpool Magic Circle, and the only magician ever to hold simultaneous residencies at two Premier League clubs.",
+  alternates: { canonical: "https://spencerlynch.co.uk/about" },
+  openGraph: {
+    title: "About Spencer Lynch · Liverpool FC's Official Magician Since 2006",
+    description:
+      "Twenty years of professional close-up magic. Liverpool FC, Everton FC, Google, Marks & Spencer and hundreds of weddings. Founding Member of The Liverpool Magic Circle.",
+    url: "https://spencerlynch.co.uk/about",
+  },
 };
 
 const PHONE_TEL = "+447706319468";
@@ -54,18 +62,7 @@ export default function AboutPage() {
           <div className="h-px w-full bg-gradient-to-r from-transparent via-gold/30 to-transparent mt-16" />
         </section>
 
-        {/* CTA */}
-        <section className="bg-ink px-5 py-20 text-center md:py-28">
-          <p className="font-display text-2xl italic text-cream md:text-3xl">
-            "Ready to make your room remember?"
-          </p>
-          <a
-            href="/book"
-            className="mt-8 inline-block border border-gold/40 px-8 py-3 font-mono text-[11px] uppercase tracking-eyebrow text-cream/80 transition-colors hover:bg-gold/10 hover:text-cream"
-          >
-            Book Spencer
-          </a>
-        </section>
+        <BookingCta label="Book Spencer" />
       </main>
       <SiteFooter phoneTel={PHONE_TEL} emailMailto={EMAIL} />
     </>

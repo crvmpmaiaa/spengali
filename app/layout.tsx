@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Playfair_Display, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { WhatsAppWidget } from "@/components/footer/whatsapp-widget";
+import { StructuredData } from "@/components/structured-data";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -22,10 +23,51 @@ const jetbrains = JetBrains_Mono({
   display: "swap",
 });
 
+const BASE = "https://spencerlynch.co.uk";
+
 export const metadata: Metadata = {
-  title: "Spencer Lynch · Memorable Magic",
+  metadataBase: new URL(BASE),
+  title: {
+    default: "Spencer Lynch · Close-Up Magician Liverpool · Memorable Magic",
+    template: "%s · Spencer Lynch",
+  },
   description:
-    "The only magician to hold simultaneous resident positions at two Premier League clubs. Twenty years of close-up. One card, up close.",
+    "Liverpool FC's official magician since 2006. The only magician to hold simultaneous resident positions at two Premier League clubs. Close-up magic for corporate events, weddings, stadium hospitality and private parties across the UK.",
+  keywords: [
+    "close-up magician Liverpool",
+    "corporate magician UK",
+    "wedding magician Liverpool",
+    "Liverpool FC magician",
+    "Premier League magician",
+    "Spencer Lynch magician",
+    "Memorable Magic",
+    "close-up magic corporate events",
+    "magician for hire UK",
+    "stadium hospitality magician",
+  ],
+  authors: [{ name: "Spencer Lynch", url: BASE }],
+  creator: "Spencer Lynch",
+  openGraph: {
+    type: "website",
+    locale: "en_GB",
+    url: BASE,
+    siteName: "Spencer Lynch · Memorable Magic",
+    title: "Spencer Lynch · Close-Up Magician Liverpool",
+    description:
+      "Liverpool FC's official magician since 2006. Twenty years of close-up magic for stadiums, boardrooms, weddings and private events.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Spencer Lynch · Close-Up Magician Liverpool",
+    description:
+      "Liverpool FC's official magician since 2006. Twenty years of close-up magic for stadiums, boardrooms, weddings and private events.",
+  },
+  alternates: { canonical: BASE },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-snippet": -1, "max-image-preview": "large" },
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -35,6 +77,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${playfair.variable} ${inter.variable} ${jetbrains.variable}`}
     >
       <body className="bg-ink text-cream font-sans antialiased">
+        <StructuredData />
         {children}
         <WhatsAppWidget phoneE164={process.env.NEXT_PUBLIC_WHATSAPP_E164 ?? "447000000000"} />
       </body>
