@@ -31,23 +31,20 @@ export default function BookPage() {
               <p className="text-[14px] leading-relaxed text-cream/75">
                 Tell Spencer about your event. Most replies come within a working day.
               </p>
-              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-1 lg:max-w-[280px]">
-                <a
-                  href={`tel:${PHONE_TEL}`}
-                  className="border border-gold/50 bg-ink-warm py-3 text-center font-mono text-[10px] uppercase tracking-eyebrow text-cream transition-colors hover:bg-gold/10"
-                >
-                  Click to Call
+              <div className="flex gap-6">
+                <a href={`tel:${PHONE_TEL}`} className="font-display text-lg font-bold italic text-cream hover:text-gold transition-colors">
+                  Call
                 </a>
-                <a
-                  href={`mailto:${EMAIL}`}
-                  className="border border-gold/50 bg-ink-warm py-3 text-center font-mono text-[10px] uppercase tracking-eyebrow text-cream transition-colors hover:bg-gold/10"
-                >
-                  Click to Email
+                <a href={`mailto:${EMAIL}`} className="font-display text-lg font-bold italic text-cream hover:text-gold transition-colors">
+                  Email
+                </a>
+                <a href="#enquiry" className="font-display text-lg font-bold italic text-cream hover:text-gold transition-colors">
+                  Book
                 </a>
               </div>
             </aside>
 
-            <section>
+            <section id="enquiry">
               <EnquiryForm />
             </section>
           </div>
