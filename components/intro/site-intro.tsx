@@ -6,22 +6,6 @@ import { BASE_PATH } from "@/lib/base-path";
 
 const STORAGE_KEY = "sl-intro-seen";
 
-/**
- * Site-intro overlay. Full-screen black backdrop with a Kling-rendered clip
- * of Spencer materialising from smoke, performing a flourish, and dissolving
- * back into smoke. The video's last frame is pure black, so when the video
- * ends the overlay fades out smoothly to reveal the live homepage already
- * mounted underneath. No compositing tricks: the black overlay matches the
- * video's black bg so the transition is seamless.
- *
- * Skipped silently when:
- *   - The viewer has seen it this session (sessionStorage flag)
- *   - The viewer prefers reduced motion
- *   - The video asset 404s
- *
- * onDismiss fires in all cases (play-through, skip, error) so callers can
- * gate downstream autoplay on the intro completing.
- */
 export function SiteIntro({
   videoSrc = `${BASE_PATH}/intro/spencer-emerges.mp4`,
   mobileSrc,
@@ -32,23 +16,10 @@ export function SiteIntro({
   onDismiss?: () => void;
 }) {
   const reducedMotion = useReducedMotion();
-  const [open, setOpen] = useState(false);
+  // Start open=true so the black overlay is visible immediately — no flash of content
+  const [open, setOpen] = useState(true);
   const [src, setSrc] = useState(videoSrc);
   const videoRef = useRef<HTMLVideoElement | null>(null);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    // Swap to mobile src on narrow viewports when one is provided
-    if (mobileSrc && window.matchMedia("(max-width: 767px)").matches) {
-      setSrc(`${BASE_PATH}${mobileSrc}`);
-    }
-
-    if (reducedMotion) { onDismiss?.(); return; }
-    const seen = window.sessionStorage.getItem(STORAGE_KEY);
-    if (seen) { onDismiss?.(); return; }
-    setOpen(true);
-  }, [reducedMotion, mobileSrc, onDismiss]);
 
   function dismiss() {
     if (typeof window !== "undefined") {
@@ -57,6 +28,19 @@ export function SiteIntro({
     setOpen(false);
     onDismiss?.();
   }
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    if (mobileSrc && window.matchMedia("(max-width: 767px)").matches) {
+      setSrc(`${BASE_PATH}${mobileSrc}`);
+    }
+
+    // Dismiss immediately (no video) if reduced motion or already seen
+    if (reducedMotion) { dismiss(); return; }
+    const seen = window.sessionStorage.getItem(STORAGE_KEY);
+    if (seen) { dismiss(); return; }
+  }, [reducedMotion, mobileSrc]);
 
   return (
     <AnimatePresence>
@@ -78,7 +62,7 @@ export function SiteIntro({
             playsInline
             preload="auto"
             onEnded={dismiss}
-            onError={() => { setOpen(false); onDismiss?.(); }}
+            onError={dismiss}
             onCanPlay={() => {
               videoRef.current?.play().catch(() => {});
             }}
