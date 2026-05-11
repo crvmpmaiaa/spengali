@@ -21,14 +21,14 @@ export function SiteFooter({
         <div className="flex flex-col items-center">
           <p className="font-mono text-[10px] uppercase tracking-eyebrow-wide text-gold">Bookings</p>
           <h2 className="mt-3 font-display text-3xl italic text-cream">Ready to have your mind blown?</h2>
-          <div className="mt-8 flex gap-10">
-            <a href={`tel:${phoneTel}`} className="font-display text-3xl italic text-cream transition-colors hover:text-gold md:text-4xl">
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
+            <a href={`tel:${phoneTel}`} className="min-w-[120px] border border-gold/50 bg-ink px-8 py-4 text-center font-display text-2xl italic text-cream transition-all hover:border-gold hover:bg-gold/10 hover:text-gold">
               Call
             </a>
-            <a href={`mailto:${emailMailto}`} className="font-display text-3xl italic text-cream transition-colors hover:text-gold md:text-4xl">
+            <a href={`mailto:${emailMailto}`} className="min-w-[120px] border border-gold/50 bg-ink px-8 py-4 text-center font-display text-2xl italic text-cream transition-all hover:border-gold hover:bg-gold/10 hover:text-gold">
               Email
             </a>
-            <Link href="/book" className="font-display text-3xl italic text-cream transition-colors hover:text-gold md:text-4xl">
+            <Link href="/book" className="min-w-[120px] border border-gold bg-gold/15 px-8 py-4 text-center font-display text-2xl italic text-gold transition-all hover:bg-gold/25">
               Book
             </Link>
           </div>

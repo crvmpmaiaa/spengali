@@ -31,14 +31,14 @@ export default function BookPage() {
               <p className="text-[14px] leading-relaxed text-cream/75">
                 Tell Spencer about your event. Most replies come within a working day.
               </p>
-              <div className="flex gap-8">
-                <a href={`tel:${PHONE_TEL}`} className="font-display text-3xl italic text-cream transition-colors hover:text-gold md:text-4xl">
+              <div className="flex flex-wrap gap-4">
+                <a href={`tel:${PHONE_TEL}`} className="min-w-[100px] border border-gold/50 bg-ink px-8 py-4 text-center font-display text-2xl italic text-cream transition-all hover:border-gold hover:bg-gold/10 hover:text-gold">
                   Call
                 </a>
-                <a href={`mailto:${EMAIL}`} className="font-display text-3xl italic text-cream transition-colors hover:text-gold md:text-4xl">
+                <a href={`mailto:${EMAIL}`} className="min-w-[100px] border border-gold/50 bg-ink px-8 py-4 text-center font-display text-2xl italic text-cream transition-all hover:border-gold hover:bg-gold/10 hover:text-gold">
                   Email
                 </a>
-                <a href="#enquiry" className="font-display text-3xl italic text-cream transition-colors hover:text-gold md:text-4xl">
+                <a href="#enquiry" className="min-w-[100px] border border-gold bg-gold/15 px-8 py-4 text-center font-display text-2xl italic text-gold transition-all hover:bg-gold/25">
                   Book
                 </a>
               </div>
