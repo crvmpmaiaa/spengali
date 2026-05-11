@@ -21,24 +21,15 @@ export function SiteFooter({
         <div className="flex flex-col items-center">
           <p className="font-mono text-[10px] uppercase tracking-eyebrow-wide text-gold">Bookings</p>
           <h2 className="mt-3 font-display text-3xl italic text-cream">Ready to have your mind blown?</h2>
-          <div className="mt-8 grid w-full max-w-md grid-cols-1 gap-3 sm:grid-cols-3">
-            <a
-              href={`tel:${phoneTel}`}
-              className="border border-gold/50 bg-ink py-3 text-center font-mono text-[10px] uppercase tracking-eyebrow text-cream transition-colors hover:bg-gold/10"
-            >
-              Click to Call
+          <div className="mt-8 flex gap-10">
+            <a href={`tel:${phoneTel}`} className="font-display text-3xl italic text-cream transition-colors hover:text-gold md:text-4xl">
+              Call
             </a>
-            <a
-              href={`mailto:${emailMailto}`}
-              className="border border-gold/50 bg-ink py-3 text-center font-mono text-[10px] uppercase tracking-eyebrow text-cream transition-colors hover:bg-gold/10"
-            >
-              Click to Email
+            <a href={`mailto:${emailMailto}`} className="font-display text-3xl italic text-cream transition-colors hover:text-gold md:text-4xl">
+              Email
             </a>
-            <Link
-              href="/book"
-              className="border border-gold bg-gold/15 py-3 text-center font-mono text-[10px] uppercase tracking-eyebrow text-gold transition-colors hover:bg-gold/25"
-            >
-              Use Enquiry Form
+            <Link href="/book" className="font-display text-3xl italic text-cream transition-colors hover:text-gold md:text-4xl">
+              Book
             </Link>
           </div>
         </div>
