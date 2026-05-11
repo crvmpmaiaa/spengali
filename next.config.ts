@@ -1,11 +1,11 @@
 import type { NextConfig } from "next";
 
-const isCI = Boolean(process.env.CI);
+const isGitHubPages = Boolean(process.env.GITHUB_PAGES);
 
 const nextConfig: NextConfig = {
   output: "export",
-  basePath: isCI ? "/spengali" : "",
-  assetPrefix: isCI ? "/spengali/" : "",
+  basePath: isGitHubPages ? "/spengali" : "",
+  assetPrefix: isGitHubPages ? "/spengali/" : "",
   images: {
     unoptimized: true,
   },

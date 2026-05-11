@@ -30,6 +30,7 @@ jobs:
 
       - name: Build
         env:
+          GITHUB_PAGES: true
           NEXT_PUBLIC_BASE_PATH: /spengali
           RESEND_API_KEY: placeholder
           ENQUIRY_TO_EMAIL: placeholder@example.com
