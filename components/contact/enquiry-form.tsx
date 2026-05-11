@@ -21,6 +21,12 @@ import {
 
 type Status = "idle" | "submitting" | "success" | "error";
 
+function encode(data: Record<string, string>) {
+  return Object.entries(data)
+    .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(v)}`)
+    .join("&");
+}
+
 export function EnquiryForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [errMsg, setErrMsg] = useState<string>("");
@@ -39,15 +45,12 @@ export function EnquiryForm() {
     setStatus("submitting");
     setErrMsg("");
     try {
-      const res = await fetch("/api/enquiry", {
+      const res = await fetch("/", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode({ "form-name": "enquiry", ...data }),
       });
-      if (!res.ok) {
-        const j = await res.json().catch(() => ({}));
-        throw new Error(j?.error ?? `HTTP ${res.status}`);
-      }
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
       setStatus("success");
       reset();
     } catch (e) {
@@ -68,7 +71,16 @@ export function EnquiryForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+    <form
+      name="enquiry"
+      method="POST"
+      data-netlify="true"
+      onSubmit={handleSubmit(onSubmit)}
+      className="space-y-6"
+    >
+      {/* Required by Netlify Forms */}
+      <input type="hidden" name="form-name" value="enquiry" />
+
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <Field label="Name" fieldId="field-name" error={errors.name?.message}>
           <Input
@@ -120,6 +132,10 @@ export function EnquiryForm() {
               ))}
             </SelectContent>
           </Select>
+          {/* Static select for Netlify's build-time HTML scanner */}
+          <select name="eventType" aria-hidden="true" className="hidden">
+            {EVENT_TYPES.map((t) => <option key={t} value={t}>{t}</option>)}
+          </select>
         </Field>
         <Field label="Location" fieldId="field-location" error={errors.location?.message} className="md:col-span-2">
           <Input
