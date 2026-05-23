@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const SOCIALS = [
   { label: "LinkedIn", href: "https://www.linkedin.com/in/spencelynch/" },
-  { label: "Twitter", href: "https://twitter.com/" },
+  { label: "Twitter", href: "https://x.com/thespencerlynch" },
 ];
 
 export function SiteFooter({
