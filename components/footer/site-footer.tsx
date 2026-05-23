@@ -2,10 +2,8 @@
 import Link from "next/link";
 
 const SOCIALS = [
-  { label: "Instagram", href: "https://instagram.com/" },
-  { label: "TikTok", href: "https://tiktok.com/" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/spencelynch/" },
-  { label: "Facebook", href: "https://facebook.com/" },
+  { label: "Twitter", href: "https://twitter.com/" },
 ];
 
 export function SiteFooter({
@@ -29,7 +27,7 @@ export function SiteFooter({
               Email
             </a>
             <Link href="/book" className="min-w-[120px] border border-gold bg-gold/15 px-8 py-4 text-center font-display text-2xl italic text-gold transition-all hover:bg-gold/25">
-              Book
+              Text
             </Link>
           </div>
         </div>
