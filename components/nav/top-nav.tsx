@@ -12,7 +12,7 @@ const leftLinks = [
 
 const rightLinks = [
   { href: "/gallery", label: "Gallery", prefetch: false },
-  { href: "/book", label: "Text", prefetch: true },
+  { href: "/book", label: "Book", prefetch: true },
 ];
 
 export function TopNav() {

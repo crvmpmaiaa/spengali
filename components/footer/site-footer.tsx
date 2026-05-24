@@ -27,8 +27,11 @@ export function SiteFooter({
               Email
             </a>
             <Link href="/book" className="min-w-[120px] border border-gold bg-gold/15 px-8 py-4 text-center font-display text-2xl italic text-gold transition-all hover:bg-gold/25">
-              Text
+              Book
             </Link>
+            <a href={`sms:${phoneTel}`} className="min-w-[120px] border border-gold/50 bg-ink px-8 py-4 text-center font-display text-2xl italic text-cream transition-all hover:border-gold hover:bg-gold/10 hover:text-gold">
+              Text
+            </a>
           </div>
         </div>
 
