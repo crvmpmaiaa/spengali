@@ -21,19 +21,18 @@ export function LogoCloud({ logos }: LogoCloudProps) {
     <div className="relative w-full bg-ink py-4">
       <div className="pointer-events-none absolute top-0 left-0 w-full border-t border-gold/15" />
 
-      <InfiniteSlider gap={56} reverse duration={100} durationOnHover={40}>
+      <InfiniteSlider gap={0} reverse duration={60} durationOnHover={24}>
         {logos.map((logo) => (
           <div
             key={`logo-${logo.alt}`}
             className={cn(
-              "flex items-center justify-center",
-              logo.whiteBg && "rounded bg-white px-2 py-1",
+              "flex items-center justify-center bg-white px-4 py-2",
             )}
           >
             <img
               alt={logo.alt}
               className={cn(
-                "pointer-events-none h-10 select-none md:h-14",
+                "pointer-events-none h-14 select-none md:h-20",
                 logo.className,
               )}
               height="auto"

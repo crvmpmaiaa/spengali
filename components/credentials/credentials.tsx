@@ -5,7 +5,7 @@ const CARDS: CredentialCardProps[] = [
   {
     suit: "clubs",
     rank: "A",
-    title: "Premier Magician",
+    title: "Club Magician",
     body: "Official magician of LFC for over 20 years.",
   },
   {

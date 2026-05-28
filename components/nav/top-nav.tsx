@@ -23,9 +23,9 @@ export function TopNav() {
         <Link href="/" aria-label="Spencer Lynch home">
           <SLLogo
             variant="color"
-            width={220}
-            height={51}
-            className="w-[180px]"
+            width={260}
+            height={60}
+            className="w-[220px]"
           />
         </Link>
       </div>
@@ -33,7 +33,7 @@ export function TopNav() {
       {/* Desktop: 3-col grid with side links */}
       <div className="hidden grid-cols-3 items-center gap-6 md:grid">
         {/* Left nav, right-aligned, hugs the logo */}
-        <nav className="flex items-center justify-end gap-8 font-sans text-[11px] uppercase tracking-eyebrow text-cream/70">
+        <nav className="flex items-center justify-end gap-8 font-sans text-[13px] uppercase tracking-eyebrow text-cream/70">
           {leftLinks.map((l) => (
             <Link
               key={l.href}
@@ -52,11 +52,11 @@ export function TopNav() {
           aria-label="Spencer Lynch home"
           className="flex items-center justify-center"
         >
-          <SLLogo variant="color" width={232} height={54} />
+          <SLLogo variant="color" width={290} height={68} />
         </Link>
 
         {/* Right nav, left-aligned, hugs the logo */}
-        <nav className="flex items-center justify-start gap-8 font-sans text-[11px] uppercase tracking-eyebrow text-cream/70">
+        <nav className="flex items-center justify-start gap-8 font-sans text-[13px] uppercase tracking-eyebrow text-cream/70">
           {rightLinks.map((l) => (
             <Link
               key={l.href}

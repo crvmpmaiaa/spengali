@@ -22,7 +22,7 @@ export default function Home() {
               Established 2006 · Liverpool
             </p>
             <h1 className="mt-5 font-display text-5xl italic leading-[0.96] text-cream md:text-7xl lg:text-[88px]">
-              How did <br />he do <span className="text-gold">that</span>?
+              How did he do <span className="text-gold">that</span>?
             </h1>
             <p className="mt-4 font-mono text-[11px] uppercase tracking-eyebrow text-cream/55">
               Liverpool, UK, Beyond…
