@@ -25,14 +25,12 @@ export function LogoCloud({ logos }: LogoCloudProps) {
         {logos.map((logo) => (
           <div
             key={`logo-${logo.alt}`}
-            className={cn(
-              "flex items-center justify-center bg-white px-4 py-2",
-            )}
+            className="flex h-20 w-40 items-center justify-center bg-white px-4 md:h-24 md:w-48"
           >
             <img
               alt={logo.alt}
               className={cn(
-                "pointer-events-none h-14 select-none md:h-20",
+                "pointer-events-none max-h-14 max-w-full select-none object-contain md:max-h-16",
                 logo.className,
               )}
               height="auto"
