@@ -118,7 +118,7 @@ export function CredentialCard({ suit, rank, title, body }: CredentialCardProps)
           {/* Front face - the credential copy */}
           <div
             className={cn(
-              "absolute inset-0 flex flex-col items-center justify-between border border-gold/55 bg-gradient-to-br from-ink-warm to-ink p-5 text-center [backface-visibility:hidden] [transform:rotateY(180deg)] md:p-7",
+              "absolute inset-0 flex flex-col items-center justify-between border border-gold/55 bg-gradient-to-br from-ink-warm to-ink p-3 text-center [backface-visibility:hidden] [transform:rotateY(180deg)] md:p-7",
               "shadow-[0_24px_60px_rgba(0,0,0,0.65),inset_0_0_0_1px_rgba(212,175,55,0.18)]",
             )}
           >
@@ -132,11 +132,11 @@ export function CredentialCard({ suit, rank, title, body }: CredentialCardProps)
               <span className={tone}>{glyph}</span>
             </div>
 
-            <div className="flex flex-col items-center px-1">
+            <div className="flex min-h-0 flex-col items-center overflow-hidden px-1">
               <h3 className="font-display text-xl italic leading-[1.1] text-cream md:text-2xl">
                 {title}
               </h3>
-              <p className="mt-3 text-[12px] leading-relaxed text-cream/85 md:text-sm">
+              <p className="mt-3 text-[11px] leading-snug text-cream/85 md:text-[12px] md:leading-relaxed">
                 {body}
               </p>
             </div>
