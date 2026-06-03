@@ -49,7 +49,7 @@ export default async function WorkDetailPage({
       <main className="bg-ink min-h-screen">
 
         {/* Back breadcrumb */}
-        <div className="mx-auto max-w-[760px] px-5 pt-8 md:px-10 md:pt-10">
+        <div className="mx-auto max-w-[760px] px-5 pt-5 md:px-10 md:pt-8">
           <Link
             href="/work"
             className="font-mono text-[9px] uppercase tracking-eyebrow text-cream/35 transition-colors hover:text-gold/70"
@@ -59,14 +59,14 @@ export default async function WorkDetailPage({
         </div>
 
         {/* Hero */}
-        <header className="mx-auto max-w-[760px] px-5 py-12 md:px-10 md:py-16">
+        <header className="mx-auto max-w-[760px] px-5 py-14 md:px-10 md:py-20">
           <p className="font-mono text-[10px] uppercase tracking-eyebrow text-gold/80">
             {entry.eyebrow}
           </p>
-          <h1 className="mt-4 font-display text-4xl italic leading-tight text-cream md:text-5xl lg:text-6xl">
+          <h1 className="mt-5 font-display text-4xl italic leading-tight text-cream md:text-5xl lg:text-6xl">
             {entry.title}
           </h1>
-          <p className="mt-4 font-display text-xl italic text-cream/60 md:text-2xl">
+          <p className="mt-3 font-display text-xl italic text-cream/60 md:text-2xl">
             {entry.subtitle}
           </p>
 
@@ -86,7 +86,7 @@ export default async function WorkDetailPage({
 
         {/* Body copy */}
         <div className="mx-auto max-w-[760px] px-5 py-14 md:px-10 md:py-20">
-          <div className="space-y-6 text-[16px] leading-relaxed text-cream/75">
+          <div className="space-y-5 text-[16px] leading-relaxed text-cream/75">
             {entry.body.map((para, i) => (
               <p key={i}>{para}</p>
             ))}
@@ -101,7 +101,7 @@ export default async function WorkDetailPage({
         {related.length > 0 && (
           <>
             <div className="h-px w-full" style={{ background: "var(--gold-hairline)" }} />
-            <section className="bg-ink px-5 py-16 md:px-10 md:py-20">
+            <section className="bg-ink px-5 py-14 md:px-10 md:py-20">
               <div className="mx-auto max-w-[1100px]">
                 <p className="font-mono text-[10px] uppercase tracking-eyebrow text-gold/60 mb-8">
                   — More {catMeta.label} —
@@ -117,7 +117,7 @@ export default async function WorkDetailPage({
                       <span className="pointer-events-none absolute right-0 top-0 h-[10px] w-[10px] border-r border-t border-gold/40 transition-colors group-hover:border-gold/70" />
                       <h3 className="font-display text-xl italic text-cream">{r.title}</h3>
                       <p className="mt-2 text-[13px] text-cream/50">{r.subtitle}</p>
-                      <p className="mt-4 font-mono text-[9px] uppercase tracking-eyebrow text-gold/50 group-hover:text-gold/80">
+                      <p className="mt-5 font-mono text-[9px] uppercase tracking-eyebrow text-gold/50 group-hover:text-gold/80">
                         Read more →
                       </p>
                     </Link>

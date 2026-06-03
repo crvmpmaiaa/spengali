@@ -14,9 +14,8 @@ export function AboutGerrard({ showGerrard = true }: AboutGerrardProps) {
 
   return (
     <section className="bg-ink-warm">
-      <div className="h-px w-full bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
-      <div className="mx-auto max-w-[1100px] px-5 py-16 md:px-10 md:py-24">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-[320px_1fr] md:items-center md:gap-16">
+      <div className="mx-auto max-w-[1100px] px-5 py-14 md:px-10 md:py-20">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-[320px_1fr] md:items-center md:gap-14">
           {/* Portrait photo — crop 40px top, 10px bottom */}
           <div className="mx-auto w-full max-w-[320px] overflow-hidden ring-1 ring-gold/40">
             <Image
@@ -39,7 +38,7 @@ export function AboutGerrard({ showGerrard = true }: AboutGerrardProps) {
               "Some rooms you never forget."
             </p>
             {showGerrard && (
-              <p className="mt-6 text-[15px] leading-relaxed text-cream/60">
+              <p className="mt-5 text-[15px] leading-relaxed text-cream/60">
                 Spencer at the Anfield hospitality suite — one of hundreds of match-day performances for Liverpool FC&apos;s most discerning guests.
               </p>
             )}

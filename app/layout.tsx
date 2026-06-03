@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     template: "%s · Spencer Lynch",
   },
   description:
-    "Liverpool FC's official magician since 2006. The only magician to hold simultaneous resident positions at two Premier League clubs. Close-up magic for corporate events, weddings, stadium hospitality and private parties across the UK.",
+    "Liverpool FC's Club Magician since 2006 and the first Club Magician at Everton FC. Close-up magic for corporate events, weddings, stadium hospitality and private parties across the UK.",
   keywords: [
     "close-up magician Liverpool",
     "corporate magician UK",

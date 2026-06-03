@@ -37,11 +37,11 @@ export default function WorkPage() {
       <main className="bg-ink min-h-screen">
 
         {/* Page header */}
-        <div className="px-5 pb-4 pt-8 text-center md:pb-6 md:pt-12">
+        <div className="px-5 pb-8 pt-14 text-center md:pb-8 md:pt-20">
           <p className="font-mono text-[10px] uppercase tracking-eyebrow text-gold/85">
             — The Work —
           </p>
-          <h1 className="mt-4 font-display text-4xl italic text-cream md:text-5xl">
+          <h1 className="mt-5 font-display text-4xl italic text-cream md:text-5xl">
             Twenty years. Every room.
           </h1>
           <p className="mt-3 font-mono text-[11px] uppercase tracking-eyebrow text-cream/45">
@@ -49,7 +49,7 @@ export default function WorkPage() {
           </p>
         </div>
 
-        <div className="h-px w-full mt-6" style={{ background: "var(--gold-hairline)" }} />
+        <div className="h-px w-full" style={{ background: "var(--gold-hairline)" }} />
 
         {/* Category sections */}
         {CATEGORY_ORDER.map((cat, i) => {
@@ -57,9 +57,9 @@ export default function WorkPage() {
           const entries = WORK.filter((w) => w.category === cat);
           return (
             <section key={cat} className={i % 2 === 1 ? "bg-ink-warm" : "bg-ink"}>
-              <div className="mx-auto max-w-[1100px] px-5 py-16 md:px-10 md:py-20">
+              <div className="mx-auto max-w-[1100px] px-5 py-14 md:px-10 md:py-20">
                 {/* Category header */}
-                <div className="mb-10 md:mb-12">
+                <div className="mb-8 md:mb-14">
                   <p className="font-mono text-[10px] uppercase tracking-eyebrow text-gold/70">
                     {String(i + 1).padStart(2, "0")}
                   </p>

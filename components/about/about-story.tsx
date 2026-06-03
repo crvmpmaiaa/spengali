@@ -8,10 +8,8 @@ interface AboutStoryProps {
 export function AboutStory({ copy }: AboutStoryProps) {
   return (
     <section className="pinstripe bg-ink-warm">
-      <div className="h-px w-full bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
-
-      <div className="mx-auto max-w-[1100px] px-5 py-16 md:px-10 md:py-24">
-        <div className="grid gap-12 lg:grid-cols-[1fr_320px] lg:gap-16">
+      <div className="mx-auto max-w-[1100px] px-5 py-14 md:px-10 md:py-20">
+        <div className="grid gap-8 lg:grid-cols-[1fr_320px] lg:gap-14">
           <div className="space-y-5 text-[14px] leading-relaxed text-cream/80">
             {copy.map((p, i) => <p key={i}>{p}</p>)}
           </div>

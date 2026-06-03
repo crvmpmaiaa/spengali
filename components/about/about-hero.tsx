@@ -27,7 +27,7 @@ export function AboutHero() {
         <h1 className="mt-5 font-display text-5xl italic leading-tight text-cream md:text-6xl lg:text-7xl">
           Spencer Lynch
         </h1>
-        <p className="mt-4 font-display text-xl italic text-cream/70">
+        <p className="mt-3 font-display text-xl italic text-cream/70">
           Twenty years. Two clubs. One magician.
         </p>
       </div>

@@ -8,12 +8,12 @@ import { AboutAtWork } from "@/components/about/about-at-work";
 
 
 export const metadata: Metadata = {
-  title: "About Spencer Lynch · Liverpool FC's Official Magician Since 2006",
+  title: "About Spencer Lynch · Liverpool FC's Club Magician Since 2006",
   description:
-    "Spencer Lynch is Liverpool FC's official close-up magician since 2006, a Founding Member of The Liverpool Magic Circle, and the only magician ever to hold simultaneous residencies at two Premier League clubs.",
+    "Spencer Lynch is Liverpool FC's Club Magician since 2006, a Founding Member of The Liverpool Magic Circle, and the first Club Magician at Everton FC.",
   alternates: { canonical: "https://spencerlynch.co.uk/about" },
   openGraph: {
-    title: "About Spencer Lynch · Liverpool FC's Official Magician Since 2006",
+    title: "About Spencer Lynch · Liverpool FC's Club Magician Since 2006",
     description:
       "Twenty years of professional close-up magic. Liverpool FC, Everton FC, Google, Marks & Spencer and hundreds of weddings. Founding Member of The Liverpool Magic Circle.",
     url: "https://spencerlynch.co.uk/about",
@@ -26,7 +26,7 @@ const EMAIL = "spencer@example.com";
 const COPY: string[] = [
   "I've been interested in magic since the age of 6 and performed professionally since I was about 20. I'm one of the Founding Members of The Liverpool Magic Circle and focus predominantly on close-up magic — typically walking around and entertaining guests at their tables. I also perform parlour magic for groups of seated guests.",
   "My magic uses everything from cards, coins, elastic bands, fire, predictions and mind reading to levitations — all delivered with a dry sense of humour. Seeing is believing.",
-  "Since 2006 I have worked as Liverpool Football Club's official magician. You may have seen me performing on match days in the Executive Boxes in the Sir Kenny Dalglish stand, in the Boot Room restaurant at Anfield, on museum tour days, or at one of the many parties, events and weddings hosted there. I was also the first Resident Magician at Everton Football Club — and I am the only magician to ever hold that position at two clubs at the same time.",
+  "Since 2006 I have worked as Liverpool Football Club's Club Magician. You may have seen me performing on match days in the Executive Boxes in the Sir Kenny Dalglish stand, in the Boot Room restaurant at Anfield, on museum tour days, or at one of the many parties, events and weddings hosted there. I was also the first Club Magician at Everton Football Club.",
   "I live just outside Chester and my work takes me all over the country. I perform at weddings, corporate events, trade shows, private parties and dinner parties throughout the year. I have over 20 years of experience entertaining clients ranging from couples on their wedding day to global brands and Premier League hospitality — and I strive to constantly introduce new effects so repeat bookings always feel fresh.",
 ];
 
@@ -41,9 +41,9 @@ export default function AboutPage() {
         <AboutAtWork />
 
         {/* Why Choose Me */}
-        <section className="pinstripe bg-ink-warm px-5 py-20 md:px-10 md:py-28">
-          <div className="h-px w-full bg-gradient-to-r from-transparent via-gold/30 to-transparent mb-16" />
-          <div className="mx-auto max-w-[760px] text-center">
+        <section className="pinstripe bg-ink-warm">
+          <div className="h-px w-full bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
+          <div className="mx-auto max-w-[760px] px-5 py-14 text-center md:px-10 md:py-20">
             <p className="font-mono text-[10px] uppercase tracking-eyebrow text-gold/85">
               — Why Choose Me —
             </p>
@@ -59,7 +59,7 @@ export default function AboutPage() {
               </p>
             </div>
           </div>
-          <div className="h-px w-full bg-gradient-to-r from-transparent via-gold/30 to-transparent mt-16" />
+          <div className="h-px w-full bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
         </section>
 
 

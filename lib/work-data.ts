@@ -19,9 +19,9 @@ export interface WorkEntry {
 
 export const CATEGORIES: Record<EventCategory, { label: string; description: string }> = {
   stadium: {
-    label: "Stadium & Residencies",
+    label: "Stadium & Club Magic",
     description:
-      "Liverpool FC's official close-up magician since 2006 and the only magician to hold resident positions at two Premier League clubs simultaneously — matchday magic at the highest level.",
+      "Liverpool FC's Club Magician since 2006 and the first Club Magician at Everton FC — matchday magic at the highest level.",
   },
   corporate: {
     label: "Corporate & Brand",
@@ -55,42 +55,28 @@ export const WORK: WorkEntry[] = [
     slug: "anfield-residency",
     category: "stadium",
     eyebrow: "— § Liverpool FC · 2006–Present —",
-    title: "Anfield Residency",
-    subtitle: "Eighteen years as Liverpool FC's official magician.",
+    title: "Anfield Magic",
+    subtitle: "20+ Years as Liverpool's Club Magician.",
     body: [
-      "Since 2006 I have been Liverpool Football Club's official magician — the longest-running residency of any magician at a Premier League club. On matchdays I move between the Executive Boxes in the Sir Kenny Dalglish Stand, the Boot Room restaurant, and the museum tour circuit.",
+      "Since 2006 I have been Liverpool Football Club's official Club Magician — the longest-running appointment of any magician at a Premier League club. On matchdays I move between the Executive Boxes in the Sir Kenny Dalglish Stand, the Boot Room restaurant, and the museum tour circuit.",
       "The brief is simple: make the room feel extraordinary before a ball is kicked. The magic has to work in tight spaces, with loud crowds, on cold January afternoons and European night games alike.",
-      "Over eighteen seasons I have performed for tens of thousands of guests — from first-time visitors on family days to boardroom directors, international delegations, and former players. The show must always feel fresh.",
+      "Over twenty seasons I have performed for tens of thousands of guests — from first-time visitors on family days to boardroom directors, international delegations, and former players. The show must always feel fresh.",
     ],
-    stat: { value: "18+", label: "Seasons at Anfield" },
+    stat: { value: "20+", label: "Years as Liverpool's Club Magician" },
     cta: "Book for a Private Event",
   },
   {
     slug: "everton-residency",
     category: "stadium",
     eyebrow: "— § Everton FC —",
-    title: "Everton FC Residency",
-    subtitle: "The first — and only — resident magician at Goodison Park.",
+    title: "Goodison Magic",
+    subtitle: "The first Club Magician at Everton.",
     body: [
-      "Before Wrexham, there was Everton. I was the first resident magician ever appointed by Everton Football Club, working matchdays at Goodison Park in their premium hospitality suites.",
-      "Running concurrent residencies at both Everton and Liverpool made me the only magician in history to hold simultaneous resident positions at two Premier League clubs — a record that still stands.",
+      "I was the first Club Magician ever appointed by Everton Football Club, working matchdays at Goodison Park in their premium hospitality suites.",
+      "Holding a Club Magician position at both Everton and Liverpool simultaneously made me the only magician in history to be appointed at two Premier League clubs at the same time — a record that still stands.",
       "The experience of working both sides of Merseyside gave me an unmatched understanding of the football hospitality world: the pace, the crowd, the expectation, and how to deliver close-up magic that works in every corner of a stadium suite.",
     ],
-    stat: { value: "1st", label: "Ever resident magician at Everton FC" },
-    cta: "Book for Stadium Hospitality",
-  },
-  {
-    slug: "wrexham-matchday",
-    category: "stadium",
-    eyebrow: "— § Wrexham AFC —",
-    title: "Wrexham AFC",
-    subtitle: "The club that Hollywood rebuilt — I supplied the magic.",
-    body: [
-      "When Wrexham AFC's Hollywood-backed resurgence brought a wave of international attention to the Racecourse Ground, I joined the hospitality team for matchday entertainment in their premium suites.",
-      "The audience shifted overnight — international guests, media, celebrity visitors alongside the core Red Dragon support. The magic had to land across every demographic in the room.",
-      "Working at Wrexham alongside my Anfield residency made me the only magician in history to hold simultaneous resident positions at two professional football clubs.",
-    ],
-    stat: { value: "2", label: "Club residencies — a first" },
+    stat: { value: "1st", label: "Club Magician at Everton FC" },
     cta: "Book for Stadium Hospitality",
   },
   {
