@@ -58,7 +58,7 @@ export const WORK: WorkEntry[] = [
     title: "Anfield Magic",
     subtitle: "20+ Years as Liverpool's Club Magician.",
     body: [
-      "Since 2006 I have been Liverpool Football Club's official Club Magician — the longest-running appointment of any magician at a Premier League club. On matchdays I move between the Executive Boxes in the Sir Kenny Dalglish Stand, the Boot Room restaurant, and the museum tour circuit.",
+      "Since 2006 I have been Liverpool Football Club's official Club Magician — the longest-running appointment of any magician at a Merseyside Premier League club. On matchdays I move between the Executive Boxes in the Sir Kenny Dalglish Stand, I also entertain at private club events involving the first team players and staff alike. I am the first point of call for weddings and corporate events hosted at the stadium.",
       "The brief is simple: make the room feel extraordinary before a ball is kicked. The magic has to work in tight spaces, with loud crowds, on cold January afternoons and European night games alike.",
       "Over twenty seasons I have performed for tens of thousands of guests — from first-time visitors on family days to boardroom directors, international delegations, and former players. The show must always feel fresh.",
     ],
