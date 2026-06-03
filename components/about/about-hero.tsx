@@ -3,33 +3,56 @@ import { BASE_PATH } from "@/lib/base-path";
 
 export function AboutHero() {
   return (
-    <section className="relative flex min-h-[70vh] items-center justify-center overflow-hidden">
-      <Image
-        src={`${BASE_PATH}/photos/spence-fire.jpeg`}
-        alt="Spencer Lynch performing fire magic"
-        fill
-        className="object-cover object-center"
-        sizes="100vw"
-        priority
-      />
-      <div className="absolute inset-0 bg-ink/80" />
+    <section className="relative flex min-h-[70vh] items-center justify-center overflow-hidden bg-ink">
+      {/* Desktop only: full-bleed background */}
+      <div className="absolute inset-0 hidden md:block">
+        <Image
+          src={`${BASE_PATH}/photos/spence-fire.jpeg`}
+          alt="Spencer Lynch performing fire magic"
+          fill
+          className="object-cover object-center"
+          sizes="100vw"
+          priority
+        />
+        <div className="absolute inset-0 bg-ink/80" />
+      </div>
 
-      <div className="relative z-10 mx-auto max-w-[600px] px-8 py-12 text-center">
-        <span className="pointer-events-none absolute left-0 top-0 h-[18px] w-[18px] border-l border-t border-gold" />
-        <span className="pointer-events-none absolute right-0 top-0 h-[18px] w-[18px] border-r border-t border-gold" />
-        <span className="pointer-events-none absolute bottom-0 left-0 h-[18px] w-[18px] border-b border-l border-gold" />
-        <span className="pointer-events-none absolute bottom-0 right-0 h-[18px] w-[18px] border-b border-r border-gold" />
-        <div className="absolute inset-0 border border-gold/30" />
+      {/* Content box — edge-to-edge on mobile, padded/centered on desktop */}
+      <div className="relative z-10 w-full md:mx-auto md:max-w-[600px] md:px-8">
+        <div className="relative overflow-hidden py-12 text-center">
+          {/* Mobile only: photo cropped inside the box */}
+          <div className="absolute inset-0 md:hidden">
+            <Image
+              src={`${BASE_PATH}/photos/spence-fire.jpeg`}
+              alt=""
+              fill
+              className="object-cover object-center"
+              sizes="100vw"
+              priority
+              aria-hidden
+            />
+            <div className="absolute inset-0 bg-ink/80" />
+          </div>
 
-        <p className="font-mono text-[10px] uppercase tracking-eyebrow text-gold/85">
-          — Purveyor of Mystery &amp; Marvels —
-        </p>
-        <h1 className="mt-5 font-display text-5xl italic leading-tight text-cream md:text-6xl lg:text-7xl">
-          Spencer Lynch
-        </h1>
-        <p className="mt-3 font-display text-xl italic text-cream/70">
-          Twenty years. Two clubs. One magician.
-        </p>
+          {/* Gold corner brackets */}
+          <span className="pointer-events-none absolute left-0 top-0 h-[18px] w-[18px] border-l border-t border-gold" />
+          <span className="pointer-events-none absolute right-0 top-0 h-[18px] w-[18px] border-r border-t border-gold" />
+          <span className="pointer-events-none absolute bottom-0 left-0 h-[18px] w-[18px] border-b border-l border-gold" />
+          <span className="pointer-events-none absolute bottom-0 right-0 h-[18px] w-[18px] border-b border-r border-gold" />
+          <div className="absolute inset-0 border border-gold/30" />
+
+          <div className="relative z-10 px-8">
+            <p className="font-mono text-[10px] uppercase tracking-eyebrow text-gold/85">
+              — Purveyor of Mystery &amp; Marvels —
+            </p>
+            <h1 className="mt-5 font-display text-5xl italic leading-tight text-cream md:text-6xl lg:text-7xl">
+              Spencer Lynch
+            </h1>
+            <p className="mt-3 font-display text-xl italic text-cream/70">
+              Twenty years. Two clubs. One magician.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );
