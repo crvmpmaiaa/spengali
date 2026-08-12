@@ -9,6 +9,7 @@ export function HomeClient() {
   return (
     <>
       <SiteIntro
+        mobileSrc="/intro/spencer-mobile.mp4"
         onDismiss={() => setIntroEnded(true)}
       />
       <div className="mx-auto mt-14 flex max-w-[988px] justify-center">

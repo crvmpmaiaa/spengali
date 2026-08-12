@@ -55,6 +55,11 @@ export function SiteFooter({
         <span>Spencer Lynch · Memorable Magic · Liverpool</span>
         <span>© {new Date().getFullYear()} · All rights reserved</span>
         <span>
+          <Link href="/privacy" className="transition-colors hover:text-gold">
+            Privacy
+          </Link>
+        </span>
+        <span>
           <Link
             href="https://maiaa.ai"
             target="_blank"

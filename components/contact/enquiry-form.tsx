@@ -75,11 +75,18 @@ export function EnquiryForm() {
       name="enquiry"
       method="POST"
       data-netlify="true"
+      data-netlify-honeypot="bot-field"
       onSubmit={handleSubmit(onSubmit)}
       className="space-y-6"
     >
       {/* Required by Netlify Forms */}
       <input type="hidden" name="form-name" value="enquiry" />
+      {/* Netlify spam honeypot — hidden from humans, bots fill it in */}
+      <p className="hidden" aria-hidden="true">
+        <label>
+          Don&apos;t fill this out: <input name="bot-field" />
+        </label>
+      </p>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <Field label="Name" fieldId="field-name" error={errors.name?.message}>

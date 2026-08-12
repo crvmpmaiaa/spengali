@@ -9,12 +9,12 @@ export const metadata: Metadata = {
   title: "Close-Up Magic for Every Event · The Work · Spencer Lynch",
   description:
     "Twenty years of close-up magic at Liverpool FC, Everton FC, Google, Marks & Spencer and hundreds of weddings and private events. Hire a top UK corporate and wedding magician.",
-  alternates: { canonical: "https://spencerlynch.co.uk/work" },
+  alternates: { canonical: "https://howdidhedothat.co.uk/work" },
   openGraph: {
     title: "Close-Up Magic for Every Event · Spencer Lynch",
     description:
       "From Premier League stadiums to boardrooms and weddings — Spencer Lynch is one of the UK's most experienced close-up magicians for hire.",
-    url: "https://spencerlynch.co.uk/work",
+    url: "https://howdidhedothat.co.uk/work",
   },
 };
 

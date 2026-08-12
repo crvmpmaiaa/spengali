@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   title: "Showreel & Photos · Spencer Lynch Close-Up Magician",
   description:
     "Watch Spencer Lynch's magic showreel and browse performance photography from twenty years of close-up magic at Liverpool FC, corporate events, weddings and private parties.",
-  alternates: { canonical: "https://spencerlynch.co.uk/gallery" },
+  alternates: { canonical: "https://howdidhedothat.co.uk/gallery" },
   openGraph: {
     title: "Showreel & Photos · Spencer Lynch Close-Up Magician",
     description:
       "Watch the showreel and browse photos from twenty years of close-up magic — Premier League stadiums, boardrooms, weddings and private events.",
-    url: "https://spencerlynch.co.uk/gallery",
+    url: "https://howdidhedothat.co.uk/gallery",
   },
 };
 

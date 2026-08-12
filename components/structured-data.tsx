@@ -4,12 +4,12 @@ export function StructuredData() {
     "@graph": [
       {
         "@type": "Person",
-        "@id": "https://spencerlynch.co.uk/#spencer",
+        "@id": "https://howdidhedothat.co.uk/#spencer",
         name: "Spencer Lynch",
         jobTitle: "Professional Close-Up Magician",
         description:
           "Spencer Lynch is Liverpool FC's Club Magician since 2006 and the first Club Magician at Everton FC. Twenty years of close-up magic at stadiums, boardrooms, weddings and private events across the UK.",
-        url: "https://spencerlynch.co.uk",
+        url: "https://howdidhedothat.co.uk",
         sameAs: ["https://www.linkedin.com/in/spencelynch/"],
         telephone: "+447706319468",
         address: {
@@ -21,11 +21,11 @@ export function StructuredData() {
       },
       {
         "@type": "LocalBusiness",
-        "@id": "https://spencerlynch.co.uk/#business",
+        "@id": "https://howdidhedothat.co.uk/#business",
         name: "Spencer Lynch — Memorable Magic",
         description:
           "Professional close-up magician available for corporate events, weddings, stadium hospitality, private parties and charity events across the UK.",
-        url: "https://spencerlynch.co.uk",
+        url: "https://howdidhedothat.co.uk",
         telephone: "+447706319468",
         priceRange: "££££",
         areaServed: [

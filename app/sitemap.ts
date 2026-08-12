@@ -3,7 +3,7 @@ import { WORK } from "@/lib/work-data";
 
 export const dynamic = "force-static";
 
-const BASE = "https://spencerlynch.co.uk";
+const BASE = "https://howdidhedothat.co.uk";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const workEntries = WORK.map((w) => ({
@@ -18,6 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/about`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE}/work`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/gallery`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/privacy`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.2 },
     { url: `${BASE}/book`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.8 },
     ...workEntries,
   ];

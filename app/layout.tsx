@@ -29,7 +29,7 @@ const rye = Rye({
   display: "swap",
 });
 
-const BASE = "https://spencerlynch.co.uk";
+const BASE = "https://howdidhedothat.co.uk";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE),

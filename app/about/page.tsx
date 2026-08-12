@@ -11,12 +11,12 @@ export const metadata: Metadata = {
   title: "About Spencer Lynch · Liverpool FC's Club Magician Since 2006",
   description:
     "Spencer Lynch is Liverpool FC's Club Magician since 2006, a Founding Member of The Liverpool Magic Circle, and the first Club Magician at Everton FC.",
-  alternates: { canonical: "https://spencerlynch.co.uk/about" },
+  alternates: { canonical: "https://howdidhedothat.co.uk/about" },
   openGraph: {
     title: "About Spencer Lynch · Liverpool FC's Club Magician Since 2006",
     description:
       "Twenty years of professional close-up magic. Liverpool FC, Everton FC, Google, Marks & Spencer and hundreds of weddings. Founding Member of The Liverpool Magic Circle.",
-    url: "https://spencerlynch.co.uk/about",
+    url: "https://howdidhedothat.co.uk/about",
   },
 };
 
