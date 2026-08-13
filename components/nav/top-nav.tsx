@@ -8,7 +8,11 @@ const allLinks = [
   { href: "/about", label: "About", prefetch: false },
   { href: "/work", label: "Work", prefetch: false },
   { href: "/gallery", label: "Gallery", prefetch: false },
-  { href: "/book", label: "Book", prefetch: true },
+  // prefetch must stay false: with prefetch={true}, Next 16.2.12's full
+  // prefetch requests /book?_rsc=... which a static export can't serve —
+  // Netlify returns HTML, poisoning the router cache so navigation to
+  // /book silently no-ops. See site-audit commit 699964e (next bump).
+  { href: "/book", label: "Book", prefetch: false },
 ];
 
 const leftLinks = allLinks.slice(0, 2);
