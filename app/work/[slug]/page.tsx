@@ -7,7 +7,7 @@ import { WORK, CATEGORIES, getWorkBySlug } from "@/lib/work-data";
 
 
 const PHONE_TEL = "+447706319468";
-const EMAIL = "spencer@example.com";
+const EMAIL = "spencario@yahoo.com";
 
 export function generateStaticParams() {
   return WORK.map((w) => ({ slug: w.slug }));

@@ -11,7 +11,7 @@ export function SiteFooter({
   emailMailto,
 }: {
   phoneTel: string; // e.g. "+447000000000"
-  emailMailto: string; // e.g. "spencer@example.com"
+  emailMailto: string; // e.g. "spencario@yahoo.com"
 }) {
   return (
     <footer className="border-t border-gold/30 bg-ink-warm px-5 pb-10 pt-12 text-cream md:px-10 md:pb-12 md:pt-16">

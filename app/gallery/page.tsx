@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 };
 
 const PHONE_TEL = "+447706319468";
-const EMAIL = "spencer@example.com";
+const EMAIL = "spencario@yahoo.com";
 
 export default function GalleryPage() {
   return (

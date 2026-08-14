@@ -5,7 +5,7 @@ import { SiteFooter } from "@/components/footer/site-footer";
 import { EnquiryForm } from "@/components/contact/enquiry-form";
 
 const PHONE_TEL = "+447706319468";       // Spencer's real number
-const EMAIL = "spencer@example.com";     // TODO: replace with Spencer's real email
+const EMAIL = "spencario@yahoo.com";
 
 export const metadata: Metadata = {
   title: "Book Spencer Lynch · Memorable Magic",

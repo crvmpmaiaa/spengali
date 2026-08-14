@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 };
 
 const PHONE_TEL = "+447706319468";
-const EMAIL = "spencer@example.com";
+const EMAIL = "spencario@yahoo.com";
 
 const COPY: string[] = [
   "I've been interested in magic since the age of 6 and performed professionally since I was about 20. I'm one of the Founding Members of The Liverpool Magic Circle and focus predominantly on close-up magic — typically walking around and entertaining guests at their tables. I also perform parlour magic for groups of seated guests.",

@@ -7,7 +7,7 @@ import { LogoCloud } from "@/components/ui/logo-cloud-4";
 import { resolveAvailableLogos } from "@/lib/logos";
 
 const PHONE_TEL = "+447706319468";       // Spencer's real number
-const EMAIL = "spencer@example.com";     // TODO: replace with Spencer's real email when supplied
+const EMAIL = "spencario@yahoo.com";
 
 export default function Home() {
   const logos = resolveAvailableLogos();
